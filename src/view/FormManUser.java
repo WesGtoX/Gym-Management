@@ -29,10 +29,6 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
         PnlInternalbox = new javax.swing.JPanel();
         lblUserpermissions = new javax.swing.JLabel();
-        chkUserpermissions4 = new javax.swing.JCheckBox();
-        chkUserpermissions1 = new javax.swing.JCheckBox();
-        chkUserpermissions2 = new javax.swing.JCheckBox();
-        chkUserpermissions3 = new javax.swing.JCheckBox();
         lblUserresponsible = new javax.swing.JLabel();
         txtUserresponsible = new javax.swing.JTextField();
         txtUserpassword = new javax.swing.JTextField();
@@ -47,30 +43,18 @@ public class FormManUser extends javax.swing.JInternalFrame {
         txtUserid = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         lblUsername = new javax.swing.JLabel();
-        chkUserpermissions5 = new javax.swing.JCheckBox();
+        cbxRestrictions = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Gerenciar Usuários");
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(300, 225));
 
         PnlInternalbox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblUserpermissions.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserpermissions.setText("Permissões do usuário");
-
-        chkUserpermissions4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        chkUserpermissions4.setText("Gerenciar usuários");
-
-        chkUserpermissions1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        chkUserpermissions1.setText("Cadastrar clientes");
-
-        chkUserpermissions2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        chkUserpermissions2.setText("Gerenciar pagamentos");
-
-        chkUserpermissions3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        chkUserpermissions3.setText("Cadastrar usuários");
 
         lblUserresponsible.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserresponsible.setText("Responsável pelo cadastro");
@@ -109,70 +93,64 @@ public class FormManUser extends javax.swing.JInternalFrame {
         lblUsername.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUsername.setText("Nome do usuário");
 
-        chkUserpermissions5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        chkUserpermissions5.setText("Gerar relatórios");
+        cbxRestrictions.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cbxRestrictions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout PnlInternalboxLayout = new javax.swing.GroupLayout(PnlInternalbox);
         PnlInternalbox.setLayout(PnlInternalboxLayout);
         PnlInternalboxLayout.setHorizontalGroup(
             PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PnlInternalboxLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInternalboxLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUserresponsible)
+                    .addComponent(txtUserresponsible, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkUserpermissions4)
-                            .addComponent(lblUserpermissions)
-                            .addComponent(chkUserpermissions1)
-                            .addComponent(chkUserpermissions3)
-                            .addComponent(chkUserpermissions2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblUsername)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUserid)
+                            .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUseremail)
+                            .addComponent(txtUseremail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkUserpermissions5)
-                            .addComponent(lblUserresponsible)
-                            .addComponent(txtUserresponsible, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PnlInternalboxLayout.createSequentialGroup()
-                                .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUsername)
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblUserid)
-                                    .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUseremail)
-                                    .addComponent(txtUseremail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PnlInternalboxLayout.createSequentialGroup()
-                                .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUserpassword)
-                                    .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUserpassword2)
-                                    .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblUserdate))))
-                        .addGap(0, 36, Short.MAX_VALUE))))
+                            .addComponent(lblUserpassword)
+                            .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUserpassword2)
+                            .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUserdate)))
+                    .addGroup(PnlInternalboxLayout.createSequentialGroup()
+                        .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblUserpermissions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxRestrictions, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
         );
         PnlInternalboxLayout.setVerticalGroup(
             PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlInternalboxLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
+            .addGroup(PnlInternalboxLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addComponent(lblUserid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addComponent(lblUseremail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUseremail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUseremail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addComponent(lblUsername)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 49, Short.MAX_VALUE)
                 .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
@@ -181,30 +159,22 @@ public class FormManUser extends javax.swing.JInternalFrame {
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addComponent(lblUserpassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PnlInternalboxLayout.createSequentialGroup()
                         .addComponent(lblUserpassword2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PnlInternalboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(lblUserresponsible)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUserresponsible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUserresponsible, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblUserpermissions)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chkUserpermissions1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkUserpermissions2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkUserpermissions3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkUserpermissions4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkUserpermissions5)
-                .addContainerGap())
+                .addComponent(cbxRestrictions, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +182,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(PnlInternalbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -221,7 +191,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(PnlInternalbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,11 +200,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlInternalbox;
-    private javax.swing.JCheckBox chkUserpermissions1;
-    private javax.swing.JCheckBox chkUserpermissions2;
-    private javax.swing.JCheckBox chkUserpermissions3;
-    private javax.swing.JCheckBox chkUserpermissions4;
-    private javax.swing.JCheckBox chkUserpermissions5;
+    private javax.swing.JComboBox<String> cbxRestrictions;
     private javax.swing.JLabel lblUserdate;
     private javax.swing.JLabel lblUseremail;
     private javax.swing.JLabel lblUserid;
