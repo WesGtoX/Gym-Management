@@ -13,6 +13,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     public FormPrincipal() {
         initComponents();
+        configurateForm();
     }
 
     @SuppressWarnings("unchecked")
@@ -20,7 +21,6 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        Desktop1 = new javax.swing.JDesktopPane();
         Menu = new javax.swing.JMenuBar();
         menuClient = new javax.swing.JMenu();
         ManClients = new javax.swing.JMenuItem();
@@ -29,6 +29,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         ManPayment = new javax.swing.JMenuItem();
         Separator2 = new javax.swing.JPopupMenu.Separator();
         submenuExit = new javax.swing.JMenuItem();
+        menuAbout = new javax.swing.JMenu();
         menuSearch = new javax.swing.JMenu();
         SeaClients = new javax.swing.JMenuItem();
         SeaUser = new javax.swing.JMenuItem();
@@ -37,51 +38,30 @@ public class FormPrincipal extends javax.swing.JFrame {
         RepProfit = new javax.swing.JMenuItem();
         RepExpensives = new javax.swing.JMenuItem();
         RepTotalProfit = new javax.swing.JMenuItem();
-        menuAbout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gym Management");
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1588, 2404));
         setSize(new java.awt.Dimension(0, 0));
 
         Desktop.setBackground(new java.awt.Color(255, 255, 255));
         Desktop.setToolTipText("");
         Desktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Desktop.setMinimumSize(new java.awt.Dimension(800, 600));
+        Desktop.setMinimumSize(new java.awt.Dimension(800, 586));
         Desktop.setName(""); // NOI18N
-        Desktop.setPreferredSize(new java.awt.Dimension(800, 600));
         Desktop.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        Desktop1.setBackground(new java.awt.Color(255, 255, 255));
-        Desktop1.setToolTipText("");
-        Desktop1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Desktop1.setMinimumSize(new java.awt.Dimension(800, 600));
-        Desktop1.setName(""); // NOI18N
-        Desktop1.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout Desktop1Layout = new javax.swing.GroupLayout(Desktop1);
-        Desktop1.setLayout(Desktop1Layout);
-        Desktop1Layout.setHorizontalGroup(
-            Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        Desktop1Layout.setVerticalGroup(
-            Desktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         menuClient.setText("Gerenciar");
@@ -90,6 +70,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuClient.add(ManClients);
 
         ManUser.setText("Usuário");
+        ManUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManUserActionPerformed(evt);
+            }
+        });
         menuClient.add(ManUser);
         menuClient.add(Separator1);
 
@@ -100,6 +85,9 @@ public class FormPrincipal extends javax.swing.JFrame {
         submenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         submenuExit.setText("Sair");
         menuClient.add(submenuExit);
+
+        menuAbout.setText("Sobre");
+        menuClient.add(menuAbout);
 
         Menu.add(menuClient);
 
@@ -129,31 +117,30 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         Menu.add(menuReport);
 
-        menuAbout.setText("Sobre");
-        Menu.add(menuAbout);
-
         setJMenuBar(Menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 784, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Desktop1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        Desktop.getAccessibleContext().setAccessibleName("");
+        getAccessibleContext().setAccessibleParent(this);
 
-        pack();
+        setSize(new java.awt.Dimension(800, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
+        openForm(new FormManUser());
+    }//GEN-LAST:event_ManUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +179,6 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JDesktopPane Desktop1;
     private javax.swing.JMenuItem ManClients;
     private javax.swing.JMenuItem ManPayment;
     private javax.swing.JMenuItem ManUser;
@@ -212,15 +198,15 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem submenuExit;
     // End of variables declaration//GEN-END:variables
 
-    private void configurarFormulario() {
+    private void configurateForm() {
         this.setTitle("Gym Management");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    private void abrirFormulario(JInternalFrame f){
+    private void openForm(JInternalFrame f){
         if (Desktop.getAllFrames().length == 0) {
             Desktop.add(f);
-            centralizarFormulario(f);
+            centerForm(f);
             f.setVisible(true);
         } else {
             JOptionPane.showConfirmDialog(
@@ -228,7 +214,8 @@ public class FormPrincipal extends javax.swing.JFrame {
                     "Você precisa fechar a janela atual antes de abrir outro formulário!");
         }
     }
-        private void centralizarFormulario(JInternalFrame f){
+    
+    private void centerForm(JInternalFrame f){
         Dimension d = f.getDesktopPane().getSize();
         f.setLocation(
             (d.width-f.getSize().width)/2,
