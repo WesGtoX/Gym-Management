@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
  *
  * @author Wesley, Quemuel
  */
-public class FormPrincipal extends javax.swing.JFrame {
+public class FormMain extends javax.swing.JFrame {
 
-    public FormPrincipal() {
+    public FormMain() {
         initComponents();
         configurateForm();
     }
@@ -28,8 +28,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         Separator1 = new javax.swing.JPopupMenu.Separator();
         ManPayment = new javax.swing.JMenuItem();
         Separator2 = new javax.swing.JPopupMenu.Separator();
+        ManAbout = new javax.swing.JMenuItem();
         submenuExit = new javax.swing.JMenuItem();
-        menuAbout = new javax.swing.JMenu();
         menuSearch = new javax.swing.JMenu();
         SeaClients = new javax.swing.JMenuItem();
         SeaUser = new javax.swing.JMenuItem();
@@ -87,12 +87,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuClient.add(ManPayment);
         menuClient.add(Separator2);
 
+        ManAbout.setText("Sobre");
+        menuClient.add(ManAbout);
+
         submenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         submenuExit.setText("Sair");
         menuClient.add(submenuExit);
-
-        menuAbout.setText("Sobre");
-        menuClient.add(menuAbout);
 
         Menu.add(menuClient);
 
@@ -134,7 +134,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 540, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -168,26 +168,28 @@ public class FormPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPrincipal().setVisible(true);
+                new FormMain().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
+    private javax.swing.JMenuItem ManAbout;
     private javax.swing.JMenuItem ManClients;
     private javax.swing.JMenuItem ManPayment;
     private javax.swing.JMenuItem ManUser;
@@ -200,7 +202,6 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem SeaUser;
     private javax.swing.JPopupMenu.Separator Separator1;
     private javax.swing.JPopupMenu.Separator Separator2;
-    private javax.swing.JMenu menuAbout;
     private javax.swing.JMenu menuClient;
     private javax.swing.JMenu menuReport;
     private javax.swing.JMenu menuSearch;
