@@ -28,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pagamento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManPaymentActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="Separator2">
             </MenuItem>

@@ -79,6 +79,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuClient.add(Separator1);
 
         ManPayment.setText("Pagamento");
+        ManPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManPaymentActionPerformed(evt);
+            }
+        });
         menuClient.add(ManPayment);
         menuClient.add(Separator2);
 
@@ -141,6 +146,10 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
         openForm(new FormManUser());
     }//GEN-LAST:event_ManUserActionPerformed
+
+    private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
+        openForm(new FormManPay());
+    }//GEN-LAST:event_ManPaymentActionPerformed
 
     /**
      * @param args the command line arguments

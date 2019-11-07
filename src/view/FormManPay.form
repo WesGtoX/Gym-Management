@@ -9,6 +9,9 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[300, 225]"/>
     </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[800, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -28,260 +31,277 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="73" max="32767" attributes="0"/>
-              <Component id="PnlInternalbox" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPayrate" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="lblPaymode" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbxPaymode" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblPayrate" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="377" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblClientname" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtClientname" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
+                          <Component id="lblPayid" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPayrid" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPaydate" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPaydiscount" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblPaydate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPaydiscount" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="342" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPayfull" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="lblPayfull" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-              <Component id="PnlInternalbox" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
-          </Group>
-      </Group>
-    </DimensionLayout>
-  </Layout>
-  <SubComponents>
-    <Container class="javax.swing.JPanel" name="PnlInternalbox">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jSeparator1" max="32767" attributes="0"/>
-                      <Component id="lblPayid" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPayrid" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblClientname" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtClientname" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
-                              <Component id="lblPaymode" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbxPaymode" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtPaydiscount" alignment="0" pref="147" max="32767" attributes="0"/>
-                                  <Component id="lblPaydiscount" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtPaydate" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblPaydate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPayfull" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                                  <Component id="lblPayfull" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtPayrate" alignment="0" pref="147" max="32767" attributes="0"/>
-                                  <Component id="lblPayrate" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblPayid" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtPayrid" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="lblPayid" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtPayrid" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblPaydate" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtPaydate" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblClientname" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtClientname" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblPaymode" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxPaymode" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblClientname" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtClientname" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblPaydiscount" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtPaydiscount" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblPaydiscount" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPayrate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtPaydiscount" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPayrate" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="lblPaymode" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cbxPaymode" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblPayrate" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtPayrate" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="128" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblPayfull" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="txtPayfull" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblPayfull" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtPayfull" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
           </Group>
-        </DimensionLayout>
-      </Layout>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JFormattedTextField" name="txtPaydate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="##/##/####" subtype="-1" type="1"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPaydate">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Data de vencimento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPayid">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPayrid">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtClientname">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblClientname">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nome do Cliente"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPayfull">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="##/##/####" subtype="-1" type="1"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPayfull">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Total"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPaydiscount">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="##/##/####" subtype="-1" type="1"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPaydiscount">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Desconto"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbxPaymode">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPaymode">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Forma de pagamento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPayrate">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="##/##/####" subtype="-1" type="1"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPayrate">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Juros"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JFormattedTextField" name="txtPaydate">
+        <Component class="javax.swing.JTable" name="tblHistoric">
           <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="##/##/####" subtype="-1" type="1"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPaydate">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Data de vencimento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPayid">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtPayrid">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtClientname">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblClientname">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nome do Cliente"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtPayfull">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="##/##/####" subtype="-1" type="1"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPayfull">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Total"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtPaydiscount">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="##/##/####" subtype="-1" type="1"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPaydiscount">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Desconto"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cbxPaymode">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPaymode">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Forma de pagamento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSeparator" name="jSeparator1">
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtPayrate">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="##/##/####" subtype="-1" type="1"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPayrate">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Juros"/>
           </Properties>
         </Component>
       </SubComponents>
