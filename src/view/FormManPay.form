@@ -31,17 +31,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tabPrincipal" alignment="0" pref="798" max="32767" attributes="0"/>
+          <Component id="tabMain" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tabPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="tabMain" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="tabPrincipal">
+    <Container class="javax.swing.JTabbedPane" name="tabMain">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
@@ -367,11 +367,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="739" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="rdbSrcId" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdbSrcCode" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="rdbSrcName" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtInputData" min="-2" pref="514" max="-2" attributes="0"/>
+                              <Component id="txtInputData" min="-2" pref="504" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnSearch" min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
@@ -385,7 +385,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rdbSrcId" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="rdbSrcCode" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="rdbSrcName" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="txtInputData" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="btnSearch" alignment="0" pref="26" max="32767" attributes="0"/>
@@ -432,9 +432,9 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JRadioButton" name="rdbSrcId">
+            <Component class="javax.swing.JRadioButton" name="rdbSrcCode">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Id"/>
+                <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rdbSrcName">
