@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,7 +23,14 @@ public class FormMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Desktop = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/image/background.jpg"));
+        Image image = icon.getImage();
+        Desktop = new javax.swing.JDesktopPane() {
+
+            public void paintComponent(Graphics g) {
+                g.drawImage(image,0,0,getWidth(),getHeight(), this);
+            }
+        };
         Menu = new javax.swing.JMenuBar();
         menuClient = new javax.swing.JMenu();
         ManClients = new javax.swing.JMenuItem();
@@ -46,7 +56,6 @@ public class FormMain extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1588, 2404));
         setSize(new java.awt.Dimension(0, 0));
 
-        Desktop.setBackground(new java.awt.Color(255, 255, 255));
         Desktop.setToolTipText("");
         Desktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Desktop.setMinimumSize(new java.awt.Dimension(800, 586));
@@ -144,7 +153,7 @@ public class FormMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 540, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -237,7 +246,7 @@ public class FormMain extends javax.swing.JFrame {
             centerForm(f);
             f.setVisible(true);
         } else {
-            JOptionPane.showConfirmDialog(
+            JOptionPane.showMessageDialog(
                     rootPane,
                     "Você precisa fechar a janela atual antes de abrir outro formulário!");
         }
