@@ -67,6 +67,11 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.setText("Gerenciar");
 
         ManClients.setText("Cliente");
+        ManClients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManClientsActionPerformed(evt);
+            }
+        });
         menuClient.add(ManClients);
 
         ManUser.setText("Usuário");
@@ -150,6 +155,10 @@ public class FormMain extends javax.swing.JFrame {
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
         openForm(new FormManPay());
     }//GEN-LAST:event_ManPaymentActionPerformed
+
+    private void ManClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManClientsActionPerformed
+        openForm(new FormManClient());
+    }//GEN-LAST:event_ManClientsActionPerformed
 
     /**
      * @param args the command line arguments
