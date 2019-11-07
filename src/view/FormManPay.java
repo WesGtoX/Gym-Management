@@ -48,6 +48,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
         lblPayrate = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHistoric = new javax.swing.JTable();
+        btnModify = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         tabSrcPay = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -122,6 +125,21 @@ public class FormManPay extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblHistoric);
 
+        btnModify.setBackground(new java.awt.Color(0, 102, 255));
+        btnModify.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnModify.setForeground(new java.awt.Color(255, 255, 255));
+        btnModify.setText("Alterar");
+
+        btnCancel.setBackground(new java.awt.Color(0, 102, 255));
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("Cancelar");
+
+        btnSave.setBackground(new java.awt.Color(0, 102, 255));
+        btnSave.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setText("Salvar");
+
         javax.swing.GroupLayout tabManPayLayout = new javax.swing.GroupLayout(tabManPay);
         tabManPay.setLayout(tabManPayLayout);
         tabManPayLayout.setHorizontalGroup(
@@ -129,9 +147,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabManPayLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPayfull, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPayfull))
                     .addGroup(tabManPayLayout.createSequentialGroup()
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPayid)
@@ -153,7 +168,17 @@ public class FormManPay extends javax.swing.JInternalFrame {
                             .addComponent(txtPayrate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabManPayLayout.createSequentialGroup()
+                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancel)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPayfull, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPayfull))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         tabManPayLayout.setVerticalGroup(
@@ -200,7 +225,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addGroup(tabManPayLayout.createSequentialGroup()
                         .addComponent(lblPayfull)
                         .addGap(29, 29, 29))
-                    .addComponent(txtPayfull, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPayfull, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancel)
+                        .addComponent(btnModify)
+                        .addComponent(btnSave)))
                 .addGap(30, 30, 30))
         );
 
@@ -272,6 +301,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbxPaymode;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
