@@ -93,6 +93,11 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.add(Separator2);
 
         ManAbout.setText("Sobre");
+        ManAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManAboutActionPerformed(evt);
+            }
+        });
         menuClient.add(ManAbout);
 
         submenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -159,6 +164,10 @@ public class FormMain extends javax.swing.JFrame {
     private void ManClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManClientsActionPerformed
         openForm(new FormManClient());
     }//GEN-LAST:event_ManClientsActionPerformed
+
+    private void ManAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManAboutActionPerformed
+        openForm(new FormAbout());
+    }//GEN-LAST:event_ManAboutActionPerformed
 
     /**
      * @param args the command line arguments
