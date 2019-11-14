@@ -163,7 +163,7 @@ public class FormMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
-        openForm(new FormManUser());
+        openForm(new FormManUser(1));
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed

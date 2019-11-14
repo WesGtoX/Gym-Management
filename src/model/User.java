@@ -16,21 +16,19 @@ import javax.persistence.Table;
 
 //call persistense
 @Entity
-@Table(name="tb_categoria")
-@SequenceGenerator(
-    name="tb_categoria_id_seq",
-    sequenceName = "tb_categoria_id_seq",
-    initialValue = 1,
-    allocationSize = 1
-)
+@Table(name="tb_users")
 public class User implements Serializable{
     
-    @Id
+    @SequenceGenerator(
+        name="tb_user_id_seq",
+        sequenceName = "tb_user_id_seq"
+    )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "tb_categoria_id_seq"
+        generator = "tb_user_id_seq"
     )
-    
+
+    @Id
     @Column(name="id")
     private Long id;
     @Column(name="name", length = 100)
@@ -51,6 +49,17 @@ public class User implements Serializable{
     public User() {
     }
 
+    public User(Long id, String name, String date, String password, String email, String responsable, int occupation, int permissions) {
+        this.setId(id);
+        this.setName(name);
+        this.setDate(date);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setResponsable(responsable);
+        this.setOccupation(occupation);
+        this.setPermissions(permissions);
+    }
+    
     public Long getId() {
         return id;
     }
@@ -119,7 +128,7 @@ public class User implements Serializable{
         }
     }
 
-    public int getFunction() {
+    public int getOccupation() {
         return occupation;
     }
 

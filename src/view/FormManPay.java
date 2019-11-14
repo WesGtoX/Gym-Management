@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,8 +14,10 @@ public class FormManPay extends javax.swing.JInternalFrame {
     public FormManPay() {
         initComponents();
         fillCbxPaymode();
+        filltblHistoric();
+        filltblPay();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,12 +29,12 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
         tabMain = new javax.swing.JTabbedPane();
         tabManPay = new javax.swing.JPanel();
-        lblPaydate = new javax.swing.JLabel();
+        lblExpireddate = new javax.swing.JLabel();
         lblPayid = new javax.swing.JLabel();
         txtPayrid = new javax.swing.JTextField();
         txtClientname = new javax.swing.JTextField();
         lblClientname = new javax.swing.JLabel();
-        txtPayfull = new javax.swing.JFormattedTextField();
+        txtTotal = new javax.swing.JFormattedTextField();
         lblPayfull = new javax.swing.JLabel();
         txtPaydiscount = new javax.swing.JFormattedTextField();
         lblPaydiscount = new javax.swing.JLabel();
@@ -45,13 +48,13 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnModify = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtExpireddate = new javax.swing.JFormattedTextField();
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         tabSrcPay = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblHistoric1 = new javax.swing.JTable();
+        tblPay = new javax.swing.JTable();
         rdbSrcCode = new javax.swing.JRadioButton();
         rdbSrcName = new javax.swing.JRadioButton();
 
@@ -68,8 +71,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         tabManPay.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tabManPay.setPreferredSize(new java.awt.Dimension(565, 331));
 
-        lblPaydate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblPaydate.setText("Vencimento");
+        lblExpireddate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblExpireddate.setText("Vencimento");
 
         lblPayid.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblPayid.setText("Código");
@@ -82,8 +85,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         lblClientname.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblClientname.setText("Nome do Cliente");
 
-        txtPayfull.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
-        txtPayfull.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
+        txtTotal.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPayfull.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblPayfull.setText("Total a pagar");
@@ -136,11 +139,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnSave.setText("Salvar");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtExpireddate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtExpireddate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         btnDelete.setBackground(new java.awt.Color(0, 102, 255));
         btnDelete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -179,8 +182,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
                             .addComponent(txtClientname, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPaydate)
-                            .addComponent(jFormattedTextField1)))
+                            .addComponent(lblExpireddate)
+                            .addComponent(txtExpireddate)))
                     .addComponent(jScrollPane1)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
@@ -200,7 +203,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPayfull)
-                            .addComponent(txtPayfull, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         tabManPayLayout.setVerticalGroup(
@@ -210,9 +213,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(tabManPayLayout.createSequentialGroup()
-                            .addComponent(lblPaydate)
+                            .addComponent(lblExpireddate)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtExpireddate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(tabManPayLayout.createSequentialGroup()
                             .addComponent(lblClientname)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,7 +233,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxPaymode, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPayrate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPayfull, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPaydiscount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +250,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabMain.addTab("Pagamentos", tabManPay);
@@ -256,8 +259,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
         txtInputData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        tblHistoric1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tblHistoric1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPay.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tblPay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -268,8 +271,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblHistoric1.setPreferredSize(new java.awt.Dimension(600, 341));
-        jScrollPane2.setViewportView(tblHistoric1);
+        tblPay.setPreferredSize(new java.awt.Dimension(600, 341));
+        jScrollPane2.setViewportView(tblPay);
 
         rdbSrcCode.setText("Código");
 
@@ -330,12 +333,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbxPaymode;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblClientname;
-    private javax.swing.JLabel lblPaydate;
+    private javax.swing.JLabel lblExpireddate;
     private javax.swing.JLabel lblPaydiscount;
     private javax.swing.JLabel lblPayfull;
     private javax.swing.JLabel lblPayid;
@@ -347,18 +349,57 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JPanel tabManPay;
     private javax.swing.JPanel tabSrcPay;
     private javax.swing.JTable tblHistoric;
-    private javax.swing.JTable tblHistoric1;
+    private javax.swing.JTable tblPay;
     private javax.swing.JTextField txtClientname;
+    private javax.swing.JFormattedTextField txtExpireddate;
     private javax.swing.JTextField txtInputData;
     private javax.swing.JFormattedTextField txtPaydiscount;
-    private javax.swing.JFormattedTextField txtPayfull;
     private javax.swing.JFormattedTextField txtPayrate;
     private javax.swing.JTextField txtPayrid;
+    private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
     
     public void fillCbxPaymode(){
         String paymode[] = {"Dinheiro","Cartão","Cheque"};
         DefaultComboBoxModel model = new DefaultComboBoxModel(paymode);
         cbxPaymode.setModel(model);
+    }
+    
+    public void filltblPay(){
+        DefaultTableModel pay = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            } 
+        };
+        pay.addColumn("Id");
+        pay.addColumn("Nome");
+        pay.addColumn("Valor");
+        pay.addColumn("Data de vencimento");
+        tblPay.setModel(pay);
+        for(int i = 0;i<15;i++){
+            pay.addRow(new Object[]{"5","joao","320,00 R$","01/02/2003"});
+        }
+    }
+    
+    public void filltblHistoric(){
+        DefaultTableModel his = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            } 
+        };
+        his.addColumn("Id");
+        his.addColumn("Status");
+        his.addColumn("Valor");
+        his.addColumn("Data de vencimento");
+        tblHistoric.setModel(his);
+        for(int i = 0;i<15;i++){
+            his.addRow(new Object[]{"1","pago","500,00 R$","01/02/2003"});
+        }
+    }
+    
+    public void configurateForm(){
+        
     }
 }
