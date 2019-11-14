@@ -6,11 +6,12 @@
 package view;
 
 import controller.ClientDAO;
+import controller.UserDAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Client;
+import model.User;
 
 /**
  *
@@ -153,7 +154,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
 
     private void btnSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignActionPerformed
  
-        List<Client> carregar = new ClientDAO().listar();
+        List<User> carregar = new UserDAO().searchAll();
         
         String usr = txtLogin.getText();
         String pwd = new String(pswPass.getPassword());
@@ -170,8 +171,8 @@ public class FormLogin extends javax.swing.JInternalFrame {
             
         }
         
-        for (Client user : carregar) {
-            if (usr.toUpperCase().equals(user.getLogin().toUpperCase()) && pwd.equals(user.getPasswd().toUpperCase())) {
+        for (User user : carregar) {
+            if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.equals(user.getPassword().toUpperCase())) {
                 // Abrir o formulario
                 FormMain frm = new FormMain();
 //                    frm.setExtendedState(MAXIMIZED_BOTH);
