@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.User;
 
 /**
@@ -17,29 +18,30 @@ public class UserDAO {
     private final EntityManager em;
     
     public UserDAO(){
-        this.emf = Persistence.createEntityManagerFactory("gym_management");
+        this.emf = Persistence.createEntityManagerFactory("GymManagementPU");
         this.em = emf.createEntityManager();
     }
     
     public int save(User usr){
         try{
-            User user;
+            User user = null;
             if(usr.getId() == null){
-                user = usr;//create a new user
+                user = usr;                                             //create a new user
+                em.persist(user);
             }else{
-                user = em.find(User.class, usr.getId());//update a existing id_user
-                user.setName(usr.getName());//update a existing name_user
-                user.setEmail(usr.getEmail());//update a existing email_user
-                user.setDate(usr.getDate());//update a existing date_user
-                user.setPassword(usr.getPassword());//update a existing password_user
-                user.setPermissions(usr.getPermissions());//update a existing permission_user
-                user.setResponsable(usr.getResponsable());//update a existing responsable_user
-                user.setOccupation(usr.getOccupation());//update a existing occupation_user
+                user = em.find(User.class, usr.getId());                //update a existing id_user
+                user.setName(usr.getName());                            //update a existing name_user
+                user.setEmail(usr.getEmail());                          //update a existing email_user
+                user.setDate(usr.getDate());                            //update a existing date_user
+                user.setPassword(usr.getPassword());                    //update a existing password_user
+                user.setPermissions(usr.getPermissions());              //update a existing permission_user
+                user.setResponsible(usr.getResponsible());              //update a existing responsable_user
+                user.setOccupation(usr.getOccupation());                //update a existing occupation_user
             }
             em.getTransaction().begin();
-            em.merge(usr);
+            em.merge(user);
             em.getTransaction().commit();
-            return usr.getId().intValue();
+            return user.getId().intValue();
         }catch(Exception e){
             System.out.println("Não foi possível inserir o novo usuário, ERRO: "+e.getMessage());
             return -1;
@@ -51,10 +53,11 @@ public class UserDAO {
     
     public int delete(int id){
         try{
-            User usr = em.find(User.class,new Long(id));//delete selected id_user
+            User usr = em.find(User.class,new Long(id)); 
             em.getTransaction().begin();
-            em.merge(usr);
+            em.remove(usr);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null,"Id do usuario deletado: "+id);
             return usr.getId().intValue();
         }catch(Exception e){
             System.out.println("Não foi possível deletar o usuário id="+id+", ERRO: "+e.getMessage());
@@ -67,7 +70,7 @@ public class UserDAO {
     
     public List<User> searchAll(){
         try{
-            Query q = em.createQuery("SELECT u FROM User u ORDER BY u.id");//select all order by id
+            Query q = em.createQuery("SELECT u FROM User u ORDER BY u.id");
             return q.getResultList();
         }catch(Exception e){
             System.out.println("Não foi possível buscar usuários, ERRO: "+e.getMessage());
@@ -80,7 +83,7 @@ public class UserDAO {
     
     public List<User> searchId(int id){
         try{
-            Query q = em.createQuery("SELECT u FROM User u WHERE u.id=:id ORDER BY u.id");//select all with id_user order by id_user
+            Query q = em.createQuery("SELECT u FROM User u WHERE u.id=:id ORDER BY u.id");
             q.setParameter("id",id);
             return q.getResultList();
         }catch(Exception e){
