@@ -5,13 +5,16 @@
  */
 package view;
 
-import controller.ClientDAO;
 import controller.UserDAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import model.User;
+import static view.FormMain.Usr;
 
 /**
  *
@@ -19,11 +22,18 @@ import model.User;
  */
 public class FormLogin extends javax.swing.JInternalFrame {
 
+    private JMenuBar menu;
+    
     /**
      * Creates new form FormLogin
      */
     public FormLogin() {
         initComponents();
+    }
+    
+    public FormLogin(JMenuBar menu){
+        this();
+        this.menu=menu;
     }
 
     /**
@@ -104,6 +114,11 @@ public class FormLogin extends javax.swing.JInternalFrame {
                 btnSignActionPerformed(evt);
             }
         });
+        btnSign.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSignKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,44 +168,12 @@ public class FormLogin extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignActionPerformed
- 
-        List<User> carregar = new UserDAO().searchAll();
-        
-        String usr = txtLogin.getText();
-        String pwd = new String(pswPass.getPassword());
-        boolean login = false;
-        MessageDigest m;
-        
-        try {
-            m = MessageDigest.getInstance("MD5");
-            m.reset();
-            m.update(pwd.getBytes(), 0, pwd.length());
-            BigInteger pwd1 = new BigInteger(1, m.digest());
-            pwd = String.format("%1$032X", pwd1);
-        } catch (Exception e) {
-            
-        }
-        
-        for (User user : carregar) {
-            if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.equals(user.getPassword().toUpperCase())) {
-                // Abrir o formulario
-                FormMain frm = new FormMain();
-//                    frm.setExtendedState(MAXIMIZED_BOTH);
-                frm.setVisible(true);
-                login = true;
-                this.dispose();
-            }
-        }
-        
-        if (login == false) {
-            JOptionPane.showMessageDialog(null,"Usuário ou senha inválido.",
-                    "Login",JOptionPane.ERROR_MESSAGE);
-            txtLogin.setText("");
-            pswPass.setText("");
-            txtLogin.requestFocusInWindow();
-        }
-//        this.dispose();
+        login();
     }//GEN-LAST:event_btnSignActionPerformed
+
+    private void btnSignKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSignKeyPressed
+        login();
+    }//GEN-LAST:event_btnSignKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -204,4 +187,59 @@ public class FormLogin extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField pswPass;
     private javax.swing.JTextField txtLogin;
     // End of variables declaration//GEN-END:variables
+
+
+    private void login(){
+        
+        List<User> carregar = new UserDAO().searchAll();
+        
+        String usr = txtLogin.getText();
+        String pwd = new String(pswPass.getPassword());
+        boolean login = false;
+        MessageDigest m;
+        
+        try {
+//            m = MessageDigest.getInstance("MD5");
+//            m.reset();
+//            m.update(pwd.getBytes(), 0, pwd.length());
+//            BigInteger pwd1 = new BigInteger(1, m.digest());
+//            pwd = String.format("%1$032X", pwd1);
+        } catch (Exception e) {
+            
+        }
+        
+        for (User user : carregar) {
+            if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.toUpperCase().equals(user.getPassword().toUpperCase())) {
+                
+                // Open form
+                User u = Usr = new User();
+                u.setPermissions(1);
+                
+                menu.getMenu(0).setEnabled(true);
+                menu.getMenu(1).setEnabled(true);
+                menu.getMenu(2).setEnabled((u.getPermissions() == 0) ? false : true);
+                menu.getMenu(0).getItem(3).setEnabled((u.getPermissions() == 0) ? false : true);
+               
+//                FormMain frm = new FormMain();
+//                    frm.setExtendedState(MAXIMIZED_BOTH);
+//                frm.setVisible(true);
+                login = true;
+                this.dispose();
+            }
+        }
+        
+        if (login == false) {
+            JOptionPane.showMessageDialog(null,"Usuário ou senha inválido.",
+                    "Login",JOptionPane.ERROR_MESSAGE);
+            txtLogin.setText("");
+            pswPass.setText("");
+            txtLogin.requestFocusInWindow();
+        }
+        this.dispose();
+        
+    }
+
+
+
+
 }
