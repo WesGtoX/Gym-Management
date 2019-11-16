@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import javax.swing.ImageIcon;
 import model.User;
 
