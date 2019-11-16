@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,10 @@ public class Payment implements Serializable{
     private String name;
     @Column(name="expiry", length = 12)
     private String expiry;
+    @Column(name="paydate", length = 12)
+    private String paydate;
+    @Column(name="historic")
+    private List<PayHistoric> historic;
     @Column(name="paymode")
     private int paymode;
     @Column(name="payrate",length = 30)
@@ -69,6 +74,18 @@ public class Payment implements Serializable{
         }
     }
 
+    public String getPaydate() {
+        return paydate;
+    }
+
+    public void setPaydate(String paydate) {
+        if(!paydate.isEmpty()){
+            this.paydate = paydate;
+        }else{
+            this.paydate = "??/??/????";
+        }
+    }
+    
     public String getExpiry() {
         return expiry;
     }
