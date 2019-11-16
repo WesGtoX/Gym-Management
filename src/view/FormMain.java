@@ -73,8 +73,13 @@ public class FormMain extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        menuClient.setText("Gerenciar");
+        Menu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Menu.setPreferredSize(new java.awt.Dimension(235, 30));
 
+        menuClient.setText("Gerenciar");
+        menuClient.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        ManClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ManClients.setText("Cliente");
         ManClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +88,7 @@ public class FormMain extends javax.swing.JFrame {
         });
         menuClient.add(ManClients);
 
+        ManUser.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ManUser.setText("Usuário");
         ManUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +98,7 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.add(ManUser);
         menuClient.add(Separator1);
 
+        ManPayment.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ManPayment.setText("Pagamento");
         ManPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +108,7 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.add(ManPayment);
         menuClient.add(Separator2);
 
+        ManAbout.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ManAbout.setText("Sobre");
         ManAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,32 +118,41 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.add(ManAbout);
 
         submenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        submenuExit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         submenuExit.setText("Sair");
         menuClient.add(submenuExit);
 
         Menu.add(menuClient);
 
         menuSearch.setText("Pesquisa");
+        menuSearch.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        SeaClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SeaClients.setText("Clientes");
         menuSearch.add(SeaClients);
 
+        SeaUser.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SeaUser.setText("Usuário");
         menuSearch.add(SeaUser);
 
         Menu.add(menuSearch);
 
         menuReport.setText("Relatorio");
+        menuReport.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        RepClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepClients.setText("Cliente");
         menuReport.add(RepClients);
 
+        RepProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepProfit.setText("Ganhos");
         menuReport.add(RepProfit);
 
+        RepExpensives.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepExpensives.setText("Gastos");
         menuReport.add(RepExpensives);
 
+        RepTotalProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepTotalProfit.setText("Lucro Total");
         menuReport.add(RepTotalProfit);
 
