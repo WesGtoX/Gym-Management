@@ -3,6 +3,7 @@ package view;
 import controller.UserDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.User;
@@ -14,16 +15,18 @@ import model.User;
 public class FormManUser extends javax.swing.JInternalFrame {
     
     public int permissions;
+    private JMenuItem aba;
     
-    public FormManUser(int permissions) {
+    public FormManUser(int permissions, int tab) {
+        this.aba = aba;
         this.permissions = permissions;
         initComponents();
         fillCbxUserfunction();
         fillcbxRestrictions();
         configurateForm();
-        setState(true);
+        tabMain.setSelectedIndex(tab);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,6 +340,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         });
         tblUsers.setPreferredSize(new java.awt.Dimension(600, 341));
+        tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsersMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblUsers);
 
         rdbSrcId.setText("Id");
@@ -401,12 +409,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         setState(false);
         setData();
-        btnModify.setEnabled((this.permissions != 0) ? true : false);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         setState(false);
-        btnModify.setEnabled((this.permissions != 0) ? true : false);
+        btnDelete.setEnabled((this.permissions != 0) ? true : false);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -427,6 +434,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         }
         filltblUsers(new UserDAO().searchAll());
+        fillForm(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
@@ -438,21 +446,23 @@ public class FormManUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rdbSrcIdActionPerformed
 
     private void txtInputDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputDataKeyReleased
-        if(rdbSrcId.isSelected()){
-            filltblUsers(new UserDAO().searchId(Integer.parseInt(txtInputData.toString())));
-        }else if(rdbSrcName.isSelected()){
-            filltblUsers(new UserDAO().searchName(txtInputData.toString()));
+        if(rdbSrcId.isSelected() && !txtInputData.getText().isEmpty()){
+            filltblUsers(new UserDAO().searchId(Integer.parseInt(txtInputData.getText())));
+        }else if(rdbSrcName.isSelected() && !txtInputData.getText().isEmpty()){
+            filltblUsers(new UserDAO().searchName(txtInputData.getText()));
+        }else{
+            filltblUsers(new UserDAO().searchAll());
         }
-        filltblUsers(new UserDAO().searchAll());
     }//GEN-LAST:event_txtInputDataKeyReleased
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
         setState(false);
+        Long id = (txtUserid.getText().isEmpty() ? null : Long.parseLong(txtUserid.getText()));
         btnModify.setEnabled((this.permissions != 0) ? true : false);
         int id_new = new UserDAO().save(
             new User(
-                Long.parseLong(txtUserid.getText()),
+                id,
                 txtUsername.getText(),
                 txtUserdate.getText(),
                 txtUserpassword.getText(),
@@ -462,11 +472,35 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 cbxPermissions.getSelectedIndex()
             )
         );
-        
-        if(id_new == Integer.parseInt(txtUserid.getText())){
-            JOptionPane.showMessageDialog(null,"Usuário inserido com sucesso!");
-        }
+        if(id_new == -1){
+        JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
+        };
+        setState(true);
+        filltblUsers(new UserDAO().searchAll());
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
+        
+//        //search Id from row selected in table
+//        Long id = (Long) tblUsers.getValueAt(tblUsers.getSelectedRow(),0);
+//        List<User> form = new UserDAO().searchId(id.intValue());
+//        
+//        //insert selected object into form
+//        for(User u : form){
+//            txtUserid.setText(u.getId().toString());
+//            txtUsername.setText(u.getName());
+//            txtUserdate.setText(u.getDate());
+//            txtUseremail.setText(u.getEmail());
+//            cbxUserOccupation.setSelectedIndex(u.getOccupation());
+//            txtUserpassword.setText(u.getPassword());
+//            cbxPermissions.setSelectedIndex(u.getPermissions());
+//            txtUserresponsible.setText(u.getResponsible()); 
+//        }
+        fillForm(tblUsers.getSelectedRow());
+        
+        //select tab ManUser
+        tabMain.setSelectedIndex(0);
+    }//GEN-LAST:event_tblUsersMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -528,30 +562,36 @@ public class FormManUser extends javax.swing.JInternalFrame {
         users.addColumn("Cargo");
         users.addColumn("Data de cadastro");
         tblUsers.setModel(users);
+        String occupation = "";
         for(User u : list_user){
+            
             users.addRow(new Object[]{
                 u.getId(),u.getName(),
-                u.getOccupation(),
+                cbxUserOccupation.getItemAt(u.getOccupation()),
                 u.getDate()
             });
         }
     }
     
     private void configurateForm(){
-        setState(false);
+        setState(true);
         filltblUsers(new UserDAO().searchAll());
+        rdbSrcId.setSelected(true);
+        fillForm(0);
     }
     
     public void setState(boolean st){
         txtUserid.setEnabled(false);
         if(this.permissions != 0){
             btnModify.setEnabled(st);
-            btnDelete.setEnabled(!st);
+            btnDelete.setEnabled(st);
             cbxPermissions.setEnabled(!st);
+            btnNew.setEnabled(st);
         }else{
             btnModify.setEnabled(false);
             btnDelete.setEnabled(false);
             cbxPermissions.setEnabled(false);
+            btnNew.setEnabled(false);
         }
         btnSave.setEnabled(!st);
         txtUsername.setEnabled(!st);
@@ -573,5 +613,23 @@ public class FormManUser extends javax.swing.JInternalFrame {
         txtUserresponsible.setText("");
         cbxUserOccupation.setSelectedIndex(0);
         cbxPermissions.setSelectedIndex(0);
+    }
+    
+    private void fillForm(int line){
+        //search Id from row selected in table
+        Long id = (Long) tblUsers.getValueAt(line,0);
+        List<User> form = new UserDAO().searchId(id.intValue());
+        
+        //insert selected object into form
+        for(User u : form){
+            txtUserid.setText(u.getId().toString());
+            txtUsername.setText(u.getName());
+            txtUserdate.setText(u.getDate());
+            txtUseremail.setText(u.getEmail());
+            cbxUserOccupation.setSelectedIndex(u.getOccupation());
+            txtUserpassword.setText(u.getPassword());
+            cbxPermissions.setSelectedIndex(u.getPermissions());
+            txtUserresponsible.setText(u.getResponsible()); 
+        }
     }
 }
