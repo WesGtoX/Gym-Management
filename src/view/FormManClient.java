@@ -1,9 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import controller.ClientDAO;
+import java.util.List;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Client;
 
 /**
  *
@@ -11,11 +14,11 @@ package view;
  */
 public class FormManClient extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormManClient
-     */
+//    public int permissions;
+    
     public FormManClient() {
         initComponents();
+        configForm();
     }
 
     /**
@@ -34,7 +37,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
         lblCliName = new javax.swing.JLabel();
         txtCliName = new javax.swing.JTextField();
         lblCliCPF = new javax.swing.JLabel();
-        txtCliCPF = new javax.swing.JTextField();
+        fmtCliCpf = new javax.swing.JFormattedTextField();
         lblCliDate = new javax.swing.JLabel();
         fmtCliDate = new javax.swing.JFormattedTextField();
         lblCliSex = new javax.swing.JLabel();
@@ -56,7 +59,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
         lblCliHomePhone = new javax.swing.JLabel();
         fmtCliHomePhone = new javax.swing.JFormattedTextField();
         lblCliCelPhone = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        fmtCliCelPhone = new javax.swing.JFormattedTextField();
         lblCliEmail = new javax.swing.JLabel();
         txtCliEmail = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -65,7 +68,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         rdbCliCod = new javax.swing.JRadioButton();
         rdbCliName = new javax.swing.JRadioButton();
@@ -96,8 +99,11 @@ public class FormManClient extends javax.swing.JInternalFrame {
         lblCliCPF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCliCPF.setText("CPF");
 
-        txtCliCPF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtCliCPF.setPreferredSize(new java.awt.Dimension(59, 25));
+        try {
+            fmtCliCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         lblCliDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCliDate.setText("Data de Nascimento");
@@ -112,7 +118,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
         lblCliSex.setText("Sexo");
 
         cbxCliSex.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbxCliSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino", "Outro" }));
+        cbxCliSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3" }));
         cbxCliSex.setPreferredSize(new java.awt.Dimension(56, 25));
 
         lblCliAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -173,7 +179,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
         lblCliCelPhone.setText("Celular");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            fmtCliCelPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -188,31 +194,61 @@ public class FormManClient extends javax.swing.JInternalFrame {
         btnNew.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnNew.setForeground(new java.awt.Color(255, 255, 255));
         btnNew.setText("Novo");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnChange.setBackground(new java.awt.Color(0, 102, 255));
         btnChange.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnChange.setForeground(new java.awt.Color(255, 255, 255));
         btnChange.setText("Alterar");
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(0, 102, 255));
         btnDelete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Excluir");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-        btnCancel.setBackground(new java.awt.Color(0, 102, 255));
+        btnCancel.setBackground(new java.awt.Color(255, 0, 0));
         btnCancel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnSave.setBackground(new java.awt.Color(0, 102, 255));
         btnSave.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Salvar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
-        jButton6.setBackground(new java.awt.Color(0, 102, 255));
-        jButton6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Sair");
+        btnExit.setBackground(new java.awt.Color(102, 102, 102));
+        btnExit.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("Sair");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -231,9 +267,12 @@ public class FormManClient extends javax.swing.JInternalFrame {
                             .addComponent(txtCliName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCliCPF)
-                            .addComponent(txtCliCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCliCPF)
+                                .addGap(115, 115, 115))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(fmtCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCliDate)
                             .addComponent(fmtCliDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,7 +280,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCliSex)
-                                .addGap(70, 91, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cbxCliSex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))
@@ -250,15 +289,15 @@ public class FormManClient extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +320,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCliCelPhone)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fmtCliCelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -315,12 +354,13 @@ public class FormManClient extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(lblCliCPF)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCliCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(31, 31, 31))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(lblCliName)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtCliName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtCliName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fmtCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(lblCliDate)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -373,7 +413,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCliCelPhone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fmtCliCelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCliEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -387,7 +427,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -401,6 +441,11 @@ public class FormManClient extends javax.swing.JInternalFrame {
 
         txtInputData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtInputData.setPreferredSize(new java.awt.Dimension(59, 30));
+        txtInputData.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtInputDataKeyReleased(evt);
+            }
+        });
 
         tblClient.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblClient.setModel(new javax.swing.table.DefaultTableModel(
@@ -414,6 +459,11 @@ public class FormManClient extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblClient);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -423,7 +473,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rdbCliCod)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -441,7 +491,7 @@ public class FormManClient extends javax.swing.JInternalFrame {
                     .addComponent(rdbCliName)
                     .addComponent(txtInputData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -461,19 +511,177 @@ public class FormManClient extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        setState(true);
+        
+        // Limpar campos
+        cleanFields();
+        
+        txtCliName.requestFocus();
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
+        if (txtCliCode.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para edição.");
+            setState(false);
+        } else {
+            setState(true);
+        }
+    }//GEN-LAST:event_btnChangeActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+      if (txtCliCode.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Selecione um registro para excluir.");
+            setState(false);
+        }else{
+            int resp = JOptionPane.showConfirmDialog(null, 
+                "Tem certeza que deseja excluir o registro?",
+                "Controle de Produtos", JOptionPane.YES_NO_OPTION);
+            
+            if (resp == JOptionPane.YES_OPTION){
+                // Deletar o REGISTRO tabela
+                int id = Integer.parseInt(txtCliCode.getText());
+                new ClientDAO().delete(id);
+                
+                // Preencher tabela com dados do banco
+                fillClientTable(new ClientDAO().list());
+
+                // Limpar campos
+                cleanFields();
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Operação cancelada!!");
+            }
+            setState(false);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        setState(false);
+        cleanFields();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        setState(false);
+        
+        int sex = cbxCliSex.getSelectedIndex();
+        
+        // Criar um objeto para parametrizar a operação
+        Client c = new Client();
+        
+        // Recuperar o NOME do produto
+        c.setName(txtCliName.getText());
+        c.setCpf(fmtCliCpf.getText());
+        c.setBirth_date(fmtCliDate.getText());
+        
+        if (sex == 1) {
+            c.setSex("Feminino");
+        } else if (sex == 2) {
+            c.setSex("Masculino");
+        } else if (sex == 3) {
+            c.setSex("Outro");
+        } else {
+            c.setSex(null);
+        }
+        
+        c.setAddress(txtCliAddress.getText());
+        c.setNumber(txtCliNumber.getText());
+        c.setComplement(txtCliComplement.getText());
+        c.setNeighborhood(txtCliNeighborhood.getText());
+        c.setCity(txtCliCity.getText());
+        c.setUf(txtCliUF.getText());
+        c.setCep(fmtCliCEP.getText());
+        c.setPhone(fmtCliHomePhone.getText());
+        c.setCel_phone(fmtCliCelPhone.getText());
+        c.setEmail(txtCliEmail.getText());
+        
+        if (txtCliCode.getText().isEmpty()) {
+            c.setId(null);
+        } else {
+            c.setId(Long.parseLong(txtCliCode.getText()));
+        }
+        int id = new ClientDAO().save(c);
+        if (id != -1) {
+            txtCliCode.setText(Integer.toString(id));
+            fillClientTable(new ClientDAO().list());
+            
+            // Clean fields
+            cleanFields();
+            
+            JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+        } else {
+            cleanFields();
+            JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação!!");
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void tblClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientMouseClicked
+        
+        btnChange.setEnabled(true);
+        btnDelete.setEnabled(true);
+        int row = tblClient.getSelectedRow();
+        if (row >= 0) {
+            txtCliCode.setText(tblClient.getValueAt(row, 0).toString());
+            txtCliName.setText(tblClient.getValueAt(row, 1).toString());
+            fmtCliCpf.setText(tblClient.getValueAt(row, 7).toString());
+            fmtCliDate.setText(tblClient.getValueAt(row, 2).toString());
+            cbxCliSex.getModel().setSelectedItem(tblClient.getValueAt(row, 3));
+
+            txtCliAddress.setText(tblClient.getValueAt(row, 8).toString());
+            txtCliNumber.setText(tblClient.getValueAt(row, 9).toString());
+            txtCliComplement.setText(tblClient.getValueAt(row, 10).toString());
+
+            txtCliNeighborhood.setText(tblClient.getValueAt(row, 11).toString());
+            txtCliCity.setText(tblClient.getValueAt(row, 12).toString());
+            txtCliUF.setText(tblClient.getValueAt(row, 13).toString());
+            fmtCliCEP.setText(tblClient.getValueAt(row, 14).toString());
+
+            fmtCliHomePhone.setText(tblClient.getValueAt(row, 5).toString());
+            fmtCliCelPhone.setText(tblClient.getValueAt(row, 6).toString());
+            txtCliEmail.setText(tblClient.getValueAt(row, 14).toString());
+        }
+    }//GEN-LAST:event_tblClientMouseClicked
+
+    private void txtInputDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputDataKeyReleased
+        
+        // Search by NAME and CODE
+        String key = txtInputData.getText();
+        List<Client> resultado = null;
+        
+        if (key.isEmpty()) {
+            resultado = new ClientDAO().list();
+        } else {
+            if (rdbCliName.isSelected()) {     // Search by NAME
+                resultado = new ClientDAO().searchByName(key);
+            } else if (rdbCliCod.isSelected()) {    // Search by CODE
+                resultado = new ClientDAO().searchById(Integer.parseInt(key));
+            }
+        }
+        
+        if (resultado != null) {
+            fillClientTable(resultado);
+        }
+    }//GEN-LAST:event_txtInputDataKeyReleased
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChange;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbxCliSex;
     private javax.swing.JFormattedTextField fmtCliCEP;
+    private javax.swing.JFormattedTextField fmtCliCelPhone;
+    private javax.swing.JFormattedTextField fmtCliCpf;
     private javax.swing.JFormattedTextField fmtCliDate;
     private javax.swing.JFormattedTextField fmtCliHomePhone;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -498,7 +706,6 @@ public class FormManClient extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rdbCliName;
     private javax.swing.JTable tblClient;
     private javax.swing.JTextField txtCliAddress;
-    private javax.swing.JTextField txtCliCPF;
     private javax.swing.JTextField txtCliCity;
     private javax.swing.JTextField txtCliCode;
     private javax.swing.JTextField txtCliComplement;
@@ -509,4 +716,140 @@ public class FormManClient extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCliUF;
     private javax.swing.JTextField txtInputData;
     // End of variables declaration//GEN-END:variables
+
+    private void configForm(){
+        this.setTitle("Gerenciamento de Cliente");
+        this.setResizable(false);
+        txtCliCode.setEnabled(false);
+        
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(rdbCliCod);
+        bg.add(rdbCliName);
+        rdbCliName.setSelected(true);
+        
+        // functions init
+        setState(false);
+        fillCbxClient();
+        fillClientTable(new ClientDAO().list());
+    }
+    
+    public void fillCbxClient() {
+        String functions[] = {
+            "----------", "Feminino", "Masculino", "Outro"};
+        DefaultComboBoxModel model = new DefaultComboBoxModel(functions);
+        cbxCliSex.setModel(model);
+    }
+    
+    public void fillClientTable(List<Client> list){
+        DefaultTableModel clients = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            } 
+        };
+        clients.addColumn("Id");
+        clients.addColumn("Nome");
+//        clients.addColumn("CPF");
+        clients.addColumn("Data de nascimento");
+        clients.addColumn("Sexo");
+//        clients.addColumn("Endereço");
+//        clients.addColumn("Número");
+//        clients.addColumn("Complemento");
+//        clients.addColumn("Bairro");
+//        clients.addColumn("Cidade");
+//        clients.addColumn("UF");
+        clients.addColumn("CEP");
+        clients.addColumn("Telefone");
+        clients.addColumn("Celular");
+//        clients.addColumn("E-mail");
+        tblClient.setModel(clients);
+        for(Client c : list){
+            clients.addRow(new Object[] {
+                c.getId(),
+                c.getName(),
+                c.getBirth_date(),
+                c.getSex(),
+                c.getCep(),
+                c.getPhone(),
+                c.getCel_phone(),
+                c.getCpf(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getNeighborhood(),
+                c.getCity(),
+                c.getUf(),
+                c.getEmail(),
+//                c.getId(),
+//                c.getName(),
+//                c.getCpf(),
+//                c.getBirth_date(),
+//                c.getSex(),
+//                c.getAddress(),
+//                c.getNumber(),
+//                c.getComplement(),
+//                c.getNeighborhood(),
+//                c.getCity(),
+//                c.getUf(),
+//                c.getCep(),
+//                c.getPhone(),
+//                c.getCel_phone(),
+//                c.getEmail(),
+            });
+        }
+    }
+    
+    public void setState(boolean st){
+//        if(this.permissions != 0){
+//            btnChange.setEnabled(st);
+//            btnDelete.setEnabled(!st);
+//        }else{
+//            btnChange.setEnabled(false);
+//            btnDelete.setEnabled(false);
+//        }
+//        btnNew.setEnabled(st);
+        btnChange.setEnabled(st);
+        btnDelete.setEnabled(st);
+        btnCancel.setEnabled(st);
+        btnSave.setEnabled(st);
+//        btnExit.setEnabled(st);
+        
+        txtCliName.setEnabled(st);
+        fmtCliCpf.setEnabled(st);
+        fmtCliDate.setEnabled(st);
+        cbxCliSex.setEnabled(st);
+
+        txtCliAddress.setEnabled(st);
+        txtCliNumber.setEnabled(st);
+        txtCliComplement.setEnabled(st);
+
+        txtCliNeighborhood.setEnabled(st);
+        txtCliCity.setEnabled(st);
+        txtCliUF.setEnabled(st);
+        fmtCliCEP.setEnabled(st);
+        
+        fmtCliHomePhone.setEnabled(st);
+        fmtCliCelPhone.setEnabled(st);
+        txtCliEmail.setEnabled(st);
+        
+//        txtInputData.setEnabled(st);
+    }
+    
+    public void cleanFields() {
+        txtCliCode.setText("");
+        txtCliName.setText("");
+        fmtCliCpf.setText("");
+        fmtCliDate.setText("");
+        cbxCliSex.setSelectedIndex(0);
+        txtCliAddress.setText("");
+        txtCliNumber.setText("");
+        txtCliComplement.setText("");
+        txtCliNeighborhood.setText("");
+        txtCliCity.setText("");
+        txtCliUF.setText("");
+        fmtCliCEP.setText("");
+        fmtCliHomePhone.setText("");
+        fmtCliCelPhone.setText("");
+        txtCliEmail.setText("");
+    }
 }

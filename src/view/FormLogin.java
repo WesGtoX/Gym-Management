@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.UserDAO;
@@ -22,11 +17,14 @@ import static view.FormMain.Usr;
  */
 public class FormLogin extends javax.swing.JInternalFrame {
 
+<<<<<<< HEAD
     private JMenuBar menu;
     
     /**
      * Creates new form FormLogin
      */
+=======
+>>>>>>> 828de5e3fb1b7eb8eef0dcba9661013b368272e8
     public FormLogin() {
         initComponents();
     }

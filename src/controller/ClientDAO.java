@@ -21,21 +21,34 @@ public class ClientDAO {
         this.em = emf.createEntityManager();
     }
     
-    public int save(Client u) {
+    public int save(Client c) {
         try {
-            Client obj;
-            if (u.getId() == null) {
-                obj = u;
+            Client cli;
+            if (c.getId() == null) {
+                cli = c;
             } else {
-                obj = em.find(Client.class, u.getId());
-                obj.setLogin(u.getLogin());
+                cli = em.find(Client.class, c.getId());
+                cli.setName(c.getName());
+                cli.setCpf(c.getCpf());
+                cli.setBirth_date(c.getBirth_date());
+                cli.setSex(c.getSex());
+                cli.setAddress(c.getAddress());
+                cli.setNumber(c.getNumber());
+                cli.setComplement(c.getComplement());
+                cli.setNeighborhood(c.getNeighborhood());
+                cli.setCity(c.getCity());
+                cli.setUf(c.getUf());
+                cli.setCep(c.getCep());
+                cli.setPhone(c.getPhone());
+                cli.setCel_phone(c.getCel_phone());
+                cli.setEmail(c.getEmail());
             }
             em.getTransaction().begin();
-            u = em.merge(obj);
+            c = em.merge(cli);
             em.getTransaction().commit();
-            return u.getId().intValue();
+            return c.getId().intValue();
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("Não foi possível inserir o novo cliente, ERRO: "+e.getMessage());
             return -1;
         } finally {
             em.close();
@@ -43,7 +56,7 @@ public class ClientDAO {
         }
     }
     
-    public int deletar(int id) {
+    public int delete(int id) {
         try {
             Client obj = em.find(Client.class, new Long(id));
             em.getTransaction().begin();
@@ -51,7 +64,7 @@ public class ClientDAO {
             em.getTransaction().commit();
             return obj.getId().intValue();
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("Não foi possível deletar o cliente id="+id+", ERRO: "+e.getMessage());
             return -1;
         } finally {
             em.close();
@@ -59,12 +72,12 @@ public class ClientDAO {
         }
     }
     
-    public List<Client> listar() {
+    public List<Client> list() {
         try {
-            Query u = em.createQuery("SELECT u FROM Client u ORDER BY p.login");
-            return u.getResultList();
+            Query q = em.createQuery("SELECT c FROM Client c ORDER BY c.id");
+            return q.getResultList();
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("Não foi possível carregar clientes, ERRO: "+e.getMessage());
             return null;
         }finally{
             em.close();
@@ -72,13 +85,13 @@ public class ClientDAO {
         }
     }
 
-    public List<Client> pesquisarPorNome(String nome) {
+    public List<Client> searchByName(String name) {
         try {
-            Query u = em.createQuery("SELECT p FROM Produto p WHERE p.nome LIKE :nome ORDER BY p.nome");
-            u.setParameter("nome", "%" + nome + "%");
-            return u.getResultList();
+            Query q = em.createQuery("SELECT c FROM Client c WHERE c.name LIKE :name ORDER BY c.name");
+            q.setParameter("name", "%" + name + "%");
+            return q.getResultList();
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("Não foi possível buscar cliente pelo nome, ERRO: "+e.getMessage());
             return null;
         } finally {
             em.close();
@@ -86,13 +99,13 @@ public class ClientDAO {
         }
     }
     
-    public List<Client> pesquisarPorId(int id) {;
+    public List<Client> searchById(int id) {;
         try {
-            Query u = em.createQuery("SELECT p FROM Produto p WHERE p.id=:id ORDER BY p.nome");
-            u.setParameter("id", id);
-            return u.getResultList();
+            Query q = em.createQuery("SELECT c FROM Client c WHERE c.id=:id ORDER BY c.id");
+            q.setParameter("id", id);
+            return q.getResultList();
         } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.out.println("Não foi possível buscar cliente pelo id, ERRO: "+e.getMessage());
             return null;
         } finally {
             em.close();
