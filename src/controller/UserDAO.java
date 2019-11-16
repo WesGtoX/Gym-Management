@@ -17,7 +17,7 @@ public class UserDAO {
     private final EntityManager em;
     
     public UserDAO(){
-        this.emf = Persistence.createEntityManagerFactory("gym_management");
+        this.emf = Persistence.createEntityManagerFactory("GymManagementPU");
         this.em = emf.createEntityManager();
     }
     
