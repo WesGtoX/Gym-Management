@@ -16,31 +16,31 @@ import javax.persistence.Table;
 
 //call persistense
 @Entity
-@Table(name="tb_users")
+@Table(name="tb_usuario")
 public class User implements Serializable{
     
+    @Id
     @SequenceGenerator(
-        name="tb_user_id_seq",
-        sequenceName = "tb_user_id_seq"
+        name="tb_usuario_id_seq",
+        sequenceName = "tb_usuario_id_seq",allocationSize=1
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "tb_user_id_seq"
+        generator = "tb_usuario_id_seq"
     )
 
-    @Id
     @Column(name="id")
     private Long id;
-    @Column(name="name", length = 100)
+    @Column(name="name", length = 50, nullable = true)
     private String name;
-    @Column(name="registration", length = 12)
+    @Column(name="registration", length = 12, nullable = true)
     private String date;
-    @Column(name="password", length = 30)
+    @Column(name="password", length = 30, nullable = true)
     private String password;
-    @Column(name="email",length = 50)
+    @Column(name="email",length = 30, nullable = true)
     private String email;
-    @Column(name="responsable",length = 20)
-    private String responsable;
+    @Column(name="responsible",length = 30, nullable = true)
+    private String responsible;
     @Column(name="occupation")
     private int occupation;
     @Column(name="permission")
@@ -49,13 +49,13 @@ public class User implements Serializable{
     public User() {
     }
 
-    public User(Long id, String name, String date, String password, String email, String responsable, int occupation, int permissions) {
+    public User(Long id, String name, String date, String password, String email, String responsible, int occupation, int permissions) {
         this.setId(id);
         this.setName(name);
         this.setDate(date);
         this.setPassword(password);
         this.setEmail(email);
-        this.setResponsable(responsable);
+        this.setResponsible(responsible);
         this.setOccupation(occupation);
         this.setPermissions(permissions);
     }
@@ -75,8 +75,6 @@ public class User implements Serializable{
     public void setName(String name) {
         if(!name.isEmpty()){
             this.name = name;
-        }else{
-            this.name = "NULL";
         }
     }
 
@@ -87,8 +85,6 @@ public class User implements Serializable{
     public void setDate(String date) {
         if(!date.isEmpty()){
             this.date = date;
-        }else{
-            this.date = "??/??/????";
         }
     }
 
@@ -99,8 +95,6 @@ public class User implements Serializable{
     public void setPassword(String password) {
         if(!password.isEmpty()){
             this.password = password;
-        }else{
-            this.password = "NULL";
         }
     }
 
@@ -111,20 +105,16 @@ public class User implements Serializable{
     public void setEmail(String email) {
         if(!email.isEmpty()){
             this.email = email;
-        }else{
-            this.email = "NULL";
         }
     }
 
-    public String getResponsable() {
-        return responsable;
+    public String getResponsible() {
+        return responsible;
     }
 
-    public void setResponsable(String responsable) {
+    public void setResponsible(String responsable) {
         if(!responsable.isEmpty()){
-            this.responsable = responsable;
-        }else{
-            this.responsable = "NULL";
+            this.responsible = responsable;
         }
     }
 
@@ -133,10 +123,8 @@ public class User implements Serializable{
     }
 
     public void setOccupation(int Occupation) {
-        if(Occupation > 0 && Occupation < 4 ){
+        if(Occupation > -1 && Occupation < 3 ){
             this.occupation = Occupation;
-        }else{
-            this.occupation = 1;
         }
     }
 
@@ -145,7 +133,7 @@ public class User implements Serializable{
     }
 
     public void setPermissions(int permissions) {
-        if(permissions > 0 && permissions < 3 ){
+        if(permissions > -1 && permissions < 2 ){
             this.permissions = permissions;
         }else{
             this.permissions = 1;
