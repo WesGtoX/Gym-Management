@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package model;
 
 import java.io.Serializable;
@@ -151,7 +150,7 @@ public class Payment implements Serializable{
     
     
 }
-=======
+
 //package model;
 //
 //import java.io.Serializable;
@@ -287,4 +286,4 @@ public class Payment implements Serializable{
 //    
 //    
 //}
->>>>>>> 828de5e3fb1b7eb8eef0dcba9661013b368272e8
+

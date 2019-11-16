@@ -17,14 +17,12 @@ import static view.FormMain.Usr;
  */
 public class FormLogin extends javax.swing.JInternalFrame {
 
-<<<<<<< HEAD
+
     private JMenuBar menu;
     
     /**
      * Creates new form FormLogin
      */
-=======
->>>>>>> 828de5e3fb1b7eb8eef0dcba9661013b368272e8
     public FormLogin() {
         initComponents();
     }
