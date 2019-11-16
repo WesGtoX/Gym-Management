@@ -1,22 +1,50 @@
 package view;
 
+import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
+import model.User;
 
 /**
  *
  * @author Wesley, Quemuel
  */
 public class FormMain extends javax.swing.JFrame {
-
+    
+    public static User Usr;
+    
     public FormMain() {
         initComponents();
         configurateForm();
+        
+        try{
+            //Create admin user in first execution
+            if((new UserDAO().searchName("Admin")).isEmpty()){
+                new UserDAO().save(                                               //insert admin user into database
+                    new User(
+                        null,                                                     //id_admin    
+                        "Admin",                                                  //name_admin
+                        new SimpleDateFormat("dd/MM/yyyy").format(new Date()),    //date_admin
+                        "Admin",                                                  //psw_admin
+                        "System",                                                 //resp_admin
+                        "",                                                       //email_admin
+                        2,                                                        //ocup_admin
+                        1                                                         //perm_admin
+                    )
+                );
+            }
+        }catch(Exception e){
+            System.out.println("Não foi possível criar o usuário administrador, erro:" +e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -55,6 +83,11 @@ public class FormMain extends javax.swing.JFrame {
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1588, 2404));
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Desktop.setToolTipText("");
         Desktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -118,9 +151,19 @@ public class FormMain extends javax.swing.JFrame {
         menuSearch.setText("Pesquisa");
 
         SeaClients.setText("Clientes");
+        SeaClients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeaClientsActionPerformed(evt);
+            }
+        });
         menuSearch.add(SeaClients);
 
         SeaUser.setText("Usuário");
+        SeaUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeaUserActionPerformed(evt);
+            }
+        });
         menuSearch.add(SeaUser);
 
         Menu.add(menuSearch);
@@ -163,7 +206,7 @@ public class FormMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
-        openForm(new FormManUser(1));
+        openForm(new FormManUser(Usr.getPermissions(),0));
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
@@ -177,6 +220,18 @@ public class FormMain extends javax.swing.JFrame {
     private void ManAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManAboutActionPerformed
         openForm(new FormAbout());
     }//GEN-LAST:event_ManAboutActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        openForm(new FormLogin(Menu));        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
+        openForm(new FormManUser(Usr.getPermissions(),1));
+    }//GEN-LAST:event_SeaUserActionPerformed
+
+    private void SeaClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaClientsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SeaClientsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +293,10 @@ public class FormMain extends javax.swing.JFrame {
     private void configurateForm() {
         this.setTitle("Gym Management");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        menuClient.setEnabled(false);
+        menuSearch.setEnabled(false);
+        menuReport.setEnabled(false);
+        
     }
 
     private void openForm(JInternalFrame f){
@@ -259,4 +318,8 @@ public class FormMain extends javax.swing.JFrame {
             (d.height-f.getSize().height)/2
         );
     }
+    
+     
+    
+    
 }
