@@ -1,14 +1,14 @@
 package view;
 
-import controller.UserDAO;
+//import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
 import javax.swing.ImageIcon;
 import model.User;
 
@@ -24,25 +24,25 @@ public class FormMain extends javax.swing.JFrame {
         initComponents();
         configurateForm();
         
-        try{
-            //Create admin user in first execution
-            if((new UserDAO().searchName("Admin")).isEmpty()){
-                new UserDAO().save(                                               //insert admin user into database
-                    new User(
-                        null,                                                     //id_admin    
-                        "Admin",                                                  //name_admin
-                        new SimpleDateFormat("dd/MM/yyyy").format(new Date()),    //date_admin
-                        "Admin",                                                  //psw_admin
-                        "System",                                                 //resp_admin
-                        "",                                                       //email_admin
-                        2,                                                        //ocup_admin
-                        1                                                         //perm_admin
-                    )
-                );
-            }
-        }catch(Exception e){
-            System.out.println("Não foi possível criar o usuário administrador, erro:" +e.getMessage());
-        }
+//        try{
+//            //Create admin user in first execution
+//            if((new UserDAO().searchName("Admin")).isEmpty()){
+//                new UserDAO().save(                                               //insert admin user into database
+//                    new User(
+//                        null,                                                     //id_admin    
+//                        "Admin",                                                  //name_admin
+//                        new SimpleDateFormat("dd/MM/yyyy").format(new Date()),    //date_admin
+//                        "Admin",                                                  //psw_admin
+//                        "System",                                                 //resp_admin
+//                        "",                                                       //email_admin
+//                        2,                                                        //ocup_admin
+//                        1                                                         //perm_admin
+//                    )
+//                );
+//            }
+//        }catch(Exception e){
+//            System.out.println("Não foi possível criar o usuário administrador, erro:" +e.getMessage());
+//        }
     }
 
     @SuppressWarnings("unchecked")
