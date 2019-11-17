@@ -29,7 +29,7 @@ public class User implements Serializable{
         generator = "tb_usuario_id_seq"
     )
 
-    @Column(name="id")
+    @Column(name="id",nullable = false)
     private Long id;
     @Column(name="name", length = 50, nullable = true)
     private String name;
@@ -41,9 +41,9 @@ public class User implements Serializable{
     private String email;
     @Column(name="responsible",length = 30, nullable = true)
     private String responsible;
-    @Column(name="occupation")
+    @Column(name="occupation",nullable = false)
     private int occupation;
-    @Column(name="permission")
+    @Column(name="permission",nullable = false)
     private int permissions;
 
     public User() {

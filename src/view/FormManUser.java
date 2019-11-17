@@ -473,29 +473,15 @@ public class FormManUser extends javax.swing.JInternalFrame {
             )
         );
         if(id_new == -1){
-        JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
+            JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
         };
+        txtUserid.setText(String.valueOf(id_new));
         setState(true);
         filltblUsers(new UserDAO().searchAll());
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         
-//        //search Id from row selected in table
-//        Long id = (Long) tblUsers.getValueAt(tblUsers.getSelectedRow(),0);
-//        List<User> form = new UserDAO().searchId(id.intValue());
-//        
-//        //insert selected object into form
-//        for(User u : form){
-//            txtUserid.setText(u.getId().toString());
-//            txtUsername.setText(u.getName());
-//            txtUserdate.setText(u.getDate());
-//            txtUseremail.setText(u.getEmail());
-//            cbxUserOccupation.setSelectedIndex(u.getOccupation());
-//            txtUserpassword.setText(u.getPassword());
-//            cbxPermissions.setSelectedIndex(u.getPermissions());
-//            txtUserresponsible.setText(u.getResponsible()); 
-//        }
         fillForm(tblUsers.getSelectedRow());
         
         //select tab ManUser

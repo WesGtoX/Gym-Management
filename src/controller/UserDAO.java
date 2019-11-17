@@ -39,7 +39,7 @@ public class UserDAO {
                 user.setOccupation(usr.getOccupation());                //update a existing occupation_user
             }
             em.getTransaction().begin();
-            em.merge(user);
+            usr = em.merge(user);
             em.getTransaction().commit();
             return user.getId().intValue();
         }catch(Exception e){
