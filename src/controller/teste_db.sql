@@ -1,7 +1,10 @@
 SELECT * FROM tb_cliente
+SELECT * FROM tb_usuario
 
 
-
+<!--Clients insertions -->
+INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
+INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (2, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Nashbu', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (3, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Cyuvepen', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
@@ -92,3 +95,24 @@ INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complemen
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (88, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Peadeas', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (89, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Ulneapue', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (90, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Solio', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
+
+<!--Users insertions -->
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (0,'17/11/2019','teste@system.com.br','Admin',2,'Admin',1,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (1,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (2,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (3,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (4,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (5,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (6,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (7,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (8,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (9,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (10,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (11,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (12,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (13,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (14,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (15,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (16,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (17,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (18,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
