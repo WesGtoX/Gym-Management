@@ -225,7 +225,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
-        openForm(new FormManPay());
+        openForm(new FormManPay(Usr.getPermissions()));
     }//GEN-LAST:event_ManPaymentActionPerformed
 
     private void ManClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManClientsActionPerformed

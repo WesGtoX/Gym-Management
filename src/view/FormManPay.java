@@ -1,9 +1,14 @@
 package view;
 
+import controller.ClientDAO;
 import controller.PayDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Client;
 import model.Payment;
 
 /**
@@ -11,12 +16,13 @@ import model.Payment;
  * @author Quemuel
  */
 public class FormManPay extends javax.swing.JInternalFrame {
-
-    public FormManPay() {
+    
+    public int permissions;
+    
+    public FormManPay(int permisions) {
         initComponents();
         fillCbxPaymode();
-//        filltblHistoric();
-//        filltblPay();
+        configurateForm();
     }
     
     /**
@@ -52,12 +58,19 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtExpireddate = new javax.swing.JFormattedTextField();
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        lblClientname1 = new javax.swing.JLabel();
         tabSrcPay = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPay = new javax.swing.JTable();
         rdbSrcCode = new javax.swing.JRadioButton();
         rdbSrcName = new javax.swing.JRadioButton();
+        tabSrcUser = new javax.swing.JPanel();
+        rdbCliCod = new javax.swing.JRadioButton();
+        rdbCliName = new javax.swing.JRadioButton();
+        txtInputData1 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblClient = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -82,17 +95,27 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtPayrid.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         txtClientname.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtClientname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtClientnameMouseClicked(evt);
+            }
+        });
+        txtClientname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClientnameKeyReleased(evt);
+            }
+        });
 
         lblClientname.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblClientname.setText("Nome do Cliente");
 
-        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
         txtTotal.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPayfull.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblPayfull.setText("Total a pagar");
 
-        txtPaydiscount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
+        txtPaydiscount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
         txtPaydiscount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPaydiscount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -104,7 +127,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         lblPaymode.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblPaymode.setText("Forma de pagamento");
 
-        txtPayrate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##/##/####"))));
+        txtPayrate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtPayrate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPayrate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -122,22 +145,38 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblHistoric.setName(""); // NOI18N
         jScrollPane1.setViewportView(tblHistoric);
 
         btnModify.setBackground(new java.awt.Color(0, 102, 255));
         btnModify.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnModify.setForeground(new java.awt.Color(255, 255, 255));
         btnModify.setText("Alterar");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         btnCancel.setBackground(new java.awt.Color(0, 102, 255));
         btnCancel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnSave.setBackground(new java.awt.Color(0, 102, 255));
         btnSave.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Salvar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         try {
             txtExpireddate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -150,11 +189,24 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnDelete.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Excluir");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnAdd.setBackground(new java.awt.Color(0, 102, 255));
         btnAdd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Novo");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        lblClientname1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblClientname1.setText("Histórico");
 
         javax.swing.GroupLayout tabManPayLayout = new javax.swing.GroupLayout(tabManPay);
         tabManPay.setLayout(tabManPayLayout);
@@ -204,7 +256,10 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPayfull)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tabManPayLayout.createSequentialGroup()
+                        .addComponent(lblClientname1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         tabManPayLayout.setVerticalGroup(
@@ -226,7 +281,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPayrid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblClientname1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
@@ -251,7 +308,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         tabMain.addTab("Pagamentos", tabManPay);
@@ -285,6 +342,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblPay);
 
+        rdbSrcCode.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdbSrcCode.setText("Código");
         rdbSrcCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +350,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             }
         });
 
+        rdbSrcName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdbSrcName.setText("Nome");
         rdbSrcName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,7 +365,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabSrcPayLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSrcPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(tabSrcPayLayout.createSequentialGroup()
                         .addComponent(rdbSrcCode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -324,11 +383,86 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(rdbSrcName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtInputData, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tabMain.addTab("Pesquisar", tabSrcPay);
+        tabMain.addTab("Pesquisar pagamentos", tabSrcPay);
+
+        rdbCliCod.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        rdbCliCod.setText("Código");
+        rdbCliCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbCliCodActionPerformed(evt);
+            }
+        });
+
+        rdbCliName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        rdbCliName.setText("Nome");
+        rdbCliName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbCliNameActionPerformed(evt);
+            }
+        });
+
+        txtInputData1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtInputData1.setPreferredSize(new java.awt.Dimension(59, 30));
+        txtInputData1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtInputData1KeyReleased(evt);
+            }
+        });
+
+        tblClient.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tblClient.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblClient.setPreferredSize(new java.awt.Dimension(600, 341));
+        tblClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblClient);
+
+        javax.swing.GroupLayout tabSrcUserLayout = new javax.swing.GroupLayout(tabSrcUser);
+        tabSrcUser.setLayout(tabSrcUserLayout);
+        tabSrcUserLayout.setHorizontalGroup(
+            tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabSrcUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addGroup(tabSrcUserLayout.createSequentialGroup()
+                        .addComponent(rdbCliCod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbCliName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtInputData1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        tabSrcUserLayout.setVerticalGroup(
+            tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabSrcUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbCliCod, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdbCliName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInputData1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabMain.addTab("Pesquisar clientes", tabSrcUser);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,7 +473,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -369,7 +503,117 @@ public class FormManPay extends javax.swing.JInternalFrame {
         
         //select tab ManUser
         tabMain.setSelectedIndex(0);
+        txtClientname.transferFocus();
     }//GEN-LAST:event_tblPayMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        setData();
+        setState(false);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        setState(true);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        setState(false);
+        btnDelete.setEnabled(true);
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        setState(true);
+        btnModify.setEnabled(true);
+        if(txtPayrid.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Selecione um registro para excluir.","Atenção",JOptionPane.WARNING_MESSAGE);            
+        }  
+        
+        if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null,"Tem certeza de que deseja excluir o registro selecionado?","Atenção",JOptionPane.YES_NO_OPTION)){
+            int id_removed = new PayDAO().delete(Integer.parseInt(txtPayrid.getText()));
+            JOptionPane.showMessageDialog(null,"Pagamento "+txtPayrid.getText()+" removido com sucesso!");
+        }
+        
+        filltblPay(new PayDAO().searchAll());
+        filltblHistoric(new PayDAO().searchAll());
+        fillForm(0);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        setState(false);
+        btnModify.setEnabled(true);
+        
+        Long id = (txtPayrid.getText().isEmpty() ? null : Long.parseLong(txtPayrid.getText()));
+        Payment pay = new Payment();
+        
+        pay.setClient(getClient(tblClient.getSelectedRow()));
+        pay.setDiscount(txtPaydiscount.getText());
+        pay.setExpiry(txtExpireddate.getText());
+        pay.setId(id);
+        pay.setPaydate("  /  /    ");
+//        pay.setPaydate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        pay.setPaymode(cbxPaymode.getSelectedIndex());
+        pay.setPayrate(txtPayrate.getText());
+        pay.setStatus(false);
+        pay.setTotal(txtTotal.getText());
+        
+        int id_new = new PayDAO().save(pay);
+        
+        if(id_new == -1){
+            JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
+        };
+        txtPayrid.setText(String.valueOf(id_new));
+        setState(true);
+        filltblPay(new PayDAO().searchAll());
+        filltblHistoric(new PayDAO().searchAll());
+        System.out.println("dados para salvar: "+pay);
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtInputData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputData1KeyReleased
+
+        // Search by NAME and CODE
+        String key = txtInputData.getText();
+        List<Client> resultado = null;
+
+        if (key.isEmpty()) {
+            resultado = new ClientDAO().list();
+        } else {
+            if (rdbCliName.isSelected()) {     // Search by NAME
+                resultado = new ClientDAO().searchByName(key);
+            } else if (rdbCliCod.isSelected()) {    // Search by CODE
+                resultado = new ClientDAO().searchById(Integer.parseInt(key));
+            }
+        }
+
+        if (resultado != null) {
+            fillClientTable(resultado);
+        }
+    }//GEN-LAST:event_txtInputData1KeyReleased
+
+    private void tblClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientMouseClicked
+
+        btnDelete.setEnabled(true);
+        txtClientname.setText(getClient(tblClient.getSelectedRow()).getName());
+        tabMain.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_tblClientMouseClicked
+
+    private void rdbCliNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCliNameActionPerformed
+        rdbCliCod.setSelected(false);
+    }//GEN-LAST:event_rdbCliNameActionPerformed
+
+    private void rdbCliCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCliCodActionPerformed
+        rdbCliName.setSelected(false);
+    }//GEN-LAST:event_rdbCliCodActionPerformed
+
+    private void txtClientnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClientnameKeyReleased
+        tabMain.setSelectedIndex(2);
+        txtClientname.transferFocus();
+    }//GEN-LAST:event_txtClientnameKeyReleased
+
+    private void txtClientnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClientnameMouseClicked
+        tabMain.setSelectedIndex(2);
+        txtClientname.transferFocus();
+    }//GEN-LAST:event_txtClientnameMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -381,24 +625,31 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbxPaymode;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblClientname;
+    private javax.swing.JLabel lblClientname1;
     private javax.swing.JLabel lblExpireddate;
     private javax.swing.JLabel lblPaydiscount;
     private javax.swing.JLabel lblPayfull;
     private javax.swing.JLabel lblPayid;
     private javax.swing.JLabel lblPaymode;
     private javax.swing.JLabel lblPayrate;
+    private javax.swing.JRadioButton rdbCliCod;
+    private javax.swing.JRadioButton rdbCliName;
     private javax.swing.JRadioButton rdbSrcCode;
     private javax.swing.JRadioButton rdbSrcName;
     private javax.swing.JTabbedPane tabMain;
     private javax.swing.JPanel tabManPay;
     private javax.swing.JPanel tabSrcPay;
+    private javax.swing.JPanel tabSrcUser;
+    private javax.swing.JTable tblClient;
     private javax.swing.JTable tblHistoric;
     private javax.swing.JTable tblPay;
     private javax.swing.JTextField txtClientname;
     private javax.swing.JFormattedTextField txtExpireddate;
     private javax.swing.JTextField txtInputData;
+    private javax.swing.JTextField txtInputData1;
     private javax.swing.JFormattedTextField txtPaydiscount;
     private javax.swing.JFormattedTextField txtPayrate;
     private javax.swing.JTextField txtPayrid;
@@ -424,31 +675,49 @@ public class FormManPay extends javax.swing.JInternalFrame {
         model.addColumn("Vencimento");
         tblPay.setModel(model);
         for(Payment p : pay){
-            model.addRow(new Object[]{p.getId(),p.getClient().getName(),p.getTotal(),p.getExpiry()});
+            model.addRow(
+                new Object[]{
+                    p.getId(),
+                    p.getClient().getName(),
+                    p.getTotal(),
+                    p.getExpiry()
+                }
+            );
         }
     }
     
     public void filltblHistoric(List<Payment> pay){
-        DefaultTableModel his = new DefaultTableModel(){
+        DefaultTableModel model = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             } 
         };
-        his.addColumn("Status");
-        his.addColumn("Valor");
-        his.addColumn("Pagamento");
-        his.addColumn("Vencimento");
-        tblPay.setModel(his);
+        model.addColumn("Status");
+        model.addColumn("Valor");
+        model.addColumn("Pagamento");
+        model.addColumn("Vencimento");
+        tblHistoric.setModel(model);
         for(Payment p : pay){
-            his.addRow(new Object[]{p.isStatus(),p.getTotal(),p.getPaydate(),p.getExpiry()});
+            model.addRow(
+                new Object[]{
+                    p.isStatus() == true ? "pago":"inadimplente",
+                    p.getTotal(),
+                    p.getPaydate(),
+                    p.getExpiry()
+                }
+            );
         }
     }
     
     public void configurateForm(){
         filltblPay(new PayDAO().searchAll());
-        rdbSrcCode.setSelected(true);
         fillForm(0);
+        filltblHistoric(new PayDAO().searchId(Integer.parseInt(txtPayrid.getText())));
+        rdbSrcCode.setSelected(true);
+        rdbCliCod.setSelected(true);
+        setState(true);
+        fillClientTable(new ClientDAO().list());
     }
 
     private void fillForm(int line) {
@@ -458,14 +727,85 @@ public class FormManPay extends javax.swing.JInternalFrame {
         
         //insert selected object into form
         for(Payment p : form){
-//            txtUserid.setText(u.getId().toString());
-//            txtUsername.setText(u.getName());
-//            txtUserdate.setText(u.getDate());
-//            txtUseremail.setText(u.getEmail());
-//            cbxUserOccupation.setSelectedIndex(u.getOccupation());
-//            txtUserpassword.setText(u.getPassword());
-//            cbxPermissions.setSelectedIndex(u.getPermissions());
-//            txtUserresponsible.setText(u.getResponsible()); 
+            txtPayrid.setText(p.getId().toString());
+            txtClientname.setText(p.getClient().getName());
+            txtExpireddate.setText(p.getExpiry());
+            txtPaydiscount.setText(p.getDiscount());
+            cbxPaymode.setSelectedIndex(p.getPaymode());
+            txtPayrate.setText(p.getPayrate());
+            txtTotal.setText(p.getTotal()); 
         }
+    }
+    
+    public void fillClientTable(List<Client> list){
+        DefaultTableModel clients = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            } 
+        };
+        clients.addColumn("Id");
+        clients.addColumn("Nome");
+        clients.addColumn("Data de nascimento");
+        clients.addColumn("Sexo");
+        clients.addColumn("CEP");
+        clients.addColumn("Telefone");
+        clients.addColumn("Celular");
+        tblClient.setModel(clients);
+        for(Client c : list){
+            clients.addRow(new Object[] {
+                c.getId(),
+                c.getName(),
+                c.getBirth_date(),
+                c.getSex(),
+                c.getCep(),
+                c.getPhone(),
+                c.getCel_phone(),
+                c.getCpf(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getNeighborhood(),
+                c.getCity(),
+                c.getUf(),
+                c.getEmail(),
+            });
+        }
+    }
+    
+    public void setState(boolean st){
+        txtPayrid.setEnabled(false);
+        btnModify.setEnabled(st);
+        btnDelete.setEnabled(st);
+        btnAdd.setEnabled(st);
+        btnSave.setEnabled(!st);
+        txtClientname.setEnabled(!st);
+        txtInputData.setEnabled(!st);
+        txtExpireddate.setEnabled(!st);
+        txtPaydiscount.setEnabled(!st);
+        txtPayrate.setEnabled(!st);
+        txtTotal.setEnabled(!st);
+        cbxPaymode.setEnabled(!st);
+    }
+    
+    public void setData(){
+        txtPayrid.setText("");
+        txtClientname.setText("");
+        txtInputData.setText("");
+        txtExpireddate.setText("");
+        txtPaydiscount.setText("");
+        txtPayrate.setText("");
+        txtTotal.setText("");
+    }
+    
+    public Client getClient(int line){
+        Long c = (Long) tblClient.getValueAt(line,0);
+        Client result = new Client();
+        List<Client> users = new ClientDAO().searchById(c.intValue());
+        for(Client cli : users){
+            result = cli;
+        }
+        txtClientname.transferFocus();
+        return result;
     }
 }
