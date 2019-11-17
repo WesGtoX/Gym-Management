@@ -100,7 +100,7 @@ public class ClientDAO {
         }
     }
     
-    public List<Client> searchById(int id) {;
+    public List<Client> searchById(int id) {
         try {
             Query q = em.createQuery("SELECT c FROM Client c WHERE c.id=:id ORDER BY c.id");
             q.setParameter("id", id);

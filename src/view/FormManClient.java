@@ -441,6 +441,11 @@ public class FormManClient extends javax.swing.JInternalFrame {
 
         txtInputData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtInputData.setPreferredSize(new java.awt.Dimension(59, 30));
+        txtInputData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInputDataActionPerformed(evt);
+            }
+        });
         txtInputData.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtInputDataKeyReleased(evt);
@@ -667,6 +672,10 @@ public class FormManClient extends javax.swing.JInternalFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void txtInputDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInputDataActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
