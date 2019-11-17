@@ -57,7 +57,6 @@ public class UserDAO {
             em.getTransaction().begin();
             em.remove(usr);
             em.getTransaction().commit();
-            JOptionPane.showMessageDialog(null,"Id do usuario deletado: "+id);
             return usr.getId().intValue();
         }catch(Exception e){
             System.out.println("Não foi possível deletar o usuário id="+id+", ERRO: "+e.getMessage());

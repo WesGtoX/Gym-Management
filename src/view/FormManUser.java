@@ -347,6 +347,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblUsers);
 
+        rdbSrcId.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdbSrcId.setText("Id");
         rdbSrcId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +355,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         });
 
+        rdbSrcName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdbSrcName.setText("Nome");
         rdbSrcName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +398,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(tabMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,14 +427,14 @@ public class FormManUser extends javax.swing.JInternalFrame {
         setState(true);
         btnModify.setEnabled((this.permissions != 0) ? true : false);
         if(txtUserid.getText().isEmpty()){
-            
             JOptionPane.showMessageDialog(null,"Selecione um registro para excluir.","Atenção",JOptionPane.WARNING_MESSAGE);            
-            
-            if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null,"Tem certeza de que deseja excluir o registro selecionado?","Atenção",JOptionPane.YES_NO_OPTION)){
-                int id_removed = new UserDAO().delete(Integer.parseInt(txtUserid.getText()));
-                JOptionPane.showMessageDialog(null,"Id="+id_removed+" removido com sucesso!");
-            }
+        }  
+        
+        if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null,"Tem certeza de que deseja excluir o registro selecionado?","Atenção",JOptionPane.YES_NO_OPTION)){
+            int id_removed = new UserDAO().delete(Integer.parseInt(txtUserid.getText()));
+            JOptionPane.showMessageDialog(null,"Usuário "+txtUsername.getText()+" removido com sucesso!");
         }
+        
         filltblUsers(new UserDAO().searchAll());
         fillForm(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
