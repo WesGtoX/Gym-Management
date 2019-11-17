@@ -42,6 +42,7 @@ public class ClientDAO {
                 cli.setPhone(c.getPhone());
                 cli.setCel_phone(c.getCel_phone());
                 cli.setEmail(c.getEmail());
+                cli.setHistoric(c.getHistoric());
             }
             em.getTransaction().begin();
             c = em.merge(cli);

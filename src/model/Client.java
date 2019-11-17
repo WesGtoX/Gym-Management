@@ -1,11 +1,17 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +27,8 @@ public class Client implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "seq_user"
     )
-    @Column(name="id")
+//    @Column(name="id")
+    @JoinColumn(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "name", length = 100, nullable = true)
@@ -66,11 +73,13 @@ public class Client implements Serializable {
     @Column(name = "email", length = 100, nullable = true)
     private String email;
     
+    @OneToMany//(mappedBy = "fk_client", cascade = {CascadeType.PERSIST},fetch=FetchType.EAGER)
+    private List<Payment> historic;
     
     public Client() {
     }
 
-    public Client(Long id, String name, String cpf, String birth_date, String sex, String address, String number, String complement, String neighborhood, String city, String uf, String cep, String phone, String cel_phone, String email) {
+    public Client(Long id, String name, String cpf, String birth_date, String sex, String address, String number, String complement, String neighborhood, String city, String uf, String cep, String phone, String cel_phone, String email, List<Payment> historic) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -86,7 +95,10 @@ public class Client implements Serializable {
         this.phone = phone;
         this.cel_phone = cel_phone;
         this.email = email;
+        this.historic = historic;
     }
+    
+    
 
     public Long getId() {
         return id;
@@ -207,6 +219,18 @@ public class Client implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Payment> getHistoric() {
+        return historic;
+    }
+
+    public void setHistoric(List<Payment> historic) {
+        if(historic != null){
+            this.historic = historic;
+        }
+    }
+    
+    
 
     @Override
     public String toString() {
