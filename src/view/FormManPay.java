@@ -1,9 +1,10 @@
 package view;
 
-import java.awt.Dimension;
+import controller.PayDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import model.Payment;
 
 /**
  *
@@ -14,8 +15,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
     public FormManPay() {
         initComponents();
         fillCbxPaymode();
-        filltblHistoric();
-        filltblPay();
+//        filltblHistoric();
+//        filltblPay();
     }
     
     /**
@@ -258,6 +259,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
         tabSrcPay.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         txtInputData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtInputData.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtInputDataKeyReleased(evt);
+            }
+        });
 
         tblPay.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblPay.setModel(new javax.swing.table.DefaultTableModel(
@@ -272,11 +278,26 @@ public class FormManPay extends javax.swing.JInternalFrame {
             }
         ));
         tblPay.setPreferredSize(new java.awt.Dimension(600, 341));
+        tblPay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPayMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPay);
 
         rdbSrcCode.setText("Código");
+        rdbSrcCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSrcCodeActionPerformed(evt);
+            }
+        });
 
         rdbSrcName.setText("Nome");
+        rdbSrcName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSrcNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabSrcPayLayout = new javax.swing.GroupLayout(tabSrcPay);
         tabSrcPay.setLayout(tabSrcPayLayout);
@@ -325,6 +346,31 @@ public class FormManPay extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtInputDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputDataKeyReleased
+        if(rdbSrcCode.isSelected() && !txtInputData.getText().isEmpty()){
+            filltblPay(new PayDAO().searchId(Integer.parseInt(txtInputData.getText())));
+        }else if(rdbSrcName.isSelected() && !txtInputData.getText().isEmpty()){
+            filltblPay(new PayDAO().searchName(txtInputData.getText()));
+        }else{
+            filltblPay(new PayDAO().searchAll());
+        }
+    }//GEN-LAST:event_txtInputDataKeyReleased
+
+    private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
+        rdbSrcCode.setSelected(false);
+    }//GEN-LAST:event_rdbSrcNameActionPerformed
+
+    private void rdbSrcCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcCodeActionPerformed
+        rdbSrcName.setSelected(false);
+    }//GEN-LAST:event_rdbSrcCodeActionPerformed
+
+    private void tblPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPayMouseClicked
+        fillForm(tblPay.getSelectedRow());
+        
+        //select tab ManUser
+        tabMain.setSelectedIndex(0);
+    }//GEN-LAST:event_tblPayMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -365,41 +411,61 @@ public class FormManPay extends javax.swing.JInternalFrame {
         cbxPaymode.setModel(model);
     }
     
-    public void filltblPay(){
-        DefaultTableModel pay = new DefaultTableModel(){
+    public void filltblPay(List<Payment> pay){
+        DefaultTableModel model = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             } 
         };
-        pay.addColumn("Id");
-        pay.addColumn("Nome");
-        pay.addColumn("Valor");
-        pay.addColumn("Data de vencimento");
-        tblPay.setModel(pay);
-        for(int i = 0;i<15;i++){
-            pay.addRow(new Object[]{"5","joao","320,00 R$","01/02/2003"});
+        model.addColumn("Id");
+        model.addColumn("Nome");
+        model.addColumn("Valor");
+        model.addColumn("Vencimento");
+        tblPay.setModel(model);
+        for(Payment p : pay){
+            model.addRow(new Object[]{p.getId(),p.getClient().getName(),p.getTotal(),p.getExpiry()});
         }
     }
     
-    public void filltblHistoric(){
+    public void filltblHistoric(List<Payment> pay){
         DefaultTableModel his = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             } 
         };
-        his.addColumn("Id");
         his.addColumn("Status");
         his.addColumn("Valor");
-        his.addColumn("Data de vencimento");
-        tblHistoric.setModel(his);
-        for(int i = 0;i<15;i++){
-            his.addRow(new Object[]{"1","pago","500,00 R$","01/02/2003"});
+        his.addColumn("Pagamento");
+        his.addColumn("Vencimento");
+        tblPay.setModel(his);
+        for(Payment p : pay){
+            his.addRow(new Object[]{p.isStatus(),p.getTotal(),p.getPaydate(),p.getExpiry()});
         }
     }
     
     public void configurateForm(){
+        filltblPay(new PayDAO().searchAll());
+        rdbSrcCode.setSelected(true);
+        fillForm(0);
+    }
+
+    private void fillForm(int line) {
+         //search Id from row selected in table
+        Long id = (Long) tblPay.getValueAt(line,0);
+        List<Payment> form = new PayDAO().searchId(id.intValue());
         
+        //insert selected object into form
+        for(Payment p : form){
+//            txtUserid.setText(u.getId().toString());
+//            txtUsername.setText(u.getName());
+//            txtUserdate.setText(u.getDate());
+//            txtUseremail.setText(u.getEmail());
+//            cbxUserOccupation.setSelectedIndex(u.getOccupation());
+//            txtUserpassword.setText(u.getPassword());
+//            cbxPermissions.setSelectedIndex(u.getPermissions());
+//            txtUserresponsible.setText(u.getResponsible()); 
+        }
     }
 }

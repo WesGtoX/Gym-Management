@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,43 +19,57 @@ import javax.persistence.Table;
 
 //call persistense
 @Entity
-@Table(name="tb_categoria")
-@SequenceGenerator(
-    name="tb_categoria_id_seq",
-    sequenceName = "tb_categoria_id_seq",
-    initialValue = 1,
-    allocationSize = 1
-)
+@Table(name="tb_pagamento")
 public class Payment implements Serializable{
     
     @Id
+    @SequenceGenerator(
+        name="tb_pagamento_id_seq",
+        sequenceName = "tb_pagamento_id_seq",allocationSize=1
+    )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "tb_categoria_id_seq"
+        generator = "tb_pagamento_id_seq"
     )
     
-    @Column(name="id")
+    @Column(name="id", nullable = false)
     private Long id;
-    @Column(name="name", length = 100)
-    private String name;
-    @Column(name="expiry", length = 12)
+    @ManyToOne
+    @JoinColumn(name = "client", referencedColumnName = "id", nullable = false)
+    private Client fk_client;
+    @Column(name="expiry", length = 12, nullable = false)
     private String expiry;
-    @Column(name="paydate", length = 12)
+    @Column(name="paydate", length = 12, nullable = false)
     private String paydate;
-    @Column(name="historic")
-    private List<PayHistoric> historic;
-    @Column(name="paymode")
+    @Column(name="status", nullable = true)
+    private boolean status;
+    @Column(name="paymode",nullable = false)
     private int paymode;
-    @Column(name="payrate",length = 30)
+    @Column(name="payrate",length = 30, nullable = false)
     private String payrate;
-    @Column(name="discount",length = 30)
+    @Column(name="discount",length = 30, nullable = false)
     private String discount;
-    @Column(name="total", length = 30)
+    @Column(name="total", length = 30, nullable = false)
     private String total;
 
     public Payment() {
     }
 
+    public Payment(Long id, Client client, String expiry, String paydate, boolean status, int paymode, String payrate, String discount, String total, Client fk_client) {
+        this.setId(id);
+        this.setClient(client);
+        this.setExpiry(expiry);
+        this.setPaydate(paydate);
+        this.setStatus(status);
+        this.setPaymode(paymode);
+        this.setPayrate(payrate);
+        this.setDiscount(discount);
+        this.setTotal(total);
+        this.setClient(fk_client);
+        
+    }
+    
+    
     public Long getId() {
         return id;
     }
@@ -62,15 +78,21 @@ public class Payment implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Client getClient() {
+        return this.fk_client;
     }
 
-    public void setName(String name) {
-        if(!name.isEmpty()){
-            this.name = name;
-        }else{
-            this.name = "NULL";
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setClient(Client cli) {
+        if(cli != null){
+            this.fk_client = cli;
         }
     }
 
@@ -81,8 +103,6 @@ public class Payment implements Serializable{
     public void setPaydate(String paydate) {
         if(!paydate.isEmpty()){
             this.paydate = paydate;
-        }else{
-            this.paydate = "??/??/????";
         }
     }
     
@@ -93,8 +113,6 @@ public class Payment implements Serializable{
     public void setExpiry(String expiry) {
         if(!expiry.isEmpty()){
             this.expiry = expiry;
-        }else{
-            this.expiry = "??/??/????";
         }
     }
 
@@ -105,8 +123,6 @@ public class Payment implements Serializable{
     public void setPaymode(int paymode) {
         if(paymode > 0 && paymode < 4 ){
             this.paymode = paymode;
-        }else{
-            this.paymode = 1;
         }
     }
 
@@ -117,8 +133,6 @@ public class Payment implements Serializable{
     public void setPayrate(String payrate) {
         if(!payrate.isEmpty()){
             this.payrate = payrate;
-        }else{
-            this.payrate = "0.00";
         }
     }
 
@@ -129,8 +143,6 @@ public class Payment implements Serializable{
     public void setDiscount(String discount) {
         if(!discount.isEmpty()){
             this.discount = discount;
-        }else{
-            this.discount = "0.00";
         }
     }
 
@@ -141,8 +153,6 @@ public class Payment implements Serializable{
     public void setTotal(String total) {
         if(!total.isEmpty()){
             this.total = total;
-        }else{
-            this.total = "0.00";
         }
     }
     
