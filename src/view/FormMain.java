@@ -30,10 +30,10 @@ public class FormMain extends javax.swing.JFrame {
 //                new UserDAO().save(                                               //insert admin user into database
 //                    new User(
 //                        null,                                                     //id_admin    
-//                        "Admin",                                                  //name_admin
+//                        "admin",                                                  //name_admin
 //                        new SimpleDateFormat("dd/MM/yyyy").format(new Date()),    //date_admin
-//                        "Admin",                                                  //psw_admin
-//                        "System",                                                 //resp_admin
+//                        "admin",                                                  //psw_admin
+//                        "system",                                                 //resp_admin
 //                        "",                                                       //email_admin
 //                        2,                                                        //ocup_admin
 //                        1                                                         //perm_admin
@@ -237,7 +237,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManAboutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        openForm(new FormLogin(Menu));        
+//        openForm(new FormLogin(Menu));
     }//GEN-LAST:event_formWindowOpened
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
@@ -308,9 +308,9 @@ public class FormMain extends javax.swing.JFrame {
     private void configurateForm() {
         this.setTitle("Gym Management");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        menuClient.setEnabled(false);
-        menuSearch.setEnabled(false);
-        menuReport.setEnabled(false);
+        menuClient.setEnabled(true);
+        menuSearch.setEnabled(true);
+        menuReport.setEnabled(true);
         
     }
 
@@ -333,8 +333,4 @@ public class FormMain extends javax.swing.JFrame {
             (d.height-f.getSize().height)/2
         );
     }
-    
-     
-    
-    
 }

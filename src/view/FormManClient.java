@@ -13,8 +13,6 @@ import model.Client;
  * @author Wesley
  */
 public class FormManClient extends javax.swing.JInternalFrame {
-
-//    public int permissions;
     
     public FormManClient() {
         initComponents();

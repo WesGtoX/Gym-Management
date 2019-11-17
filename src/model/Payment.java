@@ -15,7 +15,6 @@ import javax.persistence.Table;
  *
  * @author Quemuel
  */
-
 //call persistense
 @Entity
 @Table(name="tb_pagamento")
@@ -33,24 +32,32 @@ public class Payment implements Serializable{
     
     @Column(name="id", nullable = false)
     private Long id;
+    
     @ManyToOne
     @JoinColumn(name = "client", referencedColumnName = "id", nullable = false)
     private Client fk_client;
+    
     @Column(name="expiry", length = 12, nullable = false)
     private String expiry;
+    
     @Column(name="paydate", length = 12, nullable = true)
     private String paydate;
+    
     @Column(name="status", nullable = false)
     private boolean status;
+    
     @Column(name="paymode",nullable = false)
     private int paymode;
+    
     @Column(name="payrate",length = 30, nullable = true)
     private String payrate;
+    
     @Column(name="discount",length = 30, nullable = true)
     private String discount;
+    
     @Column(name="total", length = 30, nullable = false)
     private String total;
-
+    
     public Payment() {
     }
 
@@ -65,7 +72,6 @@ public class Payment implements Serializable{
         this.setDiscount(discount);
         this.setTotal(total);
     }
-    
     
     public Long getId() {
         return id;
@@ -152,10 +158,6 @@ public class Payment implements Serializable{
             this.total = total;
         }
     }
-    
-    
-    
-    
 }
 
 
