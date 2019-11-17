@@ -208,13 +208,12 @@ public class FormLogin extends javax.swing.JInternalFrame {
             if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.toUpperCase().equals(user.getPassword().toUpperCase())) {
                 
                 // Open form
-                User u = Usr = new User();
-                u.setPermissions(1);
+                Usr = user;
                 
                 menu.getMenu(0).setEnabled(true);
                 menu.getMenu(1).setEnabled(true);
-                menu.getMenu(2).setEnabled((u.getPermissions() == 0) ? false : true);
-                menu.getMenu(0).getItem(3).setEnabled((u.getPermissions() == 0) ? false : true);
+                menu.getMenu(2).setEnabled((user.getPermissions() == 0) ? false : true);
+                menu.getMenu(0).getItem(3).setEnabled((user.getPermissions() == 0) ? false : true);
                
 //                FormMain frm = new FormMain();
 //                    frm.setExtendedState(MAXIMIZED_BOTH);
