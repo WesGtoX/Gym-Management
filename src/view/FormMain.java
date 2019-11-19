@@ -239,7 +239,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManAboutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-<<<<<<< HEAD
+
         List<User> users = new UserDAO().searchAll();
         int count = 1;
         if(users.size() != 0){
@@ -255,16 +255,8 @@ public class FormMain extends javax.swing.JFrame {
         }
         
         if(users.size() == 0 || count > 0){
-//            System.out.println("entrou no filtro");
-//            FormManUser admin = 
-//            admin.flag = 5;
-//            System.out.println("flag if: "+admin.flag);
             openForm(new FormManUser(1,0,1));
-            
         }
-=======
-//        openForm(new FormLogin(Menu));
->>>>>>> 1f2ac679c47f18fd1d48270fc814d94d5c1c7961
     }//GEN-LAST:event_formWindowOpened
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
