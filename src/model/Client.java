@@ -24,23 +24,24 @@ public class Client implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "seq_user"
     )
+    
 //    @Column(name="id")
     @JoinColumn(name = "id", nullable = false)
     private Long id;
     
-    @Column(name = "name", length = 100, nullable = true)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
     
-    @Column(name = "cpf", length = 14, nullable = true)
+    @Column(name = "cpf", length = 14, nullable = false)
     private String cpf;
     
-    @Column(name = "birth_date", length = 10, nullable = true)
+    @Column(name = "birth_date", length = 10, nullable = false)
     private String birth_date;
     
-    @Column(name = "sex", length = 20, nullable = true)
+    @Column(name = "sex", length = 20, nullable = false)
     private String sex;
     
-    @Column(name = "address", length = 100, nullable = true)
+    @Column(name = "address", length = 100, nullable = false)
     private String address;
     
     @Column(name = "number", length = 10, nullable = true)
@@ -49,28 +50,28 @@ public class Client implements Serializable {
     @Column(name = "complement", length = 100, nullable = true)
     private String complement;
     
-    @Column(name = "neighborhood", length = 100, nullable = true)
+    @Column(name = "neighborhood", length = 100, nullable = false)
     private String neighborhood;
     
-    @Column(name = "city", length = 50, nullable = true)
+    @Column(name = "city", length = 50, nullable = false)
     private String city;
     
-    @Column(name = "uf", length = 2, nullable = true)
+    @Column(name = "uf", length = 2, nullable = false)
     private String uf;
     
-    @Column(name = "cep", length = 9, nullable = true)
+    @Column(name = "cep", length = 9, nullable = false)
     private String cep;
     
-    @Column(name = "phone", length = 14, nullable = true)
+    @Column(name = "phone", length = 14, nullable = false)
     private String phone;
     
-    @Column(name = "cel_phone", length = 15, nullable = true)
+    @Column(name = "cel_phone", length = 15, nullable = false)
     private String cel_phone;
     
-    @Column(name = "email", length = 100, nullable = true)
+    @Column(name = "email", length = 100, nullable = false)
     private String email;
     
-    @OneToMany//(mappedBy = "fk_client", cascade = {CascadeType.PERSIST},fetch=FetchType.EAGER)
+    @OneToMany  //(mappedBy = "fk_client", cascade = {CascadeType.PERSIST},fetch=FetchType.EAGER)
     private List<Payment> historic;
     
     public Client() {
@@ -95,8 +96,6 @@ public class Client implements Serializable {
         this.historic = historic;
     }
     
-    
-
     public Long getId() {
         return id;
     }
@@ -226,11 +225,9 @@ public class Client implements Serializable {
             this.historic = historic;
         }
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", name=" + name + ", cpf=" + cpf + ", birth_date=" + birth_date + ", sex=" + sex + ", address=" + address + ", number=" + number + ", complement=" + complement + ", neighborhood=" + neighborhood + ", city=" + city + ", uf=" + uf + ", cep=" + cep + ", phone=" + phone + ", cel_phone=" + cel_phone + ", email=" + email + '}';
+        return "Client{" + "id=" + id + ", name=" + name + ", cpf=" + cpf + ", birth_date=" + birth_date + ", sex=" + sex + ", address=" + address + ", number=" + number + ", complement=" + complement + ", neighborhood=" + neighborhood + ", city=" + city + ", uf=" + uf + ", cep=" + cep + ", phone=" + phone + ", cel_phone=" + cel_phone + ", email=" + email + ", historic=" + historic + '}';
     }
 }

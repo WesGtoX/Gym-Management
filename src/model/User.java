@@ -13,7 +13,6 @@ import javax.persistence.Table;
  *
  * @author Quemuel
  */
-
 //call persistense
 @Entity
 @Table(name="tb_usuario")
@@ -31,21 +30,28 @@ public class User implements Serializable{
 
     @Column(name="id",nullable = false)
     private Long id;
+    
     @Column(name="name", length = 50, nullable = true)
     private String name;
+    
     @Column(name="registration", length = 12, nullable = true)
     private String date;
+    
     @Column(name="password", length = 30, nullable = true)
     private String password;
+    
     @Column(name="email",length = 30, nullable = true)
     private String email;
+    
     @Column(name="responsible",length = 30, nullable = true)
     private String responsible;
+    
     @Column(name="occupation",nullable = false)
     private int occupation;
+    
     @Column(name="permission",nullable = false)
     private int permissions;
-
+    
     public User() {
     }
 
@@ -139,6 +145,4 @@ public class User implements Serializable{
             this.permissions = 1;
         }
     }
-    
-    
 }

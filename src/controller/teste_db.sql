@@ -1,10 +1,10 @@
+-- show all
 SELECT * FROM tb_cliente
 SELECT * FROM tb_usuario
+SELECT * FROM tb_pagamento
 
 
---Clients insertions --
-INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
-INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
+-- insert clients
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (1, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Weild', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (2, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Nashbu', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (3, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Cyuvepen', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
@@ -96,9 +96,9 @@ INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complemen
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (89, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Ulneapue', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 INSERT INTO tb_cliente (id, address, birth_date, cel_phone, cep, city, complement, cpf, email, name, neighborhood, number, phone, sex, uf) VALUES (90, 'Rua Sena Madureira', '00/00/0000', '(00) 00000-0000', '58068-223', 'Campo Grande', 'casa 1', '402.747.340-01', 'este@teste.com', 'Solio', 'Jd Los Angeles', '00', '(00) 0000-0000', 'Masculino', 'MS');
 
---Users insertions --
-INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (0,'17/11/2019','teste@system.com.br','Admin',2,'Admin',1,'system');
-INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (1,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
+
+-- insert users
+INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (1,'17/11/2019','teste@system.com.br','admin',2,'admin',1,'system');
 INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (2,'17/11/2019','teste@system.com.br','test',1,'test',0,'system');
 INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (3,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
 INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (4,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
@@ -117,7 +117,8 @@ INSERT INTO tb_usuario (id, registration, email, name, occupation, password, per
 INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (17,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
 INSERT INTO tb_usuario (id, registration, email, name, occupation, password, permission, responsible) VALUES (18,'17/11/2019','teste@system.com.br','test',0,'test',0,'system');
 
---Payment insertion --
+
+-- insert payment
 INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 10);
 INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 11);
 INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 12);
