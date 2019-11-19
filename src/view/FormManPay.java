@@ -59,6 +59,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         lblClientname1 = new javax.swing.JLabel();
+        btnPay = new javax.swing.JButton();
         tabSrcPay = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -75,8 +76,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gerenciar Pagamento");
-        setMinimumSize(new java.awt.Dimension(300, 225));
-        setPreferredSize(new java.awt.Dimension(595, 392));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         tabMain.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tabMain.setPreferredSize(new java.awt.Dimension(798, 573));
@@ -208,6 +209,16 @@ public class FormManPay extends javax.swing.JInternalFrame {
         lblClientname1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblClientname1.setText("Histórico");
 
+        btnPay.setBackground(new java.awt.Color(0, 102, 255));
+        btnPay.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnPay.setForeground(new java.awt.Color(255, 255, 255));
+        btnPay.setText("Pagar");
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabManPayLayout = new javax.swing.GroupLayout(tabManPay);
         tabManPay.setLayout(tabManPayLayout);
         tabManPayLayout.setHorizontalGroup(
@@ -216,15 +227,17 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabManPayLayout.createSequentialGroup()
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPayid)
@@ -236,7 +249,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblExpireddate)
-                            .addComponent(txtExpireddate)))
+                            .addComponent(txtExpireddate, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
@@ -283,8 +296,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblClientname1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
                         .addComponent(lblPaymode)
@@ -307,8 +320,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         tabMain.addTab("Pagamentos", tabManPay);
@@ -365,7 +379,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabSrcPayLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSrcPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
                     .addGroup(tabSrcPayLayout.createSequentialGroup()
                         .addComponent(rdbSrcCode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -383,7 +397,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(rdbSrcName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtInputData, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -440,7 +454,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabSrcUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
                     .addGroup(tabSrcUserLayout.createSequentialGroup()
                         .addComponent(rdbCliCod)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -458,7 +472,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     .addComponent(rdbCliName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtInputData1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -468,12 +482,12 @@ public class FormManPay extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -500,10 +514,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
     private void tblPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPayMouseClicked
         fillForm(tblPay.getSelectedRow());
-        
-        //select tab ManUser
-        tabMain.setSelectedIndex(0);
-        txtClientname.transferFocus();
     }//GEN-LAST:event_tblPayMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -550,7 +560,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
         pay.setExpiry(txtExpireddate.getText());
         pay.setId(id);
         pay.setPaydate("  /  /    ");
-//        pay.setPaydate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
         pay.setPaymode(cbxPaymode.getSelectedIndex());
         pay.setPayrate(txtPayrate.getText());
         pay.setStatus(false);
@@ -565,7 +574,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
         setState(true);
         filltblPay(new PayDAO().searchAll());
         filltblHistoric(new PayDAO().searchAll());
-        System.out.println("dados para salvar: "+pay);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtInputData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputData1KeyReleased
@@ -593,7 +601,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
         btnDelete.setEnabled(true);
         txtClientname.setText(getClient(tblClient.getSelectedRow()).getName());
-        tabMain.setSelectedIndex(0);
         
     }//GEN-LAST:event_tblClientMouseClicked
 
@@ -607,13 +614,23 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
     private void txtClientnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClientnameKeyReleased
         tabMain.setSelectedIndex(2);
-        txtClientname.transferFocus();
     }//GEN-LAST:event_txtClientnameKeyReleased
 
     private void txtClientnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClientnameMouseClicked
         tabMain.setSelectedIndex(2);
-        txtClientname.transferFocus();
     }//GEN-LAST:event_txtClientnameMouseClicked
+
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
+        
+        Payment pay = new Payment();
+        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
+            p.setPaydate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+            p.setStatus(true);
+            pay = p;
+        }
+        
+        new PayDAO().save(pay);
+    }//GEN-LAST:event_btnPayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -621,6 +638,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnPay;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbxPaymode;
     private javax.swing.JScrollPane jScrollPane1;
@@ -713,7 +731,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     public void configurateForm(){
         filltblPay(new PayDAO().searchAll());
         fillForm(0);
-        filltblHistoric(new PayDAO().searchId(Integer.parseInt(txtPayrid.getText())));
+        filltblHistoric(new PayDAO().searchHistoric(tblClient.getSelectedColumn()));
         rdbSrcCode.setSelected(true);
         rdbCliCod.setSelected(true);
         setState(true);

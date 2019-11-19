@@ -3,7 +3,6 @@ package view;
 import controller.UserDAO;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.User;
@@ -15,17 +14,19 @@ import model.User;
 public class FormManUser extends javax.swing.JInternalFrame {
     
     public int permissions;
-    private JMenuItem aba;
+    public int flag;
+    private int tab;
     
-    public FormManUser(int permissions, int tab) {
-        this.aba = aba;
+    public FormManUser(int permissions, int tab,int flag) {
+        this.tab = tab;
+        this.flag = flag;
         this.permissions = permissions;
         initComponents();
         fillCbxUserfunction();
         fillcbxRestrictions();
         configurateForm();
         tabMain.setSelectedIndex(tab);
-    }
+    }  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,10 +42,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
         lblUserpermissions = new javax.swing.JLabel();
         lblUserresponsible = new javax.swing.JLabel();
         txtUserresponsible = new javax.swing.JTextField();
-        txtUserpassword = new javax.swing.JTextField();
         lblUserpassword = new javax.swing.JLabel();
         lblUserpassword2 = new javax.swing.JLabel();
-        txtUserpassword2 = new javax.swing.JTextField();
         lblUserdate = new javax.swing.JLabel();
         txtUseremail = new javax.swing.JTextField();
         lblUseremail = new javax.swing.JLabel();
@@ -62,6 +61,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        txtUserpassword = new javax.swing.JPasswordField();
+        txtUserpassword2 = new javax.swing.JPasswordField();
         tabSrcUser = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -88,15 +89,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
         txtUserresponsible.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        txtUserpassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
         lblUserpassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserpassword.setText("Senha do usuário");
 
         lblUserpassword2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserpassword2.setText("Confirmação de senha");
-
-        txtUserpassword2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblUserdate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserdate.setText("Data de cadastro");
@@ -229,17 +226,13 @@ public class FormManUser extends javax.swing.JInternalFrame {
                                     .addComponent(lblUserdate)
                                     .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(tabManUserLayout.createSequentialGroup()
-                                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUserpassword)
-                                    .addGroup(tabManUserLayout.createSequentialGroup()
-                                        .addComponent(lblUserpassword)
-                                        .addGap(63, 63, 63)))
+                                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUserpassword)
+                                    .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUserpassword2)
-                                    .addGroup(tabManUserLayout.createSequentialGroup()
-                                        .addComponent(lblUserpassword2)
-                                        .addGap(32, 32, 32)))
+                                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUserpassword2)
+                                    .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblUserresponsible)
@@ -269,12 +262,13 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(tabManUserLayout.createSequentialGroup()
                         .addComponent(lblUserpassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
                     .addGroup(tabManUserLayout.createSequentialGroup()
                         .addComponent(lblUserpassword2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(tabManUserLayout.createSequentialGroup()
                         .addComponent(lblUserresponsible)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,6 +405,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         setState(false);
         setData();
+        cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
+        cbxPermissions.setEnabled(this.flag != 1 ? true : false);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -420,6 +416,13 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setState(true);
+        btnModify.setEnabled(this.flag != 1 ? true : false);
+        if(this.permissions != 0){
+            btnDelete.setEnabled(true);
+            if(this.flag == 1){
+                btnDelete.setEnabled(false);
+            }
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -459,27 +462,46 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
-        setState(false);
-        Long id = (txtUserid.getText().isEmpty() ? null : Long.parseLong(txtUserid.getText()));
-        btnModify.setEnabled((this.permissions != 0) ? true : false);
-        int id_new = new UserDAO().save(
-            new User(
-                id,
-                txtUsername.getText(),
-                txtUserdate.getText(),
-                txtUserpassword.getText(),
-                txtUseremail.getText(),
-                txtUserresponsible.getText(),
-                cbxUserOccupation.getSelectedIndex(),
-                cbxPermissions.getSelectedIndex()
-            )
-        );
-        if(id_new == -1){
-            JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
-        };
-        txtUserid.setText(String.valueOf(id_new));
-        setState(true);
-        filltblUsers(new UserDAO().searchAll());
+        if(txtUsername.getText().isEmpty() || txtUserpassword.equals("")){
+            
+            JOptionPane.showMessageDialog(null,"Usuário e senha são campos obrigatórios!","Atenção",JOptionPane.WARNING_MESSAGE);            
+            if(!txtUsername.getText().isEmpty()){
+                txtUserpassword.requestFocus();
+            }else{
+                txtUsername.requestFocus();
+            }
+            
+        }else if(!txtUserpassword.getText().equals(txtUserpassword2.getText())){
+            
+            JOptionPane.showMessageDialog(null,"As senhas não coincidem!","Atenção",JOptionPane.WARNING_MESSAGE); 
+            txtUserpassword.requestFocus();
+            
+        }else{
+            
+            setState(false);
+            Long id = (txtUserid.getText().isEmpty() ? null : Long.parseLong(txtUserid.getText()));
+            btnModify.setEnabled((this.permissions != 0) ? true : false);
+            
+            int id_new = new UserDAO().save(
+                new User(
+                    id,
+                    txtUsername.getText(),
+                    txtUserdate.getText(),
+                    txtUserpassword.getPassword().toString(),
+                    txtUseremail.getText(),
+                    txtUserresponsible.getText(),
+                    cbxUserOccupation.getSelectedIndex(),
+                    cbxPermissions.getSelectedIndex()
+                )
+            );
+            if(id_new == -1){
+                JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
+            };
+            txtUserid.setText(String.valueOf(id_new));
+            setState(true);
+            filltblUsers(new UserDAO().searchAll());
+        }
+        configurateForm();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
@@ -487,7 +509,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         fillForm(tblUsers.getSelectedRow());
         
         //select tab ManUser
-        tabMain.setSelectedIndex(0);
+//        tabMain.setSelectedIndex(0);
     }//GEN-LAST:event_tblUsersMouseClicked
 
 
@@ -521,8 +543,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUseremail;
     private javax.swing.JTextField txtUserid;
     private javax.swing.JTextField txtUsername;
-    private javax.swing.JTextField txtUserpassword;
-    private javax.swing.JTextField txtUserpassword2;
+    private javax.swing.JPasswordField txtUserpassword;
+    private javax.swing.JPasswordField txtUserpassword2;
     private javax.swing.JTextField txtUserresponsible;
     // End of variables declaration//GEN-END:variables
     
@@ -562,10 +584,14 @@ public class FormManUser extends javax.swing.JInternalFrame {
     }
     
     private void configurateForm(){
-        setState(true);
+        setState(this.flag != 1 ? true : false);
+        cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
+        cbxPermissions.setEnabled(this.flag != 1 ? true : false);
         filltblUsers(new UserDAO().searchAll());
         rdbSrcId.setSelected(true);
-        fillForm(0);
+        if(this.flag != 1){
+            fillForm(0);
+        }
     }
     
     public void setState(boolean st){
@@ -620,4 +646,6 @@ public class FormManUser extends javax.swing.JInternalFrame {
             txtUserresponsible.setText(u.getResponsible()); 
         }
     }
+    
+    
 }

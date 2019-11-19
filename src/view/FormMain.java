@@ -1,12 +1,14 @@
 package view;
 
 //import controller.UserDAO;
+import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.util.List;
 //import java.text.SimpleDateFormat;
 //import java.util.Date;
 import javax.swing.ImageIcon;
@@ -221,7 +223,7 @@ public class FormMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
-        openForm(new FormManUser(Usr.getPermissions(),0));
+        openForm(new FormManUser(Usr.getPermissions(),0,0));
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
@@ -237,11 +239,32 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManAboutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        openForm(new FormLogin(Menu));        
+        List<User> users = new UserDAO().searchAll();
+        int count = 1;
+        if(users.size() != 0){
+            for(User u : users){
+                count--;
+                if(u.getPermissions() == 1){
+                    openForm(new FormLogin(Menu));
+                    break;
+                }else{
+                    count++;
+                }
+            }     
+        }
+        
+        if(users.size() == 0 || count > 0){
+//            System.out.println("entrou no filtro");
+//            FormManUser admin = 
+//            admin.flag = 5;
+//            System.out.println("flag if: "+admin.flag);
+            openForm(new FormManUser(1,0,1));
+            
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
-        openForm(new FormManUser(Usr.getPermissions(),1));
+        openForm(new FormManUser(Usr.getPermissions(),1,0));
     }//GEN-LAST:event_SeaUserActionPerformed
 
     private void SeaClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaClientsActionPerformed

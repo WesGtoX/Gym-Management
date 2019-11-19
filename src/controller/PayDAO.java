@@ -96,6 +96,20 @@ public class PayDAO {
         }
     }
     
+    public List<Payment> searchHistoric(int id){
+        try{
+            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client.id:id ORDER BY p.fk_client.id");
+            q.setParameter("id",id);
+            return q.getResultList();
+        }catch(Exception e){
+            System.out.println("Não foi possível buscar o histórico de pagamentos pelo id, ERRO: "+e.getMessage());
+            return null;
+        }finally{
+            em.close();
+            emf.close();
+        }
+    }
+    
     public List<Payment> searchName(String name){
         try{
             Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client LIKE :name ORDER BY p.fk_client");//select all with typed name order by name
