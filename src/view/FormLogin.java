@@ -205,6 +205,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
         }
         
         for (User user : carregar) {
+            System.out.println("seha do banco: "+String.valueOf(user.getPassword()));
             if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.toUpperCase().equals(user.getPassword().toUpperCase())) {
                 
                 // Open form
@@ -222,7 +223,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
                 this.dispose();
             }
         }
-        
+        System.out.println("senha do usuario"+pwd);
         if (login == false) {
             JOptionPane.showMessageDialog(null,"Usuário ou senha inválido.",
                     "Login",JOptionPane.ERROR_MESSAGE);
@@ -230,7 +231,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
             pswPass.setText("");
             txtLogin.requestFocusInWindow();
         }
-        this.dispose();
+//        this.dispose();
         
     }
 

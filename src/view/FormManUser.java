@@ -462,16 +462,20 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
-        if(txtUsername.getText().isEmpty() || txtUserpassword.equals("")){
+        String usr = txtUsername.getText();
+        String psw = new String(txtUserpassword.getPassword());
+        String psw2 = new String(txtUserpassword2.getPassword());
+        
+        if(usr.isEmpty() || psw.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"Usuário e senha são campos obrigatórios!","Atenção",JOptionPane.WARNING_MESSAGE);            
-            if(!txtUsername.getText().isEmpty()){
+            if(!usr.isEmpty()){
                 txtUserpassword.requestFocus();
             }else{
                 txtUsername.requestFocus();
             }
             
-        }else if(!txtUserpassword.getText().equals(txtUserpassword2.getText())){
+        }else if(!psw.equals(psw2)){
             
             JOptionPane.showMessageDialog(null,"As senhas não coincidem!","Atenção",JOptionPane.WARNING_MESSAGE); 
             txtUserpassword.requestFocus();
@@ -487,7 +491,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
                     id,
                     txtUsername.getText(),
                     txtUserdate.getText(),
-                    txtUserpassword.getPassword().toString(),
+                    psw,
                     txtUseremail.getText(),
                     txtUserresponsible.getText(),
                     cbxUserOccupation.getSelectedIndex(),
@@ -585,12 +589,14 @@ public class FormManUser extends javax.swing.JInternalFrame {
     
     private void configurateForm(){
         setState(this.flag != 1 ? true : false);
-        cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
-        cbxPermissions.setEnabled(this.flag != 1 ? true : false);
+        
         filltblUsers(new UserDAO().searchAll());
         rdbSrcId.setSelected(true);
         if(this.flag != 1){
             fillForm(0);
+        }else{
+            cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
+            cbxPermissions.setEnabled(this.flag != 1 ? true : false);
         }
     }
     
