@@ -60,6 +60,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnAdd = new javax.swing.JButton();
         lblClientname1 = new javax.swing.JLabel();
         btnPay = new javax.swing.JButton();
+        btnCalculate = new javax.swing.JButton();
+        txtMonthly = new javax.swing.JFormattedTextField();
+        lblMonthly = new javax.swing.JLabel();
         tabSrcPay = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -110,13 +113,13 @@ public class FormManPay extends javax.swing.JInternalFrame {
         lblClientname.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblClientname.setText("Nome do Cliente");
 
-        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtTotal.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPayfull.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblPayfull.setText("Total a pagar");
 
-        txtPaydiscount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
+        txtPaydiscount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtPaydiscount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblPaydiscount.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -219,6 +222,22 @@ public class FormManPay extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCalculate.setBackground(new java.awt.Color(0, 102, 255));
+        btnCalculate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnCalculate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCalculate.setText("Calcular");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
+
+        txtMonthly.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        txtMonthly.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        lblMonthly.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblMonthly.setText("Mensalidade");
+
         javax.swing.GroupLayout tabManPayLayout = new javax.swing.GroupLayout(tabManPay);
         tabManPay.setLayout(tabManPayLayout);
         tabManPayLayout.setHorizontalGroup(
@@ -238,18 +257,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabManPayLayout.createSequentialGroup()
-                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPayid)
-                            .addComponent(txtPayrid, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblClientname)
-                            .addComponent(txtClientname, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblExpireddate)
-                            .addComponent(txtExpireddate, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
@@ -262,37 +269,58 @@ public class FormManPay extends javax.swing.JInternalFrame {
                             .addComponent(txtPayrate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(tabManPayLayout.createSequentialGroup()
-                                .addComponent(lblPaydiscount)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtPaydiscount))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblPaydiscount)
+                            .addComponent(txtPaydiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(95, 95, 95)
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPayfull)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(tabManPayLayout.createSequentialGroup()
                         .addComponent(lblClientname1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tabManPayLayout.createSequentialGroup()
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPayid)
+                            .addComponent(txtPayrid, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblClientname)
+                            .addComponent(txtClientname, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblExpireddate)
+                            .addComponent(txtExpireddate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMonthly)
+                            .addComponent(txtMonthly, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         tabManPayLayout.setVerticalGroup(
             tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabManPayLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(tabManPayLayout.createSequentialGroup()
+                                .addComponent(lblExpireddate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtExpireddate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabManPayLayout.createSequentialGroup()
+                                .addComponent(lblClientname)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtClientname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(tabManPayLayout.createSequentialGroup()
-                            .addComponent(lblExpireddate)
+                            .addComponent(lblPayid)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtExpireddate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(tabManPayLayout.createSequentialGroup()
-                            .addComponent(lblClientname)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtClientname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPayrid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtMonthly, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabManPayLayout.createSequentialGroup()
-                        .addComponent(lblPayid)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPayrid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblMonthly)
+                        .addGap(29, 29, 29)))
                 .addGap(18, 18, 18)
                 .addComponent(lblClientname1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,7 +333,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
                         .addComponent(cbxPaymode, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPayrate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPaydiscount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPaydiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManPayLayout.createSequentialGroup()
                         .addGroup(tabManPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPayrate, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -379,7 +409,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabSrcPayLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSrcPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                     .addGroup(tabSrcPayLayout.createSequentialGroup()
                         .addComponent(rdbSrcCode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -454,7 +484,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             .addGroup(tabSrcUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                     .addGroup(tabSrcUserLayout.createSequentialGroup()
                         .addComponent(rdbCliCod)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -482,7 +512,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,8 +574,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
         
         filltblPay(new PayDAO().searchAll());
-        filltblHistoric();
-        fillForm(0);
+//        filltblHistoric();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -563,17 +592,17 @@ public class FormManPay extends javax.swing.JInternalFrame {
         pay.setPaymode(cbxPaymode.getSelectedIndex());
         pay.setPayrate(txtPayrate.getText());
         pay.setStatus(false);
-        pay.setTotal(txtTotal.getText());
+        pay.setMonthly(txtTotal.getText());
         
         int id_new = new PayDAO().save(pay);
         
         if(id_new == -1){
-            JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
+            JOptionPane.showMessageDialog(null,"Não foi registrar a entrada de dados");
         };
         txtPayrid.setText(String.valueOf(id_new));
         setState(true);
         filltblPay(new PayDAO().searchAll());
-        filltblHistoric();
+//        filltblHistoric();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtInputData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputData1KeyReleased
@@ -601,6 +630,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
         btnDelete.setEnabled(true);
         txtClientname.setText(getClient(tblClient.getSelectedRow()).getName());
+//        filltblHistoric();
         
     }//GEN-LAST:event_tblClientMouseClicked
 
@@ -632,9 +662,16 @@ public class FormManPay extends javax.swing.JInternalFrame {
         new PayDAO().save(pay);
     }//GEN-LAST:event_btnPayActionPerformed
 
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        
+        txtPayrate.setText("R$ "+String.valueOf(Double.parseDouble(txtMonthly.getText())*0.02));
+        txtTotal.setText("R$ "+String.valueOf(Double.parseDouble(txtMonthly.getText())-Double.parseDouble(txtPaydiscount.getText())+(Double.parseDouble(txtMonthly.getText())*0.02)));
+    }//GEN-LAST:event_btnCalculateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
@@ -648,6 +685,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblClientname;
     private javax.swing.JLabel lblClientname1;
     private javax.swing.JLabel lblExpireddate;
+    private javax.swing.JLabel lblMonthly;
     private javax.swing.JLabel lblPaydiscount;
     private javax.swing.JLabel lblPayfull;
     private javax.swing.JLabel lblPayid;
@@ -668,6 +706,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtExpireddate;
     private javax.swing.JTextField txtInputData;
     private javax.swing.JTextField txtInputData1;
+    private javax.swing.JFormattedTextField txtMonthly;
     private javax.swing.JFormattedTextField txtPaydiscount;
     private javax.swing.JFormattedTextField txtPayrate;
     private javax.swing.JTextField txtPayrid;
@@ -697,7 +736,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 new Object[]{
                     p.getId(),
                     p.getClient().getName(),
-                    p.getTotal(),
+                    p.getMonthly(),
                     p.getExpiry()
                 }
             );
@@ -716,11 +755,19 @@ public class FormManPay extends javax.swing.JInternalFrame {
         
         for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
             if(p.getId() == Integer.parseInt(txtPayrid.getText())){
-                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
-                    if(p.getClient().getId() == u.getId()){
-                        pay = u.getHistoric();
-                        System.out.println(u.getHistoric()+"\n");
-                    }
+                System.out.println("\nLocalizado pagamento id:"+p.getId());
+                for(Payment u : p.getClient().getHistoric()){
+//                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
+//                    if(p.getClient().getId() == u.getId()){
+//                        System.out.println("\nLocalizado cliente do pagamento:"+u.getId());
+//                        pay = u.getHistoric();
+//                        for(Payment t : u.getHistoric()){
+                            System.out.println("\nhistorico do cliente: "+u+"\n");
+//                        }
+//                }
+//                System.out.println("historico do cliente:"+new PayDAO().searchHistoric(p.getId().intValue()));
+//                System.out.println("historico do cliente:"+new PayDAO().searchHistoric(15));
+//                    System.out.println("historico do cliente:"+payment);
                 }
             }
         }
@@ -737,7 +784,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             model.addRow(
                 new Object[]{
                     p.isStatus() == true ? "pago":"inadimplente",
-                    p.getTotal(),
+                    p.getMonthly(),
                     p.getPaydate(),
                     p.getExpiry()
                 }
@@ -749,7 +796,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     
     public void configurateForm(){
         filltblPay(new PayDAO().searchAll());
-        fillForm(0);
+//        fillForm(0);
         
 //        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
 //            if(p.getId() == Integer.parseInt(txtPayrid.getText())){
@@ -761,9 +808,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
 //            }
 //        }
 //        filltblHistoric(new ClientDAO().searchById());
+//        filltblHistoric();
         rdbSrcCode.setSelected(true);
         rdbCliCod.setSelected(true);
         setState(true);
+        setData();
         fillClientTable(new ClientDAO().list());
     }
 
@@ -780,9 +829,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
             txtPaydiscount.setText(p.getDiscount());
             cbxPaymode.setSelectedIndex(p.getPaymode());
             txtPayrate.setText(p.getPayrate());
-            txtTotal.setText(p.getTotal()); 
+            txtTotal.setText(p.getMonthly()); 
         }
-        filltblHistoric();
+//        filltblHistoric();
     }
     
     public void fillClientTable(List<Client> list){
@@ -831,9 +880,10 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtInputData.setEnabled(!st);
         txtExpireddate.setEnabled(!st);
         txtPaydiscount.setEnabled(!st);
-        txtPayrate.setEnabled(!st);
-        txtTotal.setEnabled(!st);
+        txtPayrate.setEnabled(false);
+        txtTotal.setEnabled(false);
         cbxPaymode.setEnabled(!st);
+        txtMonthly.setEnabled(!st);
     }
     
     public void setData(){
@@ -842,8 +892,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtInputData.setText("");
         txtExpireddate.setText("");
         txtPaydiscount.setText("");
-        txtPayrate.setText("");
-        txtTotal.setText("");
+        txtPayrate.setText("R$ 0,00");
+        txtTotal.setText("R$ 0,00");
     }
     
     public Client getClient(int line){

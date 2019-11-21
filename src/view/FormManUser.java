@@ -137,7 +137,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancel.setBackground(new java.awt.Color(0, 102, 255));
+        btnCancel.setBackground(new java.awt.Color(255, 0, 0));
         btnCancel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancelar");
@@ -401,19 +401,19 @@ public class FormManUser extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        setState(false);
+        setState(true);
         setData();
         cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
         cbxPermissions.setEnabled(this.flag != 1 ? true : false);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        setState(false);
+        setState(true);
         btnDelete.setEnabled(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        setState(true);
+        setState(false);
         btnModify.setEnabled(this.flag != 1 ? true : false);
         btnDelete.setEnabled(this.flag == 1 ? false : true);
     }//GEN-LAST:event_btnCancelActionPerformed
@@ -521,6 +521,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         
         fillForm(tblUsers.getSelectedRow());
+        btnModify.setEnabled(true);
+        btnDelete.setEnabled(true);
         
     }//GEN-LAST:event_tblUsersMouseClicked
 
@@ -596,13 +598,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
     }
     
     private void configurateForm(){
-        setState(this.flag != 1 ? true : false);
-        
+        setState(this.flag != 1 ? false : true);
+        setData();
         filltblUsers(new UserDAO().searchAll());
-        rdbSrcId.setSelected(true);
-        if(this.flag != 1){
-            fillForm(0);
-        }else{
+        rdbSrcName.setSelected(true);
+        if(this.flag == 1){
             cbxPermissions.setSelectedIndex(this.flag != 1 ? 0 : 1);
             cbxPermissions.setEnabled(this.flag != 1 ? true : false);
         }
@@ -610,19 +610,19 @@ public class FormManUser extends javax.swing.JInternalFrame {
     
     public void setState(boolean st){
         txtUserid.setEnabled(false);
-        
+        btnCancel.setEnabled(st);
         btnModify.setEnabled(st);
         btnDelete.setEnabled(st);
-        cbxPermissions.setEnabled(!st);
-        btnNew.setEnabled(st);
-        btnSave.setEnabled(!st);
-        txtUsername.setEnabled(!st);
-        txtUserdate.setEnabled(!st);
-        txtUserpassword.setEnabled(!st);
-        txtUserpassword2.setEnabled(!st);
-        txtUserresponsible.setEnabled(!st);
-        txtUseremail.setEnabled(!st);
-        cbxUserOccupation.setEnabled(!st);
+        cbxPermissions.setEnabled(st);
+        btnNew.setEnabled(!st);
+        btnSave.setEnabled(st);
+        txtUsername.setEnabled(st);
+        txtUserdate.setEnabled(st);
+        txtUserpassword.setEnabled(st);
+        txtUserpassword2.setEnabled(st);
+        txtUserresponsible.setEnabled(st);
+        txtUseremail.setEnabled(st);
+        cbxUserOccupation.setEnabled(st);
     }
     
     public void setData(){

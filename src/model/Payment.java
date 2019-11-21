@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,9 +34,9 @@ public class Payment implements Serializable{
     @Column(name="id", nullable = false)
     private Long id;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "client", referencedColumnName = "id", nullable = false)
-    private Client fk_client;
+    private Client client;
     
     @Column(name="expiry", length = 12, nullable = false)
     private String expiry;
@@ -55,8 +56,8 @@ public class Payment implements Serializable{
     @Column(name="discount",length = 30, nullable = true)
     private String discount;
     
-    @Column(name="total", length = 30, nullable = false)
-    private String total;
+    @Column(name="monthly", length = 30, nullable = false)
+    private String monthly;
     
     public Payment() {
     }
@@ -70,7 +71,7 @@ public class Payment implements Serializable{
         this.setPaymode(paymode);
         this.setPayrate(payrate);
         this.setDiscount(discount);
-        this.setTotal(total);
+        this.setMonthly(total);
     }
     
     public Long getId() {
@@ -82,7 +83,7 @@ public class Payment implements Serializable{
     }
 
     public Client getClient() {
-        return this.fk_client;
+        return this.client;
     }
 
     public boolean isStatus() {
@@ -95,7 +96,7 @@ public class Payment implements Serializable{
 
     public void setClient(Client cli) {
         if(cli != null){
-            this.fk_client = cli;
+            this.client = cli;
         }
     }
 
@@ -149,13 +150,13 @@ public class Payment implements Serializable{
         }
     }
 
-    public String getTotal() {
-        return total;
+    public String getMonthly() {
+        return monthly;
     }
 
-    public void setTotal(String total) {
-        if(!total.isEmpty()){
-            this.total = total;
+    public void setMonthly(String monthly) {
+        if(!monthly.isEmpty()){
+            this.monthly = monthly;
         }
     }
 }

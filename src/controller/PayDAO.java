@@ -37,7 +37,7 @@ public class PayDAO {
                 pay.setPaymode(p.getPaymode());                     //update a existing mode_pay
                 pay.setPayrate(p.getPayrate());                     //update a existing rate_pay
                 pay.setStatus(p.isStatus());                        //update a existing status_pay
-                pay.setTotal(p.getTotal());                         //update a existing total_pay
+                pay.setMonthly(p.getMonthly());                         //update a existing total_pay
             }
             em.getTransaction().begin();
             p = em.merge(pay);
@@ -98,7 +98,8 @@ public class PayDAO {
     
     public List<Payment> searchHistoric(int id){
         try{
-            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client.id:id ORDER BY p.fk_client.id");
+//            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client:id ORDER BY p.paydate");
+            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client=:id");
             q.setParameter("id",id);
             return q.getResultList();
         }catch(Exception e){
@@ -112,7 +113,7 @@ public class PayDAO {
     
     public List<Payment> searchName(String name){
         try{
-            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client LIKE :name ORDER BY p.fk_client");//select all with typed name order by name
+            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client.name LIKE :name ORDER BY p.fk_client.name");//select all with typed name order by name
             q.setParameter("name", "%"+name+"%");
             return q.getResultList();
         }catch(Exception e){

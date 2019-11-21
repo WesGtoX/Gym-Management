@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -70,9 +72,11 @@ public class Client implements Serializable {
     
     @Column(name = "email", length = 100, nullable = false)
     private String email;
+  
     
-    @OneToMany  //(mappedBy = "fk_client", cascade = {CascadeType.PERSIST},fetch=FetchType.EAGER)
-    private List<Payment> historic;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JoinColumn(name="client")
+    private List<Payment> historic = new ArrayList<>();
     
     public Client() {
     }
