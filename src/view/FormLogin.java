@@ -3,9 +3,7 @@ package view;
 import controller.UserDAO;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import model.User;
@@ -187,43 +185,45 @@ public class FormLogin extends javax.swing.JInternalFrame {
 
     private void login(){
         
-        List<User> carregar = new UserDAO().searchAll();
+        List<User> load = new UserDAO().searchAll();
         
         String usr = txtLogin.getText();
-        String pwd = new String(pswPass.getPassword());
+        String pwd = new String(pswPass.getPassword()).toUpperCase();
         boolean login = false;
         MessageDigest m;
         
         try {
-//            m = MessageDigest.getInstance("MD5");
-//            m.reset();
-//            m.update(pwd.getBytes(), 0, pwd.length());
-//            BigInteger pwd1 = new BigInteger(1, m.digest());
-//            pwd = String.format("%1$032X", pwd1);
+            m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(pwd.getBytes(), 0, pwd.length());
+            BigInteger pwd1 = new BigInteger(1, m.digest());
+            pwd = String.format("%1$032X", pwd1);
         } catch (Exception e) {
             
         }
         
-        for (User user : carregar) {
-            System.out.println("seha do banco: "+String.valueOf(user.getPassword()));
-            if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.toUpperCase().equals(user.getPassword().toUpperCase())) {
+        for (User user : load) {
+            if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.equals(user.getPassword())) {
                 
                 // Open form
                 Usr = user;
+                user.setPermissions(0);
                 
-                menu.getMenu(0).setEnabled(true);
-                menu.getMenu(1).setEnabled(true);
-                menu.getMenu(2).setEnabled((user.getPermissions() == 0) ? false : true);
-                menu.getMenu(0).getItem(3).setEnabled((user.getPermissions() == 0) ? false : true);
-               
-//                FormMain frm = new FormMain();
-//                    frm.setExtendedState(MAXIMIZED_BOTH);
-//                frm.setVisible(true);
+                menu.getMenu(0).setEnabled(true);                                           //Enable menu management
+                menu.getMenu(0).getItem(1).setEnabled(
+                        user.getPermissions() == 1 ? true : false                           //Enable submenu client
+                );
+                menu.getMenu(1).setEnabled(true);                                           //Enable menu search
+                menu.getMenu(2).setEnabled(true);                                           //Enable menu report
+                
+                    System.out.println("quantidade de itens no jmenubar: "+menu.getMenuCount());
+//                }
+                
                 login = true;
                 this.dispose();
             }
         }
-        System.out.println("senha do usuario"+pwd);
+        
         if (login == false) {
             JOptionPane.showMessageDialog(null,"Usuário ou senha inválido.",
                     "Login",JOptionPane.ERROR_MESSAGE);
@@ -231,7 +231,6 @@ public class FormLogin extends javax.swing.JInternalFrame {
             pswPass.setText("");
             txtLogin.requestFocusInWindow();
         }
-//        this.dispose();
         
     }
 

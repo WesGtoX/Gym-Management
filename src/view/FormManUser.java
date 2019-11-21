@@ -1,6 +1,8 @@
 package view;
 
 import controller.UserDAO;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -13,14 +15,10 @@ import model.User;
  */
 public class FormManUser extends javax.swing.JInternalFrame {
     
-    public int permissions;
-    public int flag;
-    private int tab;
+    public static int flag;                     //flag of first login
+    private int tab;                            //flag of tab on start
     
-    public FormManUser(int permissions, int tab,int flag) {
-        this.tab = tab;
-        this.flag = flag;
-        this.permissions = permissions;
+    public FormManUser() {
         initComponents();
         fillCbxUserfunction();
         fillcbxRestrictions();
@@ -411,24 +409,19 @@ public class FormManUser extends javax.swing.JInternalFrame {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         setState(false);
-        btnDelete.setEnabled((this.permissions != 0) ? true : false);
+        btnDelete.setEnabled(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setState(true);
         btnModify.setEnabled(this.flag != 1 ? true : false);
-        if(this.permissions != 0){
-            btnDelete.setEnabled(true);
-            if(this.flag == 1){
-                btnDelete.setEnabled(false);
-            }
-        }
+        btnDelete.setEnabled(this.flag == 1 ? false : true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
         setState(true);
-        btnModify.setEnabled((this.permissions != 0) ? true : false);
+        btnModify.setEnabled(true);
         if(txtUserid.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Selecione um registro para excluir.","Atenção",JOptionPane.WARNING_MESSAGE);            
         }  
@@ -463,8 +456,15 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
         String usr = txtUsername.getText();
-        String psw = new String(txtUserpassword.getPassword());
-        String psw2 = new String(txtUserpassword2.getPassword());
+        String psw = new String(txtUserpassword.getPassword()).toUpperCase();
+        String psw2 = new String(txtUserpassword2.getPassword()).toUpperCase();
+        
+        if(psw.length() >100){
+            JOptionPane.showMessageDialog(null,"A senha informada é muito longa!","Atenção",JOptionPane.WARNING_MESSAGE);            
+            txtUserpassword.setText("");
+            txtUserpassword2.setText("");
+            txtUserpassword.requestFocus();
+        }    
         
         if(usr.isEmpty() || psw.isEmpty()){
             
@@ -484,7 +484,17 @@ public class FormManUser extends javax.swing.JInternalFrame {
             
             setState(false);
             Long id = (txtUserid.getText().isEmpty() ? null : Long.parseLong(txtUserid.getText()));
-            btnModify.setEnabled((this.permissions != 0) ? true : false);
+            btnModify.setEnabled(true);
+            
+            try {
+                MessageDigest m = MessageDigest.getInstance("MD5");
+                m.reset();
+                m.update(psw.getBytes(), 0, psw.length());
+                BigInteger pwd1 = new BigInteger(1, m.digest());
+                psw = String.format("%1$032X", pwd1);
+            }catch (Exception e) {
+                System.out.println("Erro ao criptografar senha, erro: "+e.getMessage());
+            }
             
             int id_new = new UserDAO().save(
                 new User(
@@ -512,8 +522,6 @@ public class FormManUser extends javax.swing.JInternalFrame {
         
         fillForm(tblUsers.getSelectedRow());
         
-        //select tab ManUser
-//        tabMain.setSelectedIndex(0);
     }//GEN-LAST:event_tblUsersMouseClicked
 
 
@@ -602,17 +610,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
     
     public void setState(boolean st){
         txtUserid.setEnabled(false);
-        if(this.permissions != 0){
-            btnModify.setEnabled(st);
-            btnDelete.setEnabled(st);
-            cbxPermissions.setEnabled(!st);
-            btnNew.setEnabled(st);
-        }else{
-            btnModify.setEnabled(false);
-            btnDelete.setEnabled(false);
-            cbxPermissions.setEnabled(false);
-            btnNew.setEnabled(false);
-        }
+        
+        btnModify.setEnabled(st);
+        btnDelete.setEnabled(st);
+        cbxPermissions.setEnabled(!st);
+        btnNew.setEnabled(st);
         btnSave.setEnabled(!st);
         txtUsername.setEnabled(!st);
         txtUserdate.setEnabled(!st);
@@ -653,5 +655,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
         }
     }
     
+    public void selectTab(int num_tab){
+        tabMain.setSelectedIndex(num_tab);
+    }
     
 }

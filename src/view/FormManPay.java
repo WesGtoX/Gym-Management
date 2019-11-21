@@ -17,9 +17,9 @@ import model.Payment;
  */
 public class FormManPay extends javax.swing.JInternalFrame {
     
-    public int permissions;
+//    public int permissions;
     
-    public FormManPay(int permisions) {
+    public FormManPay() {
         initComponents();
         fillCbxPaymode();
         configurateForm();
@@ -544,7 +544,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
         
         filltblPay(new PayDAO().searchAll());
-        filltblHistoric(new PayDAO().searchAll());
+        filltblHistoric();
         fillForm(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -573,7 +573,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtPayrid.setText(String.valueOf(id_new));
         setState(true);
         filltblPay(new PayDAO().searchAll());
-        filltblHistoric(new PayDAO().searchAll());
+        filltblHistoric();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtInputData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputData1KeyReleased
@@ -704,19 +704,36 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
     }
     
-    public void filltblHistoric(List<Payment> pay){
+    public void filltblHistoric(/*List<Payment> pay*/){
         DefaultTableModel model = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             } 
         };
+        
+        List<Payment> pay = null;
+        
+        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
+            if(p.getId() == Integer.parseInt(txtPayrid.getText())){
+                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
+                    if(p.getClient().getId() == u.getId()){
+                        pay = u.getHistoric();
+                        System.out.println(u.getHistoric()+"\n");
+                    }
+                }
+            }
+        }
+        
         model.addColumn("Status");
         model.addColumn("Valor");
         model.addColumn("Pagamento");
         model.addColumn("Vencimento");
         tblHistoric.setModel(model);
+//        Payment cmp = new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()));
         for(Payment p : pay){
+//            for(Payment cmp : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
+//                if(p.getClient().getId() == cmp.getClient().getId()){
             model.addRow(
                 new Object[]{
                     p.isStatus() == true ? "pago":"inadimplente",
@@ -725,13 +742,25 @@ public class FormManPay extends javax.swing.JInternalFrame {
                     p.getExpiry()
                 }
             );
+//                }
+//            }
         }
     }
     
     public void configurateForm(){
         filltblPay(new PayDAO().searchAll());
         fillForm(0);
-        filltblHistoric(new PayDAO().searchHistoric(tblClient.getSelectedColumn()));
+        
+//        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
+//            if(p.getId() == Integer.parseInt(txtPayrid.getText())){
+//                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
+//                    if(p.getClient().getId() == u.getId()){
+//                        filltblHistoric(u.getHistoric());
+//                    }
+//                }
+//            }
+//        }
+//        filltblHistoric(new ClientDAO().searchById());
         rdbSrcCode.setSelected(true);
         rdbCliCod.setSelected(true);
         setState(true);
@@ -753,6 +782,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             txtPayrate.setText(p.getPayrate());
             txtTotal.setText(p.getTotal()); 
         }
+        filltblHistoric();
     }
     
     public void fillClientTable(List<Client> list){

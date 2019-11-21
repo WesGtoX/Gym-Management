@@ -37,7 +37,7 @@ public class User implements Serializable{
     @Column(name="registration", length = 12, nullable = true)
     private String date;
     
-    @Column(name="password", length = 30, nullable = true)
+    @Column(name="password", length = 100, nullable = true)
     private String password;
     
     @Column(name="email",length = 30, nullable = true)

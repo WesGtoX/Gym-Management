@@ -1,6 +1,5 @@
 package view;
 
-//import controller.UserDAO;
 import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -9,8 +8,6 @@ import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.util.List;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
 import javax.swing.ImageIcon;
 import model.User;
 
@@ -25,26 +22,6 @@ public class FormMain extends javax.swing.JFrame {
     public FormMain() {
         initComponents();
         configurateForm();
-        
-//        try{
-//            //Create admin user in first execution
-//            if((new UserDAO().searchName("Admin")).isEmpty()){
-//                new UserDAO().save(                                               //insert admin user into database
-//                    new User(
-//                        null,                                                     //id_admin    
-//                        "admin",                                                  //name_admin
-//                        new SimpleDateFormat("dd/MM/yyyy").format(new Date()),    //date_admin
-//                        "admin",                                                  //psw_admin
-//                        "system",                                                 //resp_admin
-//                        "",                                                       //email_admin
-//                        2,                                                        //ocup_admin
-//                        1                                                         //perm_admin
-//                    )
-//                );
-//            }
-//        }catch(Exception e){
-//            System.out.println("Não foi possível criar o usuário administrador, erro:" +e.getMessage());
-//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -153,6 +130,11 @@ public class FormMain extends javax.swing.JFrame {
         submenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         submenuExit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         submenuExit.setText("Sair");
+        submenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submenuExitActionPerformed(evt);
+            }
+        });
         menuClient.add(submenuExit);
 
         Menu.add(menuClient);
@@ -223,11 +205,14 @@ public class FormMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
-        openForm(new FormManUser(Usr.getPermissions(),0,0));
+        FormManUser manUser = new FormManUser();
+        manUser.selectTab(0);                           //Select tab main
+        manUser.flag = 0;                               //Set flag first login with 1
+        openForm(manUser);                              //Open form with selected predefinitions
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
-        openForm(new FormManPay(Usr.getPermissions()));
+        openForm(new FormManPay());
     }//GEN-LAST:event_ManPaymentActionPerformed
 
     private void ManClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManClientsActionPerformed
@@ -240,13 +225,13 @@ public class FormMain extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        List<User> users = new UserDAO().searchAll();
+        List<User> users = new UserDAO().searchAll();       //Search users in database
         int count = 1;
         if(users.size() != 0){
             for(User u : users){
                 count--;
-                if(u.getPermissions() == 1){
-                    openForm(new FormLogin(Menu));
+                if(u.getPermissions() == 1){                //checking for users with administrator permission
+//                    openForm(new FormLogin(Menu));          //Launch login form
                     break;
                 }else{
                     count++;
@@ -255,17 +240,28 @@ public class FormMain extends javax.swing.JFrame {
         }
         
         if(users.size() == 0 || count > 0){
-            openForm(new FormManUser(1,0,1));
+            FormManUser newUser = new FormManUser();
+            newUser.selectTab(1);                           //Select tab search
+            newUser.flag = 1;                               //Set flag first login with 1
+            openForm(newUser);                              //Open form with selected predefinitions
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
-        openForm(new FormManUser(Usr.getPermissions(),1,0));
+        
+        FormManUser srcUser = new FormManUser();
+        srcUser.selectTab(1);                               //Select tab search
+        srcUser.flag = 1;                                   //Set flag first login with 1
+        openForm(srcUser);                                  //Open form with selected predefinitions
     }//GEN-LAST:event_SeaUserActionPerformed
 
     private void SeaClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaClientsActionPerformed
-        // TODO add your handling code here:
+//        openForm(new FormManClient().jPanel2.setSelectedIndex(1));
     }//GEN-LAST:event_SeaClientsActionPerformed
+
+    private void submenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_submenuExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,10 +323,11 @@ public class FormMain extends javax.swing.JFrame {
     private void configurateForm() {
         this.setTitle("Gym Management");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        menuClient.setEnabled(true);
-        menuSearch.setEnabled(true);
-        menuReport.setEnabled(true);
-        
+//        enableButtons(false);
+//        menuClient.setEnabled(true);
+//        ManClients.setEnabled(false);
+//        ManUser.setEnabled(false);
+//        ManPayment.setEnabled(false);
     }
 
     private void openForm(JInternalFrame f){
@@ -351,5 +348,11 @@ public class FormMain extends javax.swing.JFrame {
             (d.width-f.getSize().width)/2,
             (d.height-f.getSize().height)/2
         );
+    }
+    
+    public void enableButtons(boolean e){
+        menuClient.setEnabled(e);
+        menuSearch.setEnabled(e);
+        menuReport.setEnabled(e);
     }
 }
