@@ -36,6 +36,7 @@ public class FormMain extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(), this);
             }
         };
+        lblLogo = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         menuClient = new javax.swing.JMenu();
         ManClients = new javax.swing.JMenuItem();
@@ -68,19 +69,30 @@ public class FormMain extends javax.swing.JFrame {
 
         Desktop.setToolTipText("");
         Desktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Desktop.setMinimumSize(new java.awt.Dimension(800, 586));
+        Desktop.setMinimumSize(null);
         Desktop.setName(""); // NOI18N
         Desktop.setRequestFocusEnabled(false);
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_gymm2.png"))); // NOI18N
+        lblLogo.setAlignmentY(0.0F);
+
+        Desktop.setLayer(lblLogo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(DesktopLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(DesktopLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Menu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -189,18 +201,16 @@ public class FormMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 784, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleParent(this);
 
-        setSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -314,6 +324,7 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem SeaUser;
     private javax.swing.JPopupMenu.Separator Separator1;
     private javax.swing.JPopupMenu.Separator Separator2;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JMenu menuClient;
     private javax.swing.JMenu menuReport;
     private javax.swing.JMenu menuSearch;
