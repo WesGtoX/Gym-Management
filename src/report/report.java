@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Quemuel
+ * @author Wesley, Quemuel
  */
 public class report {
     

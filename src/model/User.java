@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Quemuel
+ * @author Wesley, Quemuel
  */
 //call persistense
 @Entity

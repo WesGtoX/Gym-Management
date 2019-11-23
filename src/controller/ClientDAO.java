@@ -9,7 +9,7 @@ import model.Client;
 
 /**
  *
- * @author Wesley
+ * @author Wesley, Quemuel
  */
 public class ClientDAO {
     

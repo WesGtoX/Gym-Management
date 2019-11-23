@@ -10,7 +10,7 @@ import model.Payment;
 
 /**
  *
- * @author Quemuel
+ * @author Wesley, Quemuel
  */
 public class PayDAO {
     

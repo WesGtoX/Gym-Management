@@ -76,112 +76,108 @@
                                   <Component id="lblCliName" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtCliName" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="lblCliCPF" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="fmtCliCpf" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="fmtCliCpf" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblCliDate" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fmtCliDate" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="lblCliDate" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="fmtCliDate" min="-2" pref="123" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Component id="cbxCliSex" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblCliSex" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="70" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="cbxCliSex" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
+                              <Component id="btnNew" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnSave" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnChange" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCancel" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnExit" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jSeparator1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnNew" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnSave" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnChange" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnDelete" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnCancel" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnExit" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jSeparator1" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliAddress" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCliAddress" min="-2" pref="531" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliNumber" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCliNumber" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblCliComplement" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="txtCliComplement" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliHomePhone" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fmtCliHomePhone" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliCelPhone" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fmtCliCelPhone" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblCliEmail" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="txtCliEmail" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliNeighborhood" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCliNeighborhood" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliCity" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCliCity" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliUF" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCliUF" min="-2" pref="89" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCliCEP" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fmtCliCEP" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="lblCliAddress" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCliAddress" min="-2" pref="531" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliNumber" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCliNumber" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblCliComplement" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCliComplement" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliHomePhone" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fmtCliHomePhone" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliCelPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fmtCliCelPhone" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblCliEmail" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCliEmail" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliNeighborhood" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCliNeighborhood" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliCity" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCliCity" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliUF" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCliUF" min="-2" pref="89" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliCEP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fmtCliCEP" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -190,28 +186,29 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCliSex" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblCliCPF" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblCliName" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblCliCPF" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblCliName" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCliName" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxCliSex" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtCliName" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="fmtCliCpf" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="fmtCliDate" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblCliDate" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cbxCliSex" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fmtCliDate" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="lblCliSex" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCliDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblCliCode" min="-2" max="-2" attributes="0"/>
@@ -219,7 +216,7 @@
                               <Component id="txtCliCode" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
@@ -683,7 +680,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="712" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="709" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="rdbCliCod" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -706,7 +703,7 @@
                           <Component id="txtInputData" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="273" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="278" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

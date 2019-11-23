@@ -9,7 +9,7 @@ import model.User;
 
 /**
  *
- * @author Quemuel
+ * @author Wesley, Quemuel
  */
 public class UserDAO {
     

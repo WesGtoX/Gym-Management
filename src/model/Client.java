@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Wesley
+ * @author Wesley, Quemuel
  */
 @Entity
 @Table(name="tb_cliente")
@@ -40,8 +40,8 @@ public class Client implements Serializable {
     @Column(name = "birth_date", length = 10, nullable = false)
     private String birth_date;
     
-    @Column(name = "sex", length = 20, nullable = false)
-    private String sex;
+    @Column(name = "sex", nullable = false)
+    private int sex;
     
     @Column(name = "address", length = 100, nullable = false)
     private String address;
@@ -81,7 +81,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Long id, String name, String cpf, String birth_date, String sex, String address, String number, String complement, String neighborhood, String city, String uf, String cep, String phone, String cel_phone, String email, List<Payment> historic) {
+    public Client(Long id, String name, String cpf, String birth_date, int sex, String address, String number, String complement, String neighborhood, String city, String uf, String cep, String phone, String cel_phone, String email, List<Payment> historic) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -132,11 +132,11 @@ public class Client implements Serializable {
         this.birth_date = birth_date;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
