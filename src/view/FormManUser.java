@@ -22,16 +22,16 @@ public class FormManUser extends javax.swing.JInternalFrame {
         initComponents();
         fillCbxUserfunction();
         fillcbxRestrictions();
-        configurateForm();
-        tabMain.setSelectedIndex(tab);
+        configForm();
+        jtpUser.setSelectedIndex(tab);
     }  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tabMain = new javax.swing.JTabbedPane();
-        tabManUser = new javax.swing.JPanel();
+        jtpUser = new javax.swing.JTabbedPane();
+        jtpRegisterUser = new javax.swing.JPanel();
         lblUserpermissions = new javax.swing.JLabel();
         lblUserresponsible = new javax.swing.JLabel();
         txtUserresponsible = new javax.swing.JTextField();
@@ -57,7 +57,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         txtUserpassword = new javax.swing.JPasswordField();
         txtUserpassword2 = new javax.swing.JPasswordField();
         btnExit = new javax.swing.JButton();
-        tabSrcUser = new javax.swing.JPanel();
+        jtpSeachUser = new javax.swing.JPanel();
         txtInputData = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUsers = new javax.swing.JTable();
@@ -71,14 +71,14 @@ public class FormManUser extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(300, 225));
         setPreferredSize(new java.awt.Dimension(750, 325));
 
-        tabMain.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tabMain.setMinimumSize(new java.awt.Dimension(300, 400));
-        tabMain.setPreferredSize(new java.awt.Dimension(734, 295));
+        jtpUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jtpUser.setMinimumSize(new java.awt.Dimension(300, 400));
+        jtpUser.setPreferredSize(new java.awt.Dimension(734, 295));
 
-        tabManUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tabManUser.setMaximumSize(new java.awt.Dimension(800, 400));
-        tabManUser.setMinimumSize(new java.awt.Dimension(750, 400));
-        tabManUser.setPreferredSize(new java.awt.Dimension(400, 400));
+        jtpRegisterUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jtpRegisterUser.setMaximumSize(new java.awt.Dimension(800, 400));
+        jtpRegisterUser.setMinimumSize(new java.awt.Dimension(750, 400));
+        jtpRegisterUser.setPreferredSize(new java.awt.Dimension(400, 400));
 
         lblUserpermissions.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblUserpermissions.setText("Permissões do usuário");
@@ -188,26 +188,26 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout tabManUserLayout = new javax.swing.GroupLayout(tabManUser);
-        tabManUser.setLayout(tabManUserLayout);
-        tabManUserLayout.setHorizontalGroup(
-            tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabManUserLayout.createSequentialGroup()
+        javax.swing.GroupLayout jtpRegisterUserLayout = new javax.swing.GroupLayout(jtpRegisterUser);
+        jtpRegisterUser.setLayout(jtpRegisterUserLayout);
+        jtpRegisterUserLayout.setHorizontalGroup(
+            jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManUserLayout.createSequentialGroup()
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpRegisterUserLayout.createSequentialGroup()
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserpassword)
                             .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserpassword2)
                             .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserresponsible)
                             .addComponent(txtUserresponsible)))
-                    .addGroup(tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                         .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,91 +220,90 @@ public class FormManUser extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
-                    .addGroup(tabManUserLayout.createSequentialGroup()
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                                 .addComponent(lblUseremail)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtUseremail))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxUserOccupation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblUserFunction, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUserpermissions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(tabManUserLayout.createSequentialGroup()
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserid)
                             .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUsername)
-                            .addGroup(tabManUserLayout.createSequentialGroup()
+                            .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                                 .addComponent(lblUsername)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserdate)
                             .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
-        tabManUserLayout.setVerticalGroup(
-            tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabManUserLayout.createSequentialGroup()
+        jtpRegisterUserLayout.setVerticalGroup(
+            jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(tabManUserLayout.createSequentialGroup()
+                .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                             .addComponent(lblUsername)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabManUserLayout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jtpRegisterUserLayout.createSequentialGroup()
                             .addComponent(lblUserid)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtUserid, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                         .addComponent(lblUserdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUserdate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(tabManUserLayout.createSequentialGroup()
+                .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                         .addComponent(lblUserpassword)
                         .addGap(31, 31, 31))
-                    .addGroup(tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                         .addComponent(lblUserpassword2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUserpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserpassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                         .addComponent(lblUserresponsible)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUserresponsible, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(tabManUserLayout.createSequentialGroup()
+                .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                             .addComponent(lblUseremail)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtUseremail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(tabManUserLayout.createSequentialGroup()
+                        .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                             .addComponent(lblUserpermissions)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(cbxPermissions, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabManUserLayout.createSequentialGroup()
+                    .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpRegisterUserLayout.createSequentialGroup()
                             .addComponent(lblUserFunction)
                             .addGap(31, 31, 31))
-                        .addGroup(tabManUserLayout.createSequentialGroup()
+                        .addGroup(jtpRegisterUserLayout.createSequentialGroup()
                             .addGap(23, 23, 23)
                             .addComponent(cbxUserOccupation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tabManUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jtpRegisterUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,9 +313,9 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        tabMain.addTab("Usuários", tabManUser);
+        jtpUser.addTab("Usuários", jtpRegisterUser);
 
-        tabSrcUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jtpSeachUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         txtInputData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtInputData.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -369,15 +368,15 @@ public class FormManUser extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout tabSrcUserLayout = new javax.swing.GroupLayout(tabSrcUser);
-        tabSrcUser.setLayout(tabSrcUserLayout);
-        tabSrcUserLayout.setHorizontalGroup(
-            tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabSrcUserLayout.createSequentialGroup()
+        javax.swing.GroupLayout jtpSeachUserLayout = new javax.swing.GroupLayout(jtpSeachUser);
+        jtpSeachUser.setLayout(jtpSeachUserLayout);
+        jtpSeachUserLayout.setHorizontalGroup(
+            jtpSeachUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpSeachUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jtpSeachUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
-                    .addGroup(tabSrcUserLayout.createSequentialGroup()
+                    .addGroup(jtpSeachUserLayout.createSequentialGroup()
                         .addComponent(rdbSrcId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rdbSrcName)
@@ -385,11 +384,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
                         .addComponent(txtInputData)))
                 .addContainerGap())
         );
-        tabSrcUserLayout.setVerticalGroup(
-            tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabSrcUserLayout.createSequentialGroup()
+        jtpSeachUserLayout.setVerticalGroup(
+            jtpSeachUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpSeachUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tabSrcUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jtpSeachUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbSrcId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdbSrcName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtInputData, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,17 +397,17 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tabMain.addTab("Pesquisar", tabSrcUser);
+        jtpUser.addTab("Pesquisar", jtpSeachUser);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jtpUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jtpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -529,7 +528,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
             setState(true);
             filltblUsers(new UserDAO().searchAll());
         }
-        configurateForm();
+        configForm();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
@@ -556,6 +555,9 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbxUserOccupation;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jtpRegisterUser;
+    private javax.swing.JPanel jtpSeachUser;
+    private javax.swing.JTabbedPane jtpUser;
     private javax.swing.JLabel lblUserFunction;
     private javax.swing.JLabel lblUserdate;
     private javax.swing.JLabel lblUseremail;
@@ -567,9 +569,6 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblUserresponsible;
     private javax.swing.JRadioButton rdbSrcId;
     private javax.swing.JRadioButton rdbSrcName;
-    private javax.swing.JTabbedPane tabMain;
-    private javax.swing.JPanel tabManUser;
-    private javax.swing.JPanel tabSrcUser;
     private javax.swing.JTable tblUsers;
     private javax.swing.JTextField txtInputData;
     private javax.swing.JFormattedTextField txtUserdate;
@@ -616,7 +615,10 @@ public class FormManUser extends javax.swing.JInternalFrame {
         }
     }
     
-    private void configurateForm(){
+    private void configForm() {
+        this.setTitle("Gerenciar Usuários");
+        this.setResizable(false);
+        
         setState(this.flag != 1 ? false : true);
         setData();
         filltblUsers(new UserDAO().searchAll());
@@ -675,7 +677,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
     }
     
     public void selectTab(int num_tab){
-        tabMain.setSelectedIndex(num_tab);
+        jtpUser.setSelectedIndex(num_tab);
     }
     
 }

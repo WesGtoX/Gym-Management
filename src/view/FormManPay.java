@@ -22,7 +22,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     public FormManPay() {
         initComponents();
         fillCbxPaymode();
-        configurateForm();
+        configForm();
     }
 
     @SuppressWarnings("unchecked")
@@ -809,7 +809,10 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
     }
     
-    public void configurateForm(){
+    public void configForm(){
+        this.setTitle("Gerenciar Pagamentos");
+        this.setResizable(false);
+        
         filltblPay(new PayDAO().searchAll());
 //        fillForm(0);
         

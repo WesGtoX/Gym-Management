@@ -37,6 +37,15 @@ public class FormMain extends javax.swing.JFrame {
             }
         };
         lblLogo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnLogin = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnManage = new javax.swing.JButton();
+        btnPayment = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnReports = new javax.swing.JButton();
+        btnAbout = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         menuClient = new javax.swing.JMenu();
         ManClients = new javax.swing.JMenuItem();
@@ -76,23 +85,154 @@ public class FormMain extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_gymm2.png"))); // NOI18N
         lblLogo.setAlignmentY(0.0F);
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setMinimumSize(new java.awt.Dimension(100, 90));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 90));
+
+        btnLogin.setBackground(new java.awt.Color(51, 51, 51));
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_login.png"))); // NOI18N
+        btnLogin.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnLogin.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnLogin.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(new java.awt.Color(51, 51, 51));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_logout.png"))); // NOI18N
+        btnLogout.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnLogout.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnLogout.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnManage.setBackground(new java.awt.Color(51, 51, 51));
+        btnManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_manage.png"))); // NOI18N
+        btnManage.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnManage.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnManage.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageActionPerformed(evt);
+            }
+        });
+
+        btnPayment.setBackground(new java.awt.Color(51, 51, 51));
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_payment.png"))); // NOI18N
+        btnPayment.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnPayment.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnPayment.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaymentActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setBackground(new java.awt.Color(51, 51, 51));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_search.png"))); // NOI18N
+        btnSearch.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnSearch.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnSearch.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnReports.setBackground(new java.awt.Color(51, 51, 51));
+        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_reports.png"))); // NOI18N
+        btnReports.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnReports.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnReports.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportsActionPerformed(evt);
+            }
+        });
+
+        btnAbout.setBackground(new java.awt.Color(51, 51, 51));
+        btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_about.png"))); // NOI18N
+        btnAbout.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnAbout.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnAbout.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboutActionPerformed(evt);
+            }
+        });
+
+        btnExit.setBackground(new java.awt.Color(51, 51, 51));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_exit.png"))); // NOI18N
+        btnExit.setMaximumSize(new java.awt.Dimension(90, 90));
+        btnExit.setMinimumSize(new java.awt.Dimension(90, 90));
+        btnExit.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         Desktop.setLayer(lblLogo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(127, Short.MAX_VALUE)
                 .addComponent(lblLogo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(lblLogo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         Menu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -130,6 +270,7 @@ public class FormMain extends javax.swing.JFrame {
         menuClient.add(ManPayment);
         menuClient.add(Separator2);
 
+        ManAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         ManAbout.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ManAbout.setText("Sobre");
         ManAbout.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +292,7 @@ public class FormMain extends javax.swing.JFrame {
 
         Menu.add(menuClient);
 
-        menuSearch.setText("Pesquisa");
+        menuSearch.setText("Pesquisar");
         menuSearch.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         SeaClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -174,11 +315,11 @@ public class FormMain extends javax.swing.JFrame {
 
         Menu.add(menuSearch);
 
-        menuReport.setText("Relatorio");
+        menuReport.setText("Relatório");
         menuReport.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         RepClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        RepClients.setText("Cliente");
+        RepClients.setText("ClienteS");
         menuReport.add(RepClients);
 
         RepProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -205,7 +346,7 @@ public class FormMain extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -216,9 +357,9 @@ public class FormMain extends javax.swing.JFrame {
 
     private void ManUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManUserActionPerformed
         FormManUser manUser = new FormManUser();
-        manUser.selectTab(0);                           //Select tab main
-        manUser.flag = 0;                               //Set flag first login with 1
-        openForm(manUser);                              //Open form with selected predefinitions
+        manUser.selectTab(0);    //Select tab main
+        manUser.flag = 0;        //Set flag first login with 1
+        openForm(manUser);       //Open form with selected predefinitions
     }//GEN-LAST:event_ManUserActionPerformed
 
     private void ManPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManPaymentActionPerformed
@@ -234,21 +375,19 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManAboutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
         List<User> users = new UserDAO().searchAll();       //Search users in database
         int count = 1;
         if(users.size() != 0){
             for(User u : users){
                 count--;
                 if(u.getPermissions() == 1){                //checking for users with administrator permission
-//                    openForm(new FormLogin(Menu));          //Launch login form
+//                    openForm(new FormLogin(Menu));        //Launch login form
                     break;
                 }else{
                     count++;
                 }
             }     
         }
-        
         if(users.size() == 0 || count > 0){
             FormManUser newUser = new FormManUser();
             newUser.selectTab(1);                           //Select tab search
@@ -258,7 +397,6 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
-        
         FormManUser srcUser = new FormManUser();
         srcUser.selectTab(1);                               //Select tab search
         srcUser.flag = 1;                                   //Set flag first login with 1
@@ -272,6 +410,38 @@ public class FormMain extends javax.swing.JFrame {
     private void submenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_submenuExitActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        openForm(new FormLogin());
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+//        Logout
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed
+        openForm(new FormManage());
+    }//GEN-LAST:event_btnManageActionPerformed
+
+    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        openForm(new FormManPay());
+    }//GEN-LAST:event_btnPaymentActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        openForm(new FormSearch());
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
+        openForm(new FormReports());
+    }//GEN-LAST:event_btnReportsActionPerformed
+
+    private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
+        openForm(new FormAbout());
+    }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,6 +494,15 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem SeaUser;
     private javax.swing.JPopupMenu.Separator Separator1;
     private javax.swing.JPopupMenu.Separator Separator2;
+    private javax.swing.JButton btnAbout;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnManage;
+    private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnReports;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JMenu menuClient;
     private javax.swing.JMenu menuReport;
@@ -341,6 +520,10 @@ public class FormMain extends javax.swing.JFrame {
 //        ManPayment.setEnabled(false);
     }
 
+    public void FormOpen() {
+        openForm(new FormManClient());
+    }
+    
     private void openForm(JInternalFrame f){
         if (Desktop.getAllFrames().length == 0) {
             Desktop.add(f);
@@ -348,8 +531,8 @@ public class FormMain extends javax.swing.JFrame {
             f.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(
-                    rootPane,
-                    "Você precisa fechar a janela atual antes de abrir outro formulário!");
+                rootPane,
+                "Você precisa fechar a janela atual antes de abrir outro formulário!");
         }
     }
     
