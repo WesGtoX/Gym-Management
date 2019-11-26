@@ -98,8 +98,7 @@ public class PayDAO {
     
     public List<Payment> searchHistoric(int id){
         try{
-//            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client:id ORDER BY p.paydate");
-            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.fk_client=:id");
+            Query q = em.createQuery("SELECT p FROM Payment p WHERE p.client.id=:id ORDER BY p.expiry DESC");
             q.setParameter("id",id);
             return q.getResultList();
         }catch(Exception e){
