@@ -119,23 +119,5 @@ INSERT INTO tb_usuario (id, registration, email, name, occupation, password, per
 
 
 -- insert payment
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 10);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 11);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 12);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 13);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 14);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 14);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 16);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 17);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 18);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 19);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 20);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 21);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 22);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 23);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 24);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 25);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 26);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 27);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 28);
-INSERT INTO tb_pagamento(id, discount, expiry, paydate, paymode, payrate, status, total, client) VALUES (1, '', '11/10/2020', '15/08/2020', 1, '5,00', true, '250,00', 29);
+INSERT INTO tb_pagamento (id, discount, expiry, monthly, paydate, paymode, payrate, status, client) VALUES (1,'0,00','21/12/2019','150', '  /  /    ',1,'5,00',false,1);
+
