@@ -554,6 +554,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
     private void tblPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPayMouseClicked
         fillForm(tblPay.getSelectedRow());
+        filltblHistoric();
     }//GEN-LAST:event_tblPayMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -563,6 +564,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setState(true);
+        setData();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -584,7 +586,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
         
         filltblPay(new PayDAO().searchAll());
-//        filltblHistoric();
+        filltblHistoric();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -596,7 +598,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         
         pay.setClient(getClient(tblClient.getSelectedRow()));
         pay.setDiscount(txtPaydiscount.getText());
-        pay.setExpiry(txtExpireddate.getText());
+        pay.setExpiry(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
         pay.setId(id);
         pay.setPaydate("  /  /    ");
         pay.setPaymode(cbxPaymode.getSelectedIndex());
@@ -612,7 +614,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtPayrid.setText(String.valueOf(id_new));
         setState(true);
         filltblPay(new PayDAO().searchAll());
-//        filltblHistoric();
+        filltblHistoric();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtInputData1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputData1KeyReleased
@@ -639,9 +641,23 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private void tblClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientMouseClicked
 
         btnDelete.setEnabled(true);
-        txtClientname.setText(getClient(tblClient.getSelectedRow()).getName());
-//        filltblHistoric();
+        Client client = getClient(tblClient.getSelectedRow());
+        if(!txtClientname.getText().isEmpty()){
         
+            List<Payment> p = new PayDAO().searchHistoric(client.getId().intValue());
+          
+            if(p.size() != 0){
+                fillForm(p.get(p.size()-1).getId().intValue()-1);
+            }else{
+                setData();
+            }
+            filltblHistoric();
+            
+        }else if(txtClientname.getText().isEmpty()){
+            
+            txtClientname.setText(client.getName());
+            
+        }
     }//GEN-LAST:event_tblClientMouseClicked
 
     private void rdbCliNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbCliNameActionPerformed
@@ -729,7 +745,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     public void fillCbxPaymode(){
-        String paymode[] = {"Dinheiro","Cartão","Cheque"};
+        String paymode[] = {"----------","Cartão","Cheque","Dinheiro"};
         DefaultComboBoxModel model = new DefaultComboBoxModel(paymode);
         cbxPaymode.setModel(model);
     }
@@ -744,7 +760,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         model.addColumn("Id");
         model.addColumn("Nome");
         model.addColumn("Valor");
-        model.addColumn("Vencimento");
+        model.addColumn("Data de Vencimento");
         tblPay.setModel(model);
         for(Payment p : pay){
             model.addRow(
@@ -758,77 +774,52 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
     }
     
-    public void filltblHistoric(/*List<Payment> pay*/){
-        DefaultTableModel model = new DefaultTableModel(){
+    public void filltblHistoric(){
+    DefaultTableModel model = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             } 
         };
         
-        List<Payment> pay = null;
-        
-        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
-            if(p.getId() == Integer.parseInt(txtPayrid.getText())){
-                System.out.println("\nLocalizado pagamento id:"+p.getId());
-                for(Payment u : p.getClient().getHistoric()){
-//                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
-//                    if(p.getClient().getId() == u.getId()){
-//                        System.out.println("\nLocalizado cliente do pagamento:"+u.getId());
-//                        pay = u.getHistoric();
-//                        for(Payment t : u.getHistoric()){
-                            System.out.println("\nhistorico do cliente: "+u+"\n");
-//                        }
-//                }
-//                System.out.println("historico do cliente:"+new PayDAO().searchHistoric(p.getId().intValue()));
-//                System.out.println("historico do cliente:"+new PayDAO().searchHistoric(15));
-//                    System.out.println("historico do cliente:"+payment);
-                }
-            }
-        }
-        
+        model.addColumn("Código");
         model.addColumn("Status");
         model.addColumn("Valor");
-        model.addColumn("Pagamento");
-        model.addColumn("Vencimento");
+        model.addColumn("Data do Pagamento");
+        model.addColumn("Data de Vencimento");
         tblHistoric.setModel(model);
-//        Payment cmp = new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()));
-        for(Payment p : pay){
-//            for(Payment cmp : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
-//                if(p.getClient().getId() == cmp.getClient().getId()){
-            model.addRow(
-                new Object[]{
-                    p.isStatus() == true ? "pago":"inadimplente",
-                    p.getMonthly(),
-                    p.getPaydate(),
-                    p.getExpiry()
-                }
-            );
-//                }
-//            }
+        
+        if(!txtPayrid.getText().isEmpty()){
+            List<Payment> pay = new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()));
+            int id_client = 0;
+
+            for(Payment p : pay){
+
+                id_client = (p.getId() == Integer.parseInt(txtPayrid.getText()) ? p.getClient().getId().intValue() : 0);
+
+            }
+
+            pay = new PayDAO().searchHistoric(id_client);
+
+            for(Payment p : pay){
+                model.addRow(
+                    new Object[]{
+                        p.getId(),
+                        p.isStatus() == true ? "pago":"inadimplente",
+                        p.getMonthly(),
+                        p.getPaydate(),
+                        p.getExpiry()
+                    }
+                );
+            }
         }
     }
     
     public void configForm(){
-        this.setTitle("Gerenciar Pagamentos");
-        this.setResizable(false);
-        
         filltblPay(new PayDAO().searchAll());
-//        fillForm(0);
-        
-//        for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
-//            if(p.getId() == Integer.parseInt(txtPayrid.getText())){
-//                for(Client u : new ClientDAO().searchById(p.getClient().getId().intValue())){
-//                    if(p.getClient().getId() == u.getId()){
-//                        filltblHistoric(u.getHistoric());
-//                    }
-//                }
-//            }
-//        }
-//        filltblHistoric(new ClientDAO().searchById());
-//        filltblHistoric();
-        rdbSrcCode.setSelected(true);
-        rdbCliCod.setSelected(true);
+        filltblHistoric();
+        rdbSrcName.setSelected(true);
+        rdbCliName.setSelected(true);
         setState(true);
         setData();
         fillClientTable(new ClientDAO().list());
@@ -849,7 +840,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             txtPayrate.setText(p.getPayrate());
             txtTotal.setText(p.getMonthly()); 
         }
-//        filltblHistoric();
+        filltblHistoric();
     }
     
     public void fillClientTable(List<Client> list){
@@ -896,7 +887,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         btnSave.setEnabled(!st);
         txtClientname.setEnabled(!st);
         txtInputData.setEnabled(!st);
-        txtExpireddate.setEnabled(!st);
+        txtExpireddate.setEnabled(false);
         txtPaydiscount.setEnabled(!st);
         txtPayrate.setEnabled(false);
         txtTotal.setEnabled(false);
