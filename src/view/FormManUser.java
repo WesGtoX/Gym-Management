@@ -423,6 +423,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         setState(true);
         btnDelete.setEnabled(true);
+        btnModify.setEnabled(false);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -445,7 +446,7 @@ public class FormManUser extends javax.swing.JInternalFrame {
         }
         
         filltblUsers(new UserDAO().searchAll());
-        fillForm(0);
+//        fillForm(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
@@ -525,10 +526,11 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null,"Não foi possível cadastrar o novo usuário");
             };
             txtUserid.setText(String.valueOf(id_new));
-            setState(true);
+            setState(false);
+            btnModify.setEnabled(this.flag != 1 ? true : false);
+            btnDelete.setEnabled(this.flag == 1 ? false : true);
             filltblUsers(new UserDAO().searchAll());
         }
-        configForm();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
@@ -581,13 +583,13 @@ public class FormManUser extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     public void fillCbxUserfunction(){
-        String functions[] = {"Atendente","Instrutor","Gerente"};
+        String functions[] = {"----------","Atendente","Gerente","Instrutor"};
         DefaultComboBoxModel model = new DefaultComboBoxModel(functions);
         cbxUserOccupation.setModel(model);
     }
     
     public void fillcbxRestrictions(){
-        String restrictions[] = {"Funcionário","Administrador"};
+        String restrictions[] = {"----------","Administrador","Funcionário"};
         DefaultComboBoxModel model = new DefaultComboBoxModel(restrictions);
         cbxPermissions.setModel(model);
     }
@@ -604,8 +606,6 @@ public class FormManUser extends javax.swing.JInternalFrame {
         users.addColumn("Cargo");
         users.addColumn("Data de cadastro");
         tblUsers.setModel(users);
-        String occupation = "";
-        
         for(User u : list_user){
             users.addRow(new Object[]{
                 u.getId(),u.getName(),
@@ -632,8 +632,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
     public void setState(boolean st){
         txtUserid.setEnabled(false);
         btnCancel.setEnabled(st);
-        btnModify.setEnabled(st);
-        btnDelete.setEnabled(st);
+        btnModify.setEnabled(flag != 1 ? st : false);
+        btnDelete.setEnabled(flag != 1 ? st : false);
         cbxPermissions.setEnabled(st);
         btnNew.setEnabled(!st);
         btnSave.setEnabled(st);
