@@ -398,7 +398,7 @@ public class FormMain extends javax.swing.JFrame {
 
     private void SeaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaUserActionPerformed
         FormManUser srcUser = new FormManUser();
-        srcUser.selectTab(1);                               //Select tab search
+        srcUser.selectTab(0);                               //Select tab search
         srcUser.flag = 1;                                   //Set flag first login with 1
         openForm(srcUser);                                  //Open form with selected predefinitions
     }//GEN-LAST:event_SeaUserActionPerformed
