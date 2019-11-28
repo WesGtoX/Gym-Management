@@ -23,12 +23,11 @@ public class Client implements Serializable {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "seq_user"
+            strategy = GenerationType.IDENTITY
     )
     
 //    @Column(name="id")
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "id")
     private Long id;
     
     @Column(name = "name", length = 100, nullable = false)

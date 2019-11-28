@@ -26,7 +26,7 @@ public class UserDAO {
             User user = null;
             if(usr.getId() == null){
                 user = usr;                                             //create a new user
-                em.persist(user);
+         //       em.persist(user);
             }else{
                 user = em.find(User.class, usr.getId());                //update a existing id_user
                 user.setName(usr.getName());                            //update a existing name_user
@@ -38,7 +38,7 @@ public class UserDAO {
                 user.setOccupation(usr.getOccupation());                //update a existing occupation_user
             }
             em.getTransaction().begin();
-            usr = em.merge(user);
+            user = em.merge(user);
             em.getTransaction().commit();
             return user.getId().intValue();
         }catch(Exception e){

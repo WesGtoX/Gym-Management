@@ -19,16 +19,10 @@ import javax.persistence.Table;
 public class User implements Serializable{
     
     @Id
-    @SequenceGenerator(
-        name="tb_usuario_id_seq",
-        sequenceName = "tb_usuario_id_seq",allocationSize=1
-    )
     @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "tb_usuario_id_seq"
+        strategy = GenerationType.IDENTITY
     )
-
-    @Column(name="id",nullable = false)
+    @Column(name="id")
     private Long id;
     
     @Column(name="name", length = 50, nullable = true)

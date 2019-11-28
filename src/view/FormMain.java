@@ -390,7 +390,7 @@ public class FormMain extends javax.swing.JFrame {
         }
         if(users.size() == 0 || count > 0){
             FormManUser newUser = new FormManUser();
-            newUser.selectTab(1);                           //Select tab search
+            newUser.selectTab(0);                           //Select tab search
             newUser.flag = 1;                               //Set flag first login with 1
             openForm(newUser);                              //Open form with selected predefinitions
         }
@@ -524,7 +524,7 @@ public class FormMain extends javax.swing.JFrame {
         openForm(new FormManClient());
     }
     
-    private void openForm(JInternalFrame f){
+    public void openForm(JInternalFrame f){
         if (Desktop.getAllFrames().length == 0) {
             Desktop.add(f);
             centerForm(f);

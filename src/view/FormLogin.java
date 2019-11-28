@@ -222,10 +222,11 @@ public class FormLogin extends javax.swing.JInternalFrame {
                 user.setPermissions(0);
                 menu.getMenu(0).setEnabled(true);                       //Enable menu management
                 menu.getMenu(0).getItem(1).setEnabled(                  //Enable submenu client
-                        user.getPermissions() == 1 ? true : false);
+                        user.getPermissions() == 1 ? true : false
+                );
                 menu.getMenu(1).setEnabled(true);                       //Enable menu search
                 menu.getMenu(2).setEnabled(true);                       //Enable menu report
-                System.out.println("quantidade de itens no jmenubar: "+menu.getMenuCount());
+                
                 login = true;
                 this.dispose();
             }

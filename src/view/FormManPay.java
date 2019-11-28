@@ -149,6 +149,11 @@ public class FormManPay extends javax.swing.JInternalFrame {
             }
         ));
         tblHistoric.setName(""); // NOI18N
+        tblHistoric.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHistoricMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblHistoric);
 
         btnModify.setBackground(new java.awt.Color(0, 102, 255));
@@ -555,6 +560,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private void tblPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPayMouseClicked
         fillForm(tblPay.getSelectedRow());
         filltblHistoric();
+        setState(true);
+        btnDelete.setEnabled(true);
+        btnModify.setEnabled(true);
     }//GEN-LAST:event_tblPayMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -565,17 +573,18 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setState(true);
         setData();
+        filltblHistoric();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         setState(false);
         btnDelete.setEnabled(true);
+        btnModify.setEnabled(false);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
         setState(true);
-        btnModify.setEnabled(true);
         if(txtPayrid.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Selecione um registro para excluir.","Atenção",JOptionPane.WARNING_MESSAGE);            
         }  
@@ -585,17 +594,15 @@ public class FormManPay extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Pagamento "+txtPayrid.getText()+" removido com sucesso!");
         }
         
+        setData();
         filltblPay(new PayDAO().searchAll());
         filltblHistoric();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        setState(false);
-        btnModify.setEnabled(true);
         
         Long id = (txtPayrid.getText().isEmpty() ? null : Long.parseLong(txtPayrid.getText()));
         Payment pay = new Payment();
-        
         pay.setClient(getClient(tblClient.getSelectedRow()));
         pay.setDiscount(txtPaydiscount.getText());
         pay.setExpiry(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
@@ -613,6 +620,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         };
         txtPayrid.setText(String.valueOf(id_new));
         setState(true);
+        btnModify.setEnabled(true);
+        btnDelete.setEnabled(true);
         filltblPay(new PayDAO().searchAll());
         filltblHistoric();
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -639,23 +648,30 @@ public class FormManPay extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtInputData1KeyReleased
 
     private void tblClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientMouseClicked
-
-        btnDelete.setEnabled(true);
-        Client client = getClient(tblClient.getSelectedRow());
-        if(!txtClientname.getText().isEmpty()){
         
+        setState(false);
+//        btnDelete.setEnabled(true);
+//        btnModify.setEnabled(true);
+        Client client = getClient(tblClient.getSelectedRow());
+        if(txtClientname.getText().isEmpty()){
+            
+            txtClientname.setText(client.getName());
             List<Payment> p = new PayDAO().searchHistoric(client.getId().intValue());
           
             if(p.size() != 0){
-                fillForm(p.get(p.size()-1).getId().intValue()-1);
-            }else{
-                setData();
+                
+                Payment select = p.get(p.size()-1);   
+                
+                txtPayrid.setText(select.getId().toString());
+                txtClientname.setText(client.getName());
+                txtExpireddate.setText(select.getExpiry());
+                txtPaydiscount.setText(select.getDiscount());
+                cbxPaymode.setSelectedIndex(select.getPaymode());
+                txtPayrate.setText(select.getPayrate());
+                txtTotal.setText(select.getMonthly());    
+                
+                filltblHistoric();
             }
-            filltblHistoric();
-            
-        }else if(txtClientname.getText().isEmpty()){
-            
-            txtClientname.setText(client.getName());
             
         }
     }//GEN-LAST:event_tblClientMouseClicked
@@ -686,6 +702,9 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
         
         new PayDAO().save(pay);
+        cbxPaymode.setEnabled(false);
+        txtPaydiscount.setEnabled(false);
+        btnCalculate.setEnabled(false);
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
@@ -697,6 +716,13 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void tblHistoricMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHistoricMouseClicked
+        fillForm(tblHistoric.getSelectedRow());
+        cbxPaymode.setEnabled(true);
+        txtPaydiscount.setEnabled(true);
+        btnCalculate.setEnabled(true);
+    }//GEN-LAST:event_tblHistoricMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -881,18 +907,20 @@ public class FormManPay extends javax.swing.JInternalFrame {
     
     public void setState(boolean st){
         txtPayrid.setEnabled(false);
-        btnModify.setEnabled(st);
-        btnDelete.setEnabled(st);
+        btnModify.setEnabled(!st);
+        btnDelete.setEnabled(!st);
         btnAdd.setEnabled(st);
         btnSave.setEnabled(!st);
         txtClientname.setEnabled(!st);
         txtInputData.setEnabled(!st);
         txtExpireddate.setEnabled(false);
-        txtPaydiscount.setEnabled(!st);
+        txtPaydiscount.setEnabled(false);
         txtPayrate.setEnabled(false);
         txtTotal.setEnabled(false);
-        cbxPaymode.setEnabled(!st);
+        cbxPaymode.setEnabled(false);
         txtMonthly.setEnabled(!st);
+        btnCalculate.setEnabled(false);
+        btnPay.setEnabled(!st);
     }
     
     public void setData(){
@@ -903,6 +931,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         txtPaydiscount.setText("");
         txtPayrate.setText("R$ 0,00");
         txtTotal.setText("R$ 0,00");
+        txtMonthly.setText("");
     }
     
     public Client getClient(int line){

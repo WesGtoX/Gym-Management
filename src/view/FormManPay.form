@@ -377,6 +377,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHistoricMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
