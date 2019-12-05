@@ -37,7 +37,7 @@ public class PayDAO {
                 pay.setPaymode(p.getPaymode());                     //update a existing mode_pay
                 pay.setPayrate(p.getPayrate());                     //update a existing rate_pay
                 pay.setStatus(p.isStatus());                        //update a existing status_pay
-                pay.setMonthly(p.getMonthly());                         //update a existing total_pay
+                pay.setMonthly(p.getMonthly());                     //update a existing total_pay
             }
             em.getTransaction().begin();
             p = em.merge(pay);

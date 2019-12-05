@@ -558,7 +558,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rdbSrcCodeActionPerformed
 
     private void tblPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPayMouseClicked
-        fillForm(tblPay.getSelectedRow());
+        Long id = (Long) tblPay.getValueAt(tblPay.getSelectedRow(),0);
+        fillForm(new PayDAO().searchId(id.intValue()));
         filltblHistoric();
         setState(true);
         btnDelete.setEnabled(true);
@@ -611,7 +612,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
         pay.setPaymode(cbxPaymode.getSelectedIndex());
         pay.setPayrate(txtPayrate.getText());
         pay.setStatus(false);
-        pay.setMonthly(txtTotal.getText());
+        pay.setMonthly(txtMonthly.getText());
         
         int id_new = new PayDAO().save(pay);
         
@@ -650,8 +651,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
     private void tblClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientMouseClicked
         
         setState(false);
-//        btnDelete.setEnabled(true);
-//        btnModify.setEnabled(true);
         Client client = getClient(tblClient.getSelectedRow());
         if(txtClientname.getText().isEmpty()){
             
@@ -694,12 +693,24 @@ public class FormManPay extends javax.swing.JInternalFrame {
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         
-        Payment pay = new Payment();
+        Payment pay = null;
         for(Payment p : new PayDAO().searchId(Integer.parseInt(txtPayrid.getText()))){
             p.setPaydate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+            p.setMonthly(txtTotal.getText());
+            p.setPayrate(txtPayrate.getText());
+            p.setDiscount(txtPaydiscount.getText());
             p.setStatus(true);
             pay = p;
         }
+        System.out.println("Pagamento id: "+pay.getId());
+        System.out.println("Pagamento Paymode: "+pay.getPaymode());
+        System.out.println("Pagamento status: "+pay.isStatus());
+        System.out.println("Pagamento monthly: "+pay.getMonthly());
+        System.out.println("Pagamento discount: "+pay.getDiscount());
+        System.out.println("Pagamento expiry: "+pay.getExpiry());
+        System.out.println("Pagamento paydate: "+pay.getPaydate());
+        System.out.println("Pagamento payrate: "+pay.getPayrate());
+        System.out.println("Pagamento client-id: "+pay.getClient().getId());
         
         new PayDAO().save(pay);
         cbxPaymode.setEnabled(false);
@@ -708,9 +719,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
-        
-        txtPayrate.setText("R$ "+String.valueOf(Double.parseDouble(txtMonthly.getText())*0.02));
-        txtTotal.setText("R$ "+String.valueOf(Double.parseDouble(txtMonthly.getText())-Double.parseDouble(txtPaydiscount.getText())+(Double.parseDouble(txtMonthly.getText())*0.02)));
+        txtPayrate.setText(calcRate(txtMonthly.getText().toCharArray()).toString());
+        txtTotal.setText(String.valueOf(Double.parseDouble(txtMonthly.getText())-Double.parseDouble(txtPaydiscount.getText())+(Double.parseDouble(txtPayrate.getText()))));
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -718,9 +728,13 @@ public class FormManPay extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void tblHistoricMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHistoricMouseClicked
-        fillForm(tblHistoric.getSelectedRow());
+         //search Id from row selected in table
+        Long id = (Long) tblHistoric.getValueAt(tblHistoric.getSelectedRow(),0);
+        List<Payment> form = new PayDAO().searchId(id.intValue());
+        fillForm(form);
         cbxPaymode.setEnabled(true);
         txtPaydiscount.setEnabled(true);
+        btnPay.setEnabled(true);
         btnCalculate.setEnabled(true);
     }//GEN-LAST:event_tblHistoricMouseClicked
 
@@ -851,10 +865,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
         fillClientTable(new ClientDAO().list());
     }
 
-    private void fillForm(int line) {
-         //search Id from row selected in table
-        Long id = (Long) tblPay.getValueAt(line,0);
-        List<Payment> form = new PayDAO().searchId(id.intValue());
+    private void fillForm(List<Payment> form) {
+        
         
         //insert selected object into form
         for(Payment p : form){
@@ -862,6 +874,7 @@ public class FormManPay extends javax.swing.JInternalFrame {
             txtClientname.setText(p.getClient().getName());
             txtExpireddate.setText(p.getExpiry());
             txtPaydiscount.setText(p.getDiscount());
+            txtMonthly.setText(p.getMonthly());
             cbxPaymode.setSelectedIndex(p.getPaymode());
             txtPayrate.setText(p.getPayrate());
             txtTotal.setText(p.getMonthly()); 
@@ -943,5 +956,26 @@ public class FormManPay extends javax.swing.JInternalFrame {
         }
         txtClientname.transferFocus();
         return result;
+    }
+    
+    public Double calcRate(char Monthly[]){
+        char actual_date[] = new SimpleDateFormat("dd/MM/yyyy").format(new Date()).toCharArray();
+        int days = 0;
+        int months = 0;
+        int years = 0;
+        for(int i=0;i<Monthly.length;i++){
+            
+            if(i<2){
+                days = (actual_date[i] - Monthly[i]);
+            }
+            if(i>2 && i<5){
+                months = (actual_date[i] - Monthly[i]);
+            }
+            if(i>5){
+                years = (actual_date[i] - Monthly[i]);
+            }
+        }
+        days += (months/30) + ((years/12)/30);
+        return (Double.parseDouble(txtMonthly.getText())*0.002) * days;
     }
 }
