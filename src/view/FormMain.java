@@ -1,6 +1,5 @@
 package view;
 
-import controller.DBconnect;
 import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -435,11 +434,14 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_submenuExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        openForm(new FormLogin());
+        openForm(new FormLogin(Menu));
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-//        Logout
+        FormMain f = new FormMain();
+        f.setVisible(true);
+        Usr = null;
+        this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed

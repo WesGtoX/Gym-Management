@@ -23,7 +23,8 @@ public class FormLogin extends javax.swing.JInternalFrame {
     }
     
     public FormLogin(JMenuBar menu){
-        this();
+        initComponents();
+        configForm();
         this.menu=menu;
     }
 
@@ -219,11 +220,12 @@ public class FormLogin extends javax.swing.JInternalFrame {
             if (usr.toUpperCase().equals(user.getName().toUpperCase()) && pwd.equals(user.getPassword())) {
                 // Open form
                 Usr = user;
-                user.setPermissions(0);
                 menu.getMenu(0).setEnabled(true);                       //Enable menu management
-                menu.getMenu(0).getItem(1).setEnabled(                  //Enable submenu client
+                menu.getMenu(0).getItem(3).setEnabled(                  //Enable submenu client
                         user.getPermissions() == 1 ? true : false
                 );
+                menu.getMenu(0).getItem(0).setEnabled(true);
+                menu.getMenu(0).getItem(1).setEnabled(true);
                 menu.getMenu(1).setEnabled(true);                       //Enable menu search
                 menu.getMenu(2).setEnabled(true);                       //Enable menu report
                 

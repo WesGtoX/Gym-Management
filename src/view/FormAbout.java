@@ -48,7 +48,7 @@ public class FormAbout extends javax.swing.JInternalFrame {
 
         jpnPanelLogo.setBackground(new java.awt.Color(0, 102, 255));
 
-        lblSysLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_gym_management1.png"))); // NOI18N
+        lblSysLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo_gymm1.png"))); // NOI18N
 
         javax.swing.GroupLayout jpnPanelLogoLayout = new javax.swing.GroupLayout(jpnPanelLogo);
         jpnPanelLogo.setLayout(jpnPanelLogoLayout);
@@ -62,7 +62,7 @@ public class FormAbout extends javax.swing.JInternalFrame {
         jpnPanelLogoLayout.setVerticalGroup(
             jpnPanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnPanelLogoLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSysLogo)
                 .addGap(21, 21, 21))
         );
