@@ -6,6 +6,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Client;
 
 /**
@@ -742,6 +743,8 @@ public class FormManClient extends javax.swing.JInternalFrame {
                 c.getCel_phone(),
             });
         }
+        DefaultTableModel models = (DefaultTableModel) tblClient.getModel();
+        tblClient.setRowSorter(new TableRowSorter(clients));
     }
     
     private void fillForm(int row){

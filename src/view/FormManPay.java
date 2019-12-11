@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Client;
 import model.Payment;
 
@@ -916,6 +917,8 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 c.getEmail(),
             });
         }
+        DefaultTableModel models = (DefaultTableModel) tblHistoric.getModel();
+        tblHistoric.setRowSorter(new TableRowSorter(clients));
     }
     
     public void setState(boolean st){

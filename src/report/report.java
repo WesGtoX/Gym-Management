@@ -23,8 +23,7 @@ public class report {
         
     //Display paremeterized report
     public void display(Connection con, String report,HashMap options){
-        try{
-            
+        try {
             //Load report layout
             JasperDesign jd = JRXmlLoader.load(getClass().getResourceAsStream("/report/"+report));
             
