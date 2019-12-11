@@ -48,7 +48,7 @@ public class report {
             }
             
             if(exp.equals("XLSx")){
-                //Export Xlsx report
+                //Export XLSx report
                 JRXlsxExporter export = new JRXlsxExporter();
                 export.setParameter(JRExporterParameter.JASPER_PRINT, jp);
                 export.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, report);
