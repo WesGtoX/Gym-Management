@@ -1,5 +1,6 @@
 package view;
 
+import controller.DBconnect;
 import controller.UserDAO;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import java.awt.Graphics;
 import java.util.List;
 import javax.swing.ImageIcon;
 import model.User;
+import static view.FormReports.report;
 
 /**
  *
@@ -319,19 +321,39 @@ public class FormMain extends javax.swing.JFrame {
         menuReport.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         RepClients.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        RepClients.setText("ClienteS");
+        RepClients.setText("Clientes");
+        RepClients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepClientsActionPerformed(evt);
+            }
+        });
         menuReport.add(RepClients);
 
         RepProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepProfit.setText("Ganhos");
+        RepProfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepProfitActionPerformed(evt);
+            }
+        });
         menuReport.add(RepProfit);
 
         RepExpensives.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepExpensives.setText("Gastos");
+        RepExpensives.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepExpensivesActionPerformed(evt);
+            }
+        });
         menuReport.add(RepExpensives);
 
         RepTotalProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepTotalProfit.setText("Lucro Total");
+        RepTotalProfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepTotalProfitActionPerformed(evt);
+            }
+        });
         menuReport.add(RepTotalProfit);
 
         Menu.add(menuReport);
@@ -375,6 +397,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_ManAboutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
         List<User> users = new UserDAO().searchAll();       //Search users in database
         int count = 1;
         if(users.size() != 0){
@@ -442,6 +465,26 @@ public class FormMain extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void RepClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepClientsActionPerformed
+        report =  "client_report.jrxml";
+        openForm(new FormReports());
+    }//GEN-LAST:event_RepClientsActionPerformed
+
+    private void RepProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepProfitActionPerformed
+        report =  "profit_report.jrxml";
+        openForm(new FormReports());
+    }//GEN-LAST:event_RepProfitActionPerformed
+
+    private void RepExpensivesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepExpensivesActionPerformed
+        report =  "expensives_report.jrxml";
+        openForm(new FormReports());
+    }//GEN-LAST:event_RepExpensivesActionPerformed
+
+    private void RepTotalProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTotalProfitActionPerformed
+        report =  "total_profit_report.jrxml";
+        openForm(new FormReports());
+    }//GEN-LAST:event_RepTotalProfitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,7 +579,7 @@ public class FormMain extends javax.swing.JFrame {
         }
     }
     
-    private void centerForm(JInternalFrame f){
+    public static void centerForm(JInternalFrame f){
         Dimension d = f.getDesktopPane().getSize();
         f.setLocation(
             (d.width-f.getSize().width)/2,
@@ -549,4 +592,5 @@ public class FormMain extends javax.swing.JFrame {
         menuSearch.setEnabled(e);
         menuReport.setEnabled(e);
     }
+        
 }

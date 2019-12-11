@@ -1,14 +1,24 @@
 package view;
 
+import controller.DBconnect;
+import java.sql.Connection;
+import java.util.HashMap;
+import report.report;
+
 /**
  *
  * @author Wesley, Quemuel
  */
 public class FormReports extends javax.swing.JInternalFrame {
     
-    public FormReports() {
+    public static String ordination = "";
+    public static String exp;
+    public static String report;
+        
+    public FormReports() {        
         initComponents();
         configForm();
+        rdbSrcName.setSelected(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -17,10 +27,12 @@ public class FormReports extends javax.swing.JInternalFrame {
 
         jPanel = new javax.swing.JPanel();
         lblReports = new javax.swing.JLabel();
-        btnReportsClients = new javax.swing.JButton();
-        btnReportsTotalProfit = new javax.swing.JButton();
-        btnReportsEarnings = new javax.swing.JButton();
-        btnReportsEa = new javax.swing.JButton();
+        btnDisplayReport = new javax.swing.JButton();
+        btnExportPDF = new javax.swing.JButton();
+        btnExportXLSx = new javax.swing.JButton();
+        rdbSrcName = new javax.swing.JRadioButton();
+        rdbSrcId = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -36,61 +48,66 @@ public class FormReports extends javax.swing.JInternalFrame {
         lblReports.setForeground(new java.awt.Color(0, 102, 255));
         lblReports.setText("RELATÓRIOS");
 
-        btnReportsClients.setBackground(new java.awt.Color(0, 102, 255));
-        btnReportsClients.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnReportsClients.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportsClients.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_c_client.png"))); // NOI18N
-        btnReportsClients.setText("CLIENTES");
-        btnReportsClients.setMaximumSize(new java.awt.Dimension(230, 100));
-        btnReportsClients.setMinimumSize(new java.awt.Dimension(230, 100));
-        btnReportsClients.setPreferredSize(new java.awt.Dimension(300, 100));
-        btnReportsClients.addActionListener(new java.awt.event.ActionListener() {
+        btnDisplayReport.setBackground(new java.awt.Color(0, 102, 255));
+        btnDisplayReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnDisplayReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnDisplayReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_total_profit.png"))); // NOI18N
+        btnDisplayReport.setText("Exibir relatório");
+        btnDisplayReport.setMaximumSize(new java.awt.Dimension(230, 100));
+        btnDisplayReport.setMinimumSize(new java.awt.Dimension(230, 100));
+        btnDisplayReport.setPreferredSize(new java.awt.Dimension(300, 100));
+        btnDisplayReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportsClientsActionPerformed(evt);
+                btnDisplayReportActionPerformed(evt);
             }
         });
 
-        btnReportsTotalProfit.setBackground(new java.awt.Color(0, 102, 255));
-        btnReportsTotalProfit.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnReportsTotalProfit.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportsTotalProfit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_total_profit.png"))); // NOI18N
-        btnReportsTotalProfit.setText("LUCRO TOTAL");
-        btnReportsTotalProfit.setMaximumSize(new java.awt.Dimension(230, 100));
-        btnReportsTotalProfit.setMinimumSize(new java.awt.Dimension(230, 100));
-        btnReportsTotalProfit.setPreferredSize(new java.awt.Dimension(300, 100));
-        btnReportsTotalProfit.addActionListener(new java.awt.event.ActionListener() {
+        btnExportPDF.setBackground(new java.awt.Color(0, 102, 255));
+        btnExportPDF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_earnings.png"))); // NOI18N
+        btnExportPDF.setText("Exportar como PDF");
+        btnExportPDF.setMaximumSize(new java.awt.Dimension(230, 100));
+        btnExportPDF.setMinimumSize(new java.awt.Dimension(230, 100));
+        btnExportPDF.setPreferredSize(new java.awt.Dimension(300, 100));
+        btnExportPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportsTotalProfitActionPerformed(evt);
+                btnExportPDFActionPerformed(evt);
             }
         });
 
-        btnReportsEarnings.setBackground(new java.awt.Color(0, 102, 255));
-        btnReportsEarnings.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnReportsEarnings.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportsEarnings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_earnings.png"))); // NOI18N
-        btnReportsEarnings.setText("GANHOS");
-        btnReportsEarnings.setMaximumSize(new java.awt.Dimension(230, 100));
-        btnReportsEarnings.setMinimumSize(new java.awt.Dimension(230, 100));
-        btnReportsEarnings.setPreferredSize(new java.awt.Dimension(300, 100));
-        btnReportsEarnings.addActionListener(new java.awt.event.ActionListener() {
+        btnExportXLSx.setBackground(new java.awt.Color(0, 102, 255));
+        btnExportXLSx.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnExportXLSx.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportXLSx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_spending.png"))); // NOI18N
+        btnExportXLSx.setText("Exportar como XLSx");
+        btnExportXLSx.setMaximumSize(new java.awt.Dimension(230, 100));
+        btnExportXLSx.setMinimumSize(new java.awt.Dimension(230, 100));
+        btnExportXLSx.setPreferredSize(new java.awt.Dimension(300, 100));
+        btnExportXLSx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportsEarningsActionPerformed(evt);
+                btnExportXLSxActionPerformed(evt);
             }
         });
 
-        btnReportsEa.setBackground(new java.awt.Color(0, 102, 255));
-        btnReportsEa.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnReportsEa.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportsEa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_spending.png"))); // NOI18N
-        btnReportsEa.setText("GASTOS");
-        btnReportsEa.setMaximumSize(new java.awt.Dimension(230, 100));
-        btnReportsEa.setMinimumSize(new java.awt.Dimension(230, 100));
-        btnReportsEa.setPreferredSize(new java.awt.Dimension(300, 100));
-        btnReportsEa.addActionListener(new java.awt.event.ActionListener() {
+        rdbSrcName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        rdbSrcName.setText("Nome");
+        rdbSrcName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportsEaActionPerformed(evt);
+                rdbSrcNameActionPerformed(evt);
             }
         });
+
+        rdbSrcId.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        rdbSrcId.setText("ID");
+        rdbSrcId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSrcIdActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setText("Selecione a ordem dos dados");
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -98,18 +115,24 @@ public class FormReports extends javax.swing.JInternalFrame {
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnReportsTotalProfit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportsClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnReportsEa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportsEarnings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelLayout.createSequentialGroup()
+                                        .addComponent(rdbSrcId)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rdbSrcName))
+                                    .addComponent(jLabel1))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblReports))
                 .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblReports)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,13 +142,17 @@ public class FormReports extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(btnReportsClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReportsTotalProfit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdbSrcId)
+                            .addComponent(rdbSrcName)))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(btnReportsEarnings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnReportsEa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -143,30 +170,56 @@ public class FormReports extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReportsClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsClientsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportsClientsActionPerformed
+    private void btnExportXLSxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportXLSxActionPerformed
+        Connection con = DBconnect.Connect();
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("TYPE_SORT",ordination);
+        exp = "XLSx";
+        new report().display(con,report,map);
+        DBconnect.Disconnect(con);
+    }//GEN-LAST:event_btnExportXLSxActionPerformed
 
-    private void btnReportsEarningsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsEarningsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportsEarningsActionPerformed
+    private void btnDisplayReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayReportActionPerformed
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("TYPE_SORT",ordination);
+        Connection con = DBconnect.Connect();
+        new report().display(con,report,map);
+        DBconnect.Disconnect(con);
+    }//GEN-LAST:event_btnDisplayReportActionPerformed
 
-    private void btnReportsEaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsEaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportsEaActionPerformed
+    private void btnExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportPDFActionPerformed
+        Connection con = DBconnect.Connect();
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("TYPE_SORT",ordination);
+        exp = "PDF";
+        new report().display(con,report,map);
+        DBconnect.Disconnect(con);
+    }//GEN-LAST:event_btnExportPDFActionPerformed
 
-    private void btnReportsTotalProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsTotalProfitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportsTotalProfitActionPerformed
+    private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
+        if(rdbSrcName.isSelected()){
+            ordination = "nome";
+            rdbSrcId.setSelected(false);
+        }
+    }//GEN-LAST:event_rdbSrcNameActionPerformed
+
+    private void rdbSrcIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcIdActionPerformed
+        if(rdbSrcId.isSelected()){
+            ordination = "id";
+            rdbSrcName.setSelected(false);
+        }
+    }//GEN-LAST:event_rdbSrcIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReportsClients;
-    private javax.swing.JButton btnReportsEa;
-    private javax.swing.JButton btnReportsEarnings;
-    private javax.swing.JButton btnReportsTotalProfit;
+    private javax.swing.JButton btnDisplayReport;
+    private javax.swing.JButton btnExportPDF;
+    private javax.swing.JButton btnExportXLSx;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JLabel lblReports;
+    private javax.swing.JRadioButton rdbSrcId;
+    private javax.swing.JRadioButton rdbSrcName;
     // End of variables declaration//GEN-END:variables
 
     private void configForm(){

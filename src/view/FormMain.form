@@ -132,8 +132,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ClienteS"/>
+                <Property name="text" type="java.lang.String" value="Clientes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RepClientsActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="RepProfit">
               <Properties>
@@ -142,6 +145,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ganhos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RepProfitActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="RepExpensives">
               <Properties>
@@ -150,6 +156,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gastos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RepExpensivesActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="RepTotalProfit">
               <Properties>
@@ -158,6 +167,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Lucro Total"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RepTotalProfitActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

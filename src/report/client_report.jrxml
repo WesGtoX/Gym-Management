@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="client_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01495cc6-6c0c-4efd-8d93-ee430bc598c2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="56"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="TYPE_SORT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM tb_cliente ORDER BY $P!{TYPE_SORT}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="birth_date" class="java.lang.String"/>
+	<field name="cel_phone" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="complement" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="neighborhood" class="java.lang.String"/>
+	<field name="number" class="java.lang.String"/>
+	<field name="phone" class="java.lang.String"/>
+	<field name="sex" class="java.lang.Integer"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="f5cc6e49-d6b0-4b57-b230-0a0f0c2eaaab"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font fontName="Times New Roman" size="25"/>
+				</textElement>
+				<text><![CDATA[Gym Management]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="31" width="465" height="20" uuid="dbe161b1-65e7-4c37-a8d0-b9e479e3ada5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Av. Portugal, 1050 - Jardim São Luiz, Ribeirão Preto - SP, 14020-380]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="51" width="99" height="19" uuid="f8114880-e06c-49bd-a452-bdeb6dc27d50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[(16) 3615-2144]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="35" uuid="5669a59c-9146-4ed4-a7b9-72638a9fcc6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<text><![CDATA[Relatório de Clientes]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29">
+			<staticText>
+				<reportElement x="0" y="0" width="73" height="29" uuid="7b2f5c20-c29f-4cd1-9e6a-121b4c17328a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="0" width="218" height="29" uuid="08c02b92-5ff0-42db-859a-ebb49a3ee438"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="0" width="165" height="29" uuid="8224d4ec-768b-4847-9d61-e77ef4b42c5e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="0" width="99" height="29" uuid="a182ae2c-0b9f-4a09-86e0-61e6f78807eb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="72" height="20" uuid="3299b4a3-047d-43fb-9305-afc5a8fe3124"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="0" width="218" height="20" uuid="ac6ad4e8-af4b-443b-af4c-70dccb5d083a"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="165" height="20" uuid="4e87a274-dbd6-4b10-932e-4ef36c9498e7"/>
+				<textFieldExpression><![CDATA[$F{birth_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="0" width="100" height="20" uuid="38375936-7009-484d-8daf-185da77fe9f2"/>
+				<textFieldExpression><![CDATA[$F{cel_phone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="509" y="17" width="23" height="20" uuid="825bf7f1-b6ce-4a7d-9261-857e7949a221"/>
+				<text><![CDATA[ de ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="17" width="40" height="20" uuid="3fd29da1-b32c-4b26-9a7b-ac8356d60803"/>
+				<text><![CDATA[página]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="532" y="17" width="23" height="20" uuid="cab9f377-daa5-452d-9391-e192481d5f3c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="17" width="23" height="20" uuid="500cbef0-f6b6-48e0-b3e9-99ed61a9ce5c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

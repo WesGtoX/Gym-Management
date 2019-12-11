@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Meus%20Arquivos%20bkp2/Arquivos%20e%20apostilas/laboratório%20de%20programação/Laboratorio-de-Programacao-IV/Gym-Management/src/META-INF/persistence.xml" uri="xml-resources/jaxb/DBobject/persistence.xml"/>
+</catalog>
