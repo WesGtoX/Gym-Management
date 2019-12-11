@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.User;
 
 /**
@@ -613,6 +614,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 u.getDate()
             });
         }
+        DefaultTableModel models = (DefaultTableModel) tblUsers.getModel();
+        tblUsers.setRowSorter(new TableRowSorter(users));
     }
     
     private void configForm() {

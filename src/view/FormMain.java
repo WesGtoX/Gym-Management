@@ -469,22 +469,22 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void RepClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepClientsActionPerformed
-        report =  "client_report.jrxml";
+        report =  "report_client.jrxml";
         openForm(new FormReports());
     }//GEN-LAST:event_RepClientsActionPerformed
 
     private void RepProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepProfitActionPerformed
-        report =  "profit_report.jrxml";
+        report =  "report_profit.jrxml";
         openForm(new FormReports());
     }//GEN-LAST:event_RepProfitActionPerformed
 
     private void RepExpensivesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepExpensivesActionPerformed
-        report =  "expensives_report.jrxml";
+        report =  "report_expensives.jrxml";
         openForm(new FormReports());
     }//GEN-LAST:event_RepExpensivesActionPerformed
 
     private void RepTotalProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTotalProfitActionPerformed
-        report =  "total_profit_report.jrxml";
+        report =  "report_total_profit.jrxml";
         openForm(new FormReports());
     }//GEN-LAST:event_RepTotalProfitActionPerformed
 

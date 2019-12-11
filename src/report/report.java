@@ -23,8 +23,7 @@ public class report {
         
     //Display paremeterized report
     public void display(Connection con, String report,HashMap options){
-        try{
-            
+        try {
             //Load report layout
             JasperDesign jd = JRXmlLoader.load(getClass().getResourceAsStream("/report/"+report));
             
@@ -49,7 +48,7 @@ public class report {
             }
             
             if(exp.equals("XLSx")){
-                //Export Xlsx report
+                //Export XLSx report
                 JRXlsxExporter export = new JRXlsxExporter();
                 export.setParameter(JRExporterParameter.JASPER_PRINT, jp);
                 export.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, report);

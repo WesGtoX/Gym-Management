@@ -36,13 +36,13 @@ public class FormReports extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximumSize(new java.awt.Dimension(680, 350));
-        setMinimumSize(new java.awt.Dimension(680, 350));
-        setPreferredSize(new java.awt.Dimension(680, 350));
+        setMaximumSize(new java.awt.Dimension(346, 530));
+        setMinimumSize(new java.awt.Dimension(346, 530));
+        setPreferredSize(new java.awt.Dimension(346, 530));
 
-        jPanel.setMaximumSize(new java.awt.Dimension(664, 320));
-        jPanel.setMinimumSize(new java.awt.Dimension(664, 320));
-        jPanel.setPreferredSize(new java.awt.Dimension(664, 320));
+        jPanel.setMaximumSize(new java.awt.Dimension(320, 500));
+        jPanel.setMinimumSize(new java.awt.Dimension(320, 500));
+        jPanel.setPreferredSize(new java.awt.Dimension(320, 500));
 
         lblReports.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
         lblReports.setForeground(new java.awt.Color(0, 102, 255));
@@ -51,7 +51,7 @@ public class FormReports extends javax.swing.JInternalFrame {
         btnDisplayReport.setBackground(new java.awt.Color(0, 102, 255));
         btnDisplayReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnDisplayReport.setForeground(new java.awt.Color(255, 255, 255));
-        btnDisplayReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_total_profit.png"))); // NOI18N
+        btnDisplayReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/r_show_report.png"))); // NOI18N
         btnDisplayReport.setText("Exibir relatório");
         btnDisplayReport.setMaximumSize(new java.awt.Dimension(230, 100));
         btnDisplayReport.setMinimumSize(new java.awt.Dimension(230, 100));
@@ -65,7 +65,7 @@ public class FormReports extends javax.swing.JInternalFrame {
         btnExportPDF.setBackground(new java.awt.Color(0, 102, 255));
         btnExportPDF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_earnings.png"))); // NOI18N
+        btnExportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/r_export_pdf.png"))); // NOI18N
         btnExportPDF.setText("Exportar como PDF");
         btnExportPDF.setMaximumSize(new java.awt.Dimension(230, 100));
         btnExportPDF.setMinimumSize(new java.awt.Dimension(230, 100));
@@ -79,7 +79,7 @@ public class FormReports extends javax.swing.JInternalFrame {
         btnExportXLSx.setBackground(new java.awt.Color(0, 102, 255));
         btnExportXLSx.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnExportXLSx.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportXLSx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/m_r_spending.png"))); // NOI18N
+        btnExportXLSx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/r_export_xlsx.png"))); // NOI18N
         btnExportXLSx.setText("Exportar como XLSx");
         btnExportXLSx.setMaximumSize(new java.awt.Dimension(230, 100));
         btnExportXLSx.setMinimumSize(new java.awt.Dimension(230, 100));
@@ -114,25 +114,19 @@ public class FormReports extends javax.swing.JInternalFrame {
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblReports)
+                    .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelLayout.createSequentialGroup()
-                                        .addComponent(rdbSrcId)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdbSrcName))
-                                    .addComponent(jLabel1))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblReports))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(rdbSrcId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdbSrcName))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,31 +134,31 @@ public class FormReports extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblReports)
                 .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdbSrcId)
-                            .addComponent(rdbSrcName)))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbSrcId)
+                    .addComponent(rdbSrcName))
+                .addGap(18, 18, 18)
+                .addComponent(btnDisplayReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExportXLSx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -199,15 +193,15 @@ public class FormReports extends javax.swing.JInternalFrame {
     private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
         if(rdbSrcName.isSelected()){
             ordination = "nome";
-            rdbSrcId.setSelected(false);
         }
+        rdbSrcId.setSelected(false);
     }//GEN-LAST:event_rdbSrcNameActionPerformed
 
     private void rdbSrcIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcIdActionPerformed
         if(rdbSrcId.isSelected()){
             ordination = "id";
-            rdbSrcName.setSelected(false);
         }
+        rdbSrcName.setSelected(false);
     }//GEN-LAST:event_rdbSrcIdActionPerformed
 
 
