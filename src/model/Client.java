@@ -27,7 +27,7 @@ public class Client implements Serializable {
     )
     
 //    @Column(name="id")
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", nullable = false)
     private Long id;
     
     @Column(name = "name", length = 100, nullable = false)
