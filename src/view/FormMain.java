@@ -58,6 +58,7 @@ public class FormMain extends javax.swing.JFrame {
         menuReport = new javax.swing.JMenu();
         RepClients = new javax.swing.JMenuItem();
         RepProfit = new javax.swing.JMenuItem();
+        RepInadimplentes = new javax.swing.JMenuItem();
         RepTotalProfit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -276,6 +277,15 @@ public class FormMain extends javax.swing.JFrame {
         });
         menuReport.add(RepProfit);
 
+        RepInadimplentes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        RepInadimplentes.setText("Inadimplentes");
+        RepInadimplentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepInadimplentesActionPerformed(evt);
+            }
+        });
+        menuReport.add(RepInadimplentes);
+
         RepTotalProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepTotalProfit.setText("Lucro Total");
         RepTotalProfit.addActionListener(new java.awt.event.ActionListener() {
@@ -405,6 +415,11 @@ public class FormMain extends javax.swing.JFrame {
         openForm(new FormReports());
     }//GEN-LAST:event_RepTotalProfitActionPerformed
 
+    private void RepInadimplentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepInadimplentesActionPerformed
+        report =  "report_notpay.jrxml";
+        openForm(new FormReports());
+    }//GEN-LAST:event_RepInadimplentesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +464,7 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem ManUser;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenuItem RepClients;
+    private javax.swing.JMenuItem RepInadimplentes;
     private javax.swing.JMenuItem RepProfit;
     private javax.swing.JMenuItem RepTotalProfit;
     private javax.swing.JMenuItem SeaClients;

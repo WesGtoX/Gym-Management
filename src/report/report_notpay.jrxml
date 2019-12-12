@@ -5,7 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="TYPE_SORT" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT * FROM tb_pagamento ORDER BY id;]]>
+		<![CDATA[SELECT * FROM tb_pagamento WHERE status=false ORDER BY id;]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="discount" class="java.lang.String"/>
@@ -25,7 +25,7 @@
 				<reportElement x="0" y="0" width="555" height="79" backcolor="#0066FF" uuid="8b96460a-8067-4d9b-ad88-72036bb33692"/>
 			</rectangle>
 			<image>
-				<reportElement x="78" y="21" width="413" height="38" uuid="3ae6e0d4-bf53-4de8-8db0-b99a942e5804"/>
+				<reportElement x="93" y="21" width="413" height="38" uuid="40416fd9-d861-4064-bdfc-30d4a2704686"/>
 				<imageExpression><![CDATA["C:\\Meus Arquivos bkp2\\Arquivos e apostilas\\laboratório de programação\\Laboratorio-de-Programacao-IV\\Gym-Management\\src\\image\\logo_gymm1.png"]]></imageExpression>
 			</image>
 		</band>
@@ -37,7 +37,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório de Lucro Total]]></text>
+				<text><![CDATA[Relatório de Inadimplentes]]></text>
 			</staticText>
 			<line>
 				<reportElement x="143" y="35" width="265" height="1" forecolor="#0066FF" uuid="a4f0d2f3-87c3-4304-aa68-95c6d1371ae2"/>

@@ -43,7 +43,6 @@ public class FormAbout extends javax.swing.JInternalFrame {
 
         lblAbout.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblAbout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblAbout.setText("Some text");
         lblAbout.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jpnPanelLogo.setBackground(new java.awt.Color(0, 102, 255));

@@ -30,6 +30,10 @@
 			<rectangle>
 				<reportElement x="0" y="0" width="555" height="79" backcolor="#0066FF" uuid="8b96460a-8067-4d9b-ad88-72036bb33692"/>
 			</rectangle>
+			<image>
+				<reportElement x="93" y="21" width="413" height="38" uuid="cb7a79ed-4d9d-4069-af51-ae14cf37a2b1"/>
+				<imageExpression><![CDATA["C:\\Meus Arquivos bkp2\\Arquivos e apostilas\\laboratório de programação\\Laboratorio-de-Programacao-IV\\Gym-Management\\src\\image\\logo_gymm1.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
