@@ -816,4 +816,8 @@ public class FormManClient extends javax.swing.JInternalFrame {
         fmtCliCelPhone.setText("");
         txtCliEmail.setText("");
     }
+    
+    public void selectTab(int num_tab){
+        jtpClient.setSelectedIndex(num_tab);
+    }
 }

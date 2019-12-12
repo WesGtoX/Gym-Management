@@ -162,7 +162,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,8 +224,8 @@ public class FormLogin extends javax.swing.JInternalFrame {
                 menu.getMenu(0).getItem(3).setEnabled(                  //Enable submenu client
                         user.getPermissions() == 1 ? true : false
                 );
-                menu.getMenu(0).getItem(0).setEnabled(true);
-                menu.getMenu(0).getItem(1).setEnabled(true);
+                menu.getMenu(0).getItem(0).setEnabled(true);            //Enable submenu client
+                menu.getMenu(0).getItem(1).setEnabled(true);            //Enable submenu client
                 menu.getMenu(1).setEnabled(true);                       //Enable menu search
                 menu.getMenu(2).setEnabled(true);                       //Enable menu report
                 

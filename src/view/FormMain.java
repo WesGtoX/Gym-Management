@@ -41,10 +41,6 @@ public class FormMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnLogin = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        btnManage = new javax.swing.JButton();
-        btnPayment = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
-        btnReports = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
@@ -112,50 +108,6 @@ public class FormMain extends javax.swing.JFrame {
             }
         });
 
-        btnManage.setBackground(new java.awt.Color(51, 51, 51));
-        btnManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_manage.png"))); // NOI18N
-        btnManage.setMaximumSize(new java.awt.Dimension(90, 90));
-        btnManage.setMinimumSize(new java.awt.Dimension(90, 90));
-        btnManage.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnManage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageActionPerformed(evt);
-            }
-        });
-
-        btnPayment.setBackground(new java.awt.Color(51, 51, 51));
-        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_payment.png"))); // NOI18N
-        btnPayment.setMaximumSize(new java.awt.Dimension(90, 90));
-        btnPayment.setMinimumSize(new java.awt.Dimension(90, 90));
-        btnPayment.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPaymentActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setBackground(new java.awt.Color(51, 51, 51));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_search.png"))); // NOI18N
-        btnSearch.setMaximumSize(new java.awt.Dimension(90, 90));
-        btnSearch.setMinimumSize(new java.awt.Dimension(90, 90));
-        btnSearch.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-
-        btnReports.setBackground(new java.awt.Color(51, 51, 51));
-        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_reports.png"))); // NOI18N
-        btnReports.setMaximumSize(new java.awt.Dimension(90, 90));
-        btnReports.setMinimumSize(new java.awt.Dimension(90, 90));
-        btnReports.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnReports.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportsActionPerformed(evt);
-            }
-        });
-
         btnAbout.setBackground(new java.awt.Color(51, 51, 51));
         btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon/p_about.png"))); // NOI18N
         btnAbout.setMaximumSize(new java.awt.Dimension(90, 90));
@@ -186,14 +138,6 @@ public class FormMain extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,10 +149,6 @@ public class FormMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -403,7 +343,10 @@ public class FormMain extends javax.swing.JFrame {
             for(User u : users){
                 count--;
                 if(u.getPermissions() == 1){                //checking for users with administrator permission
-//                    openForm(new FormLogin(Menu));        //Launch login form
+                    FormLogin lg = new FormLogin(Menu);
+                    openForm(lg);  
+                    btnLogout.setEnabled(true);            //enable logout button
+                    btnLogin.setEnabled(false);              //enable login button                    
                     break;
                 }else{
                     count++;
@@ -426,7 +369,9 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_SeaUserActionPerformed
 
     private void SeaClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeaClientsActionPerformed
-//        openForm(new FormManClient().jPanel2.setSelectedIndex(1));
+        FormManClient srcClient = new FormManClient();
+        srcClient.selectTab(0);                              //Select tab search                  
+        openForm(srcClient);                                 //Open form with selected predefinitions
     }//GEN-LAST:event_SeaClientsActionPerformed
 
     private void submenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuExitActionPerformed
@@ -434,7 +379,10 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_submenuExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        openForm(new FormLogin(Menu));
+        FormLogin lg = new FormLogin(Menu);
+        openForm(lg);
+        btnLogout.setEnabled(true);             //enable logout button
+        btnLogin.setEnabled(false);             //enable login button
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -443,22 +391,6 @@ public class FormMain extends javax.swing.JFrame {
         Usr = null;
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed
-        openForm(new FormManage());
-    }//GEN-LAST:event_btnManageActionPerformed
-
-    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
-        openForm(new FormManPay());
-    }//GEN-LAST:event_btnPaymentActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        openForm(new FormSearch());
-    }//GEN-LAST:event_btnSearchActionPerformed
-
-    private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
-        openForm(new FormReports());
-    }//GEN-LAST:event_btnReportsActionPerformed
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         openForm(new FormAbout());
@@ -543,10 +475,6 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnManage;
-    private javax.swing.JButton btnPayment;
-    private javax.swing.JButton btnReports;
-    private javax.swing.JButton btnSearch;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JMenu menuClient;
@@ -558,11 +486,13 @@ public class FormMain extends javax.swing.JFrame {
     private void configurateForm() {
         this.setTitle("Gym Management");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        enableButtons(false);
-//        menuClient.setEnabled(true);
-//        ManClients.setEnabled(false);
-//        ManUser.setEnabled(false);
-//        ManPayment.setEnabled(false);
+        enableButtons(false);
+        menuClient.setEnabled(true);
+        ManClients.setEnabled(false);
+        ManUser.setEnabled(false);
+        ManPayment.setEnabled(false);
+        btnLogout.setEnabled(false);
+        btnLogin.setEnabled(true);
     }
 
     public void FormOpen() {
@@ -594,5 +524,5 @@ public class FormMain extends javax.swing.JFrame {
         menuSearch.setEnabled(e);
         menuReport.setEnabled(e);
     }
-        
+       
 }

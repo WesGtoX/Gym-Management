@@ -622,7 +622,8 @@ public class FormManUser extends javax.swing.JInternalFrame {
         this.setTitle("Gerenciar Usuários");
         this.setResizable(false);
         
-        setState(this.flag != 1 ? false : true);
+//        setState(this.flag != 1 ? false : true);
+        setState(false);
         setData();
         filltblUsers(new UserDAO().searchAll());
         rdbSrcName.setSelected(true);
