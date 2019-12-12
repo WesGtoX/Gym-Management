@@ -192,7 +192,7 @@ public class FormReports extends javax.swing.JInternalFrame {
 
     private void rdbSrcNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSrcNameActionPerformed
         if(rdbSrcName.isSelected()){
-            ordination = "nome";
+            ordination = "name";
         }
         rdbSrcId.setSelected(false);
     }//GEN-LAST:event_rdbSrcNameActionPerformed

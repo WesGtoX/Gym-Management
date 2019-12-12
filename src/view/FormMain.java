@@ -469,7 +469,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void RepClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepClientsActionPerformed
-        report =  "report_client.jrxml";
+        report =  "report_clients.jrxml";
         openForm(new FormReports());
     }//GEN-LAST:event_RepClientsActionPerformed
 
