@@ -58,7 +58,6 @@ public class FormMain extends javax.swing.JFrame {
         menuReport = new javax.swing.JMenu();
         RepClients = new javax.swing.JMenuItem();
         RepProfit = new javax.swing.JMenuItem();
-        RepExpensives = new javax.swing.JMenuItem();
         RepTotalProfit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -277,15 +276,6 @@ public class FormMain extends javax.swing.JFrame {
         });
         menuReport.add(RepProfit);
 
-        RepExpensives.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        RepExpensives.setText("Gastos");
-        RepExpensives.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RepExpensivesActionPerformed(evt);
-            }
-        });
-        menuReport.add(RepExpensives);
-
         RepTotalProfit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RepTotalProfit.setText("Lucro Total");
         RepTotalProfit.addActionListener(new java.awt.event.ActionListener() {
@@ -410,11 +400,6 @@ public class FormMain extends javax.swing.JFrame {
         openForm(new FormReports());
     }//GEN-LAST:event_RepProfitActionPerformed
 
-    private void RepExpensivesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepExpensivesActionPerformed
-        report =  "report_expensives.jrxml";
-        openForm(new FormReports());
-    }//GEN-LAST:event_RepExpensivesActionPerformed
-
     private void RepTotalProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTotalProfitActionPerformed
         report =  "report_total_profit.jrxml";
         openForm(new FormReports());
@@ -464,7 +449,6 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem ManUser;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenuItem RepClients;
-    private javax.swing.JMenuItem RepExpensives;
     private javax.swing.JMenuItem RepProfit;
     private javax.swing.JMenuItem RepTotalProfit;
     private javax.swing.JMenuItem SeaClients;
@@ -475,7 +459,7 @@ public class FormMain extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JMenu menuClient;
     private javax.swing.JMenu menuReport;
