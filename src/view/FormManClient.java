@@ -743,8 +743,13 @@ public class FormManClient extends javax.swing.JInternalFrame {
                 c.getCel_phone(),
             });
         }
-        DefaultTableModel models = (DefaultTableModel) tblClient.getModel();
-        tblClient.setRowSorter(new TableRowSorter(clients));
+        try{
+            DefaultTableModel models = (DefaultTableModel) tblClient.getModel();
+            tblClient.setRowSorter(new TableRowSorter(clients));
+        }
+        catch (Exception ex) {
+            System.out.println("Erro ao ordenar tabela");
+        }
     }
     
     private void fillForm(int row){

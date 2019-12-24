@@ -614,8 +614,13 @@ public class FormManUser extends javax.swing.JInternalFrame {
                 u.getDate()
             });
         }
-        DefaultTableModel models = (DefaultTableModel) tblUsers.getModel();
-        tblUsers.setRowSorter(new TableRowSorter(users));
+        try{
+            DefaultTableModel models = (DefaultTableModel) tblUsers.getModel();
+            tblUsers.setRowSorter(new TableRowSorter(users));
+        }
+        catch (Exception ex) {
+            System.out.println("Erro ao ordenar tabela");
+        }
     }
     
     private void configForm() {

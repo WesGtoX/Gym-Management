@@ -661,15 +661,6 @@ public class FormManPay extends javax.swing.JInternalFrame {
             p.setStatus(true);
             pay = p;
         }
-        System.out.println("Pagamento id: "+pay.getId());
-        System.out.println("Pagamento Paymode: "+pay.getPaymode());
-        System.out.println("Pagamento status: "+pay.isStatus());
-        System.out.println("Pagamento monthly: "+pay.getMonthly());
-        System.out.println("Pagamento discount: "+pay.getDiscount());
-        System.out.println("Pagamento expiry: "+pay.getExpiry());
-        System.out.println("Pagamento paydate: "+pay.getPaydate());
-        System.out.println("Pagamento payrate: "+pay.getPayrate());
-        System.out.println("Pagamento client-id: "+pay.getClient().getId());
         
         new PayDAO().save(pay);
         cbxPaymode.setEnabled(false);
@@ -802,8 +793,12 @@ public class FormManPay extends javax.swing.JInternalFrame {
                 }
             );
         }
-        DefaultTableModel models = (DefaultTableModel) tblPay.getModel();
-        tblPay.setRowSorter(new TableRowSorter(model));
+        try{
+            DefaultTableModel models = (DefaultTableModel) tblPay.getModel();
+            tblPay.setRowSorter(new TableRowSorter(model));}
+        catch (Exception ex) {
+            System.out.println("Erro ao ordenar tabela");
+        }
     }
     
     public void filltblHistoric(){
